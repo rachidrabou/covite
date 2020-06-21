@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.pfe.covite",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "covite",
+    "packageName": "com.pfe.covite",
+    "packageFolder": "com/pfe/covite",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NjA5Y2ExYzA4NGYyYTMwYTFiNjgyOTVmNGVhNTYyYmI0NGRmNGQxNjNmZWQ4MGEzMjE0NDRlOTFkNzgwOGFiOTk3N2Q5NmFjZTk3YzRjN2I4MTk0MGMzZWU2YzEyMjMyNjcwOWMxM2IzYTRiNmYxNTk3Y2M1NjVjZmEwODY5ZmM=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "lux",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1592702127925,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": ["fr", "en"],
+    "blueprints": []
+  }
+}
