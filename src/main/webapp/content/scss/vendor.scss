@@ -12,36 +12,19 @@ eg $input-color: red;
 @import '~bootswatch/dist/lux/bootswatch';
 
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
-@import 'now-ui-dashboard/variables';
-@import 'now-ui-dashboard/mixins';
+@import 'custom/functions';
+@import 'custom/variables';
+@import 'custom/mixins';
 
-// Plugins CSS
-@import 'now-ui-dashboard/plugins/plugin-animate-bootstrap-notify';
-@import 'now-ui-dashboard/plugins/plugin-perfect-scrollbar';
+// FDM utilities and components
 
-// Core CSS
-@import 'now-ui-dashboard/buttons';
-@import 'now-ui-dashboard/inputs';
-@import 'now-ui-dashboard/typography';
-@import 'now-ui-dashboard/misc';
-@import 'now-ui-dashboard/checkboxes-radio';
+@import 'custom/reboot';
+@import 'custom/utilities';
+@import 'custom/components';
 
-// components
-@import 'now-ui-dashboard/navbar';
-@import 'now-ui-dashboard/page-header';
-@import 'now-ui-dashboard/dropdown';
-@import 'now-ui-dashboard/alerts';
-@import 'now-ui-dashboard/images';
-@import 'now-ui-dashboard/tables';
-@import 'now-ui-dashboard/sidebar-and-main-panel';
-@import 'now-ui-dashboard/footers';
-@import 'now-ui-dashboard/fixed-plugin';
+// Vendor (Plugins)
 
-// cards
-@import 'now-ui-dashboard/cards';
-@import 'now-ui-dashboard/cards/card-plain';
-@import 'now-ui-dashboard/cards/card-chart';
-@import 'now-ui-dashboard/cards/card-user';
-@import 'now-ui-dashboard/cards/card-map';
+@import 'custom/vendors';
 
-@import 'now-ui-dashboard/responsive';
+// My own classes
+@import 'global.scss';
