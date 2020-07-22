@@ -1,0 +1,37 @@
+<p>listecommande works!</p>
+
+
+
+
+
+<div *ngSwitchCase="true">
+
+    <div class="row">
+        <br>
+        <p class="col-md-12 display-8 text-center" *jhiHasAnyAuthority="'ROLE_LIVREUR'" >Commandes en attente</p>
+        <br>
+    </div>
+
+    <div class="row" *jhiHasAnyAuthority="'ROLE_LIVREUR'">
+
+        <div class="card-deck" >
+            <div *ngfor="let commande of commandes">
+                <div class="card">
+                    <img class="card-img-top" src="../../content/images/panier.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{commande.date}}</h5>
+                        <h6 class="card-title">{{commande.typeService}}</h6>
+                        <h5 class="card-text">{{commande.prix}} DHS</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

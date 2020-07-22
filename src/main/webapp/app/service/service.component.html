@@ -1,0 +1,29 @@
+<div class="col-md-6"  *jhiHasAnyAuthority="'ROLE_ADMIN'">
+    <h1> Transport</h1>
+    <div class="card shadow">
+        <canvas
+            baseChart
+            [chartType]="'bar'"
+            [datasets]="chartDatameryem1"
+            [labels]="chartLabelsmeryem1"
+            [options]="chartOptionsmeryem1"
+            [legend]="true">
+        </canvas>
+    </div>
+</div>
+
+
+
+<div class="col-md-6"  *jhiHasAnyAuthority="'ROLE_ADMIN'">
+    <h2>Livraison</h2>
+    <div class="card shadow">
+        <canvas
+            baseChart
+            [chartType]="'bar'"
+            [datasets]="chartDatameryem2"
+            [labels]="chartLabelsmeryem2"
+            [options]="chartOptionsmeryem2"
+            [legend]="true">
+        </canvas>
+    </div>
+</div>
