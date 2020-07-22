@@ -30,6 +30,69 @@
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
+             <!-- statistiques-->
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="statistic-menu">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span jhiTranslate="global.menu.statistic">
+                            statistic
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <!-- Button Service-->
+                    <li >
+                        <a class="dropdown-item" routerLink="/GrapheService" >
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >Services</span>
+                        </a>
+                    </li>
+                    <!-- Button Livreur -->
+                    <li>
+                        <a class="dropdown-item" routerLink="/GrapheLivreur">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Livreurs</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+           <!-- commande liverur -->
+
+            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="statistic-menu">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span jhiTranslate="global.menu.commandes">
+                            commandes
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <!-- Button liste commandes -->
+                    <li >
+                        <a class="dropdown-item" routerLink="/listecommande" >
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span > Liste des Commandes</span>
+                        </a>
+                    </li>
+                    <!-- Button Livreur
+                    <li>
+                        <a class="dropdown-item" routerLink="/GrapheLivreur">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Livreurs</span>
+                        </a>
+                    </li>-->
+                </ul>
+            </li>
+
+
+
+
+
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

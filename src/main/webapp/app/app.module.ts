@@ -14,6 +14,12 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { ServiceComponent } from './service/service.component';
+import { LivreurComponent } from './livreur/livreur.component';
+import { ChartsModule } from 'ng2-charts';
+import { TransportComponent } from './transport/transport.component';
+import { LivraisonComponent } from './livraison/livraison.component';
+import { ListecommandeComponent } from './listecommande/listecommande.component';
 
 @NgModule({
   imports: [
@@ -23,9 +29,22 @@ import { ErrorComponent } from './layouts/error/error.component';
     CoviteHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     CoviteEntityModule,
-    CoviteAppRoutingModule
+    CoviteAppRoutingModule,
+    ChartsModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    ServiceComponent,
+    LivreurComponent,
+    TransportComponent,
+    LivraisonComponent,
+    ListecommandeComponent
+  ],
   bootstrap: [MainComponent]
 })
 export class CoviteAppModule {}

@@ -4,6 +4,11 @@ import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
+import { ServiceComponent } from './service/service.component';
+import { LivreurComponent } from './livreur/livreur.component';
+import { TransportComponent } from './transport/transport.component';
+import { LivraisonComponent } from './livraison/livraison.component';
+import { ListecommandeComponent } from './listecommande/listecommande.component';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
@@ -13,6 +18,28 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: 'listecommande',
+          component: ListecommandeComponent
+        },
+        {
+          path: 'boutonlivraison',
+          component: LivraisonComponent
+        },
+        {
+          path: 'boutontransport',
+          component: TransportComponent
+        },
+
+        {
+          path: 'GrapheService',
+          component: ServiceComponent
+        },
+        {
+          path: 'GrapheLivreur',
+          component: LivreurComponent
+        },
+
         {
           path: 'admin',
           data: {

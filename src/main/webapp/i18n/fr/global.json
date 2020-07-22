@@ -9,6 +9,9 @@
         "main": "Entités",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
+      "statistic": "statistiques",
+      "Commandes": " Commandes",
+
       "account": {
         "main": "Compte",
         "settings": "Profil",
@@ -100,6 +103,7 @@
       "save": "Sauvegarder",
       "view": "Voir"
     },
+
     "detail": {
       "field": "Champs",
       "value": "Valeur"
