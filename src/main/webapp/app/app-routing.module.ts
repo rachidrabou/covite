@@ -8,7 +8,7 @@ import { ServiceComponent } from './service/service.component';
 import { LivreurComponent } from './livreur/livreur.component';
 import { TransportComponent } from './transport/transport.component';
 import { LivraisonComponent } from './livraison/livraison.component';
-import { ListecommandeComponent } from './listecommande/listecommande.component';
+import { CommissionComponent } from './commission/commission.component';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
@@ -19,9 +19,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
     RouterModule.forRoot(
       [
         {
-          path: 'listecommande',
-          component: ListecommandeComponent
+          path: 'boutoncommission',
+          component: CommissionComponent
         },
+
         {
           path: 'boutonlivraison',
           component: LivraisonComponent

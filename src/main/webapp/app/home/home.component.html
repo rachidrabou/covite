@@ -1,74 +1,137 @@
 <div class="row" >
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
-    </div>
-
-    <div   class="col-md-9 " >
-
+    <div   class="col-md-12 " >
+<!--
         <h1 class="display-4 text-center" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
-        <h2 class="display-4 text-center" jhiTranslate="home.subtitle">the all in one solution</h2>
+        <h2 class="display-4 text-center" jhiTranslate="home.subtitle">the all in one solution</h2>-->
         <!--<p class="lead text-center" jhiTranslate="home.subtitle">This is your homepage</p><br><br>-->
+        <div class="row text-center" >
+            <div class="logo">
+                <div   class="col-md-12 " >
+                    <img src="../../content/images/covitelo.png">
+                </div>
+            </div>
+        </div>
+
+        <div   class="col-md-12 " >
+            <ngb-carousel>
+                <ng-template ngbSlide>
+                    <img  src="../../content/images/girlinthecar.jpeg" alt="Delhi Metro" style=" width:700 px">
+                    <div class="carousel-caption">
+                        <h3 style="color: white">deplacez vous en toute liberté</h3>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="../../content/images/driver.jpeg" alt="Bangalore Metro" style="width:500 px">
+                    <div class="carousel-caption">
+                        <h3 style="color:white">nos meilleurs maitres sont a votre disposition</h3>
+                    </div>
+                </ng-template>
+
+                <ng-template ngbSlide>
+                    <img src="../../content/images/delivery-guy.jpeg" alt="Bangalore Metro" style=" width:700 px">
+                    <div class="carousel-caption">
+                        <h3 style="color: white">nos livreurs sont la pour vous</h3>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="../../content/images/covite1.png" alt="Channai Metro" style=" width:700 px">
+                    <div class="carousel-caption">
+                        <h3 style="color: orange">mais aussi vos animaux</h3>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="../../content/images/map.jpeg" alt="Bangalore Metro" style="width:700 px">
+                    <div class="carousel-caption">
+                        <h3 style="color: white">itineéraire simplifié</h3>
+                    </div>
+                </ng-template>
+
+            </ngb-carousel>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                    [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
+                     [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
             </div>
 
-            <div class="container-fluid" *ngSwitchCase="false">
 
-                <ngb-carousel>
-                    <ng-template ngbSlide>
-                        <img  src="../../content/images/girlinthecar.jpeg" alt="Delhi Metro" style="align-items: center;">
-                        <div class="carousel-caption">
-                            <h3 style="color: white">deplacez vous en toute liberté</h3>
-                        </div>
-                    </ng-template>
-                    <ng-template ngbSlide>
-                        <img src="../../content/images/driver.jpeg" alt="Bangalore Metro" style="align-items: center;">
-                        <div class="carousel-caption">
-                            <h3 style="color:white">nos meilleurs maitres sont a votre disposition</h3>
-                        </div>
-                    </ng-template>
 
-                    <ng-template ngbSlide>
-                        <img src="../../content/images/delivery-guy.jpeg" alt="Bangalore Metro" style="align-items: center;">
-                        <div class="carousel-caption">
-                            <h3 style="color: white">nos livreurs sont la pour vous</h3>
-                        </div>
-                    </ng-template>
-                    <ng-template ngbSlide>
-                        <img src="../../content/images/cheval.jpeg" alt="Channai Metro" style="align-items: center;">
-                        <div class="carousel-caption">
-                            <h3 style="color: orange">mais aussi vos animaux</h3>
-                        </div>
-                    </ng-template>
-                    <ng-template ngbSlide>
-                        <img src="../../content/images/map.jpeg" alt="Bangalore Metro" style="align-items: center;">
-                        <div class="carousel-caption">
-                            <h3 style="color: white">itineéraire simplifié</h3>
-                        </div>
-                    </ng-template>
 
-                </ngb-carousel>
-            </div> <br> <br>
-            <h1 class="display-4 text-center" >quel service souhaiteriez-vous utiliser ?</h1>
-            <br><br>
 
-            <!--bouton-->
-        <div class="row text-center" >
-            <div class="col-md-6">
-                <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./boutontransport']">
-                   <!-- <fa-icon icon="plus"></fa-icon> <span>Transport</span>-->
-                    <img src="../../content/images/van.jpeg" height="200" width="300">
-                </button &nbsp>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div> <br> <br>
+        <h1 *jhiHasAnyAuthority="'ROLE_USER'" class="display-4 text-center" >quel service souhaiteriez-vous utiliser ?</h1>
+        <br><br>
+
+        <!--bouton-->
 
             <div class="col-md-6">
-                <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./boutonlivraison']">
-                  <!--  <fa-icon icon="plus"></fa-icon> <span>Livraison</span>-->
-                    <img src="../../content/images/delivery-guy.jpeg" height="200" width="300">
+                <button style="width:1200px height:400px" *jhiHasAnyAuthority="'ROLE_USER'" class="float-center jh-create-entity" [routerLink]="['./boutontransport']">
+                    <!-- <fa-icon icon="plus"></fa-icon> <span>Transport</span>-->
+                    <img src="../../content/images/van.jpeg" height="400" width="1200">
                 </button>
             </div>
-        </div>
-</div>
+        <br><br>
+        <div class="col-md-6">
+                <button style="width:1200px height:400px"  *jhiHasAnyAuthority="'ROLE_USER'"class=" jh-create-entity" [routerLink]="['./boutonlivraison']">
+                    <!--  <fa-icon icon="plus"></fa-icon> <span>Livraison</span>-->
+                    <img src="../../content/images/delivery-guy.jpeg" height="400" width="1200">
+                </button>
+            </div>
+<br><br>            <div class="col-md-12">
+                <button style="width:1200px height:400px" *jhiHasAnyAuthority="'ROLE_USER'"class="jh-create-entity" [routerLink]="['./boutonlivraison']">
+                    <!--  <fa-icon icon="plus"></fa-icon> <span>Livraison</span>-->
+                    <img src="../../content/images/cheval.png" height="400" width="1200">
+                </button>
+            </div>
+        </div></div>

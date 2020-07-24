@@ -1,0 +1,29 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "matricule",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "Typevehicule",
+            "fieldValues": "VOITURE,CAMION,VAN,MOTOCYCLETTE,AUTOANIMAL"
+        },
+        {
+            "fieldName": "capacite",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20200723131446",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "vehicule",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

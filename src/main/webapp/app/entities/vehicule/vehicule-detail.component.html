@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vehicule">
+            <h2><span jhiTranslate="coviteApp.vehicule.detail.title">Vehicule</span> {{ vehicule.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="coviteApp.vehicule.matricule">Matricule</span></dt>
+                <dd>
+                    <span>{{ vehicule.matricule }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.vehicule.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'coviteApp.Typevehicule.' + vehicule.type }}">{{ vehicule.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.vehicule.capacite">Capacite</span></dt>
+                <dd>
+                    <span>{{ vehicule.capacite }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vehicule', vehicule.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

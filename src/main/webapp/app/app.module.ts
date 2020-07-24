@@ -19,7 +19,7 @@ import { LivreurComponent } from './livreur/livreur.component';
 import { ChartsModule } from 'ng2-charts';
 import { TransportComponent } from './transport/transport.component';
 import { LivraisonComponent } from './livraison/livraison.component';
-import { ListecommandeComponent } from './listecommande/listecommande.component';
+import { CommissionComponent } from './commission/commission.component';
 
 @NgModule({
   imports: [
@@ -43,7 +43,7 @@ import { ListecommandeComponent } from './listecommande/listecommande.component'
     LivreurComponent,
     TransportComponent,
     LivraisonComponent,
-    ListecommandeComponent
+    CommissionComponent
   ],
   bootstrap: [MainComponent]
 })

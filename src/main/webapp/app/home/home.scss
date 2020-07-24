@@ -2,13 +2,21 @@
 Main page styles
 ========================================================================== */
 
-.hipster {
+/*.hipster {
   display: inline-block;
   width: 347px;
   height: 497px;
   background: url('../../content/images/CoviteLogoo.jpg') no-repeat;
   background-size: contain;
   background-position: 0% 0%;
+}*/
+.logo {
+  display: block;
+  width: 100%;
+
+  marge: 0;
+  background-size: 6px, auto, cover;
+  align-content: center;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -17,8 +25,8 @@ Main page styles
   only screen and (-o-min-device-pixel-ratio: 2/1),
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
-  .hipster {
+  /*.hipster {
     background: url('../../content/images/CoviteLogoo.jpg') no-repeat center top;
     background-size: contain;
-  }
+  }*/
 }

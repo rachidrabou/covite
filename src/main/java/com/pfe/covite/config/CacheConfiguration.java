@@ -42,6 +42,9 @@ public class CacheConfiguration {
             createCache(cm, com.pfe.covite.domain.User.class.getName());
             createCache(cm, com.pfe.covite.domain.Authority.class.getName());
             createCache(cm, com.pfe.covite.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.pfe.covite.domain.Commandes.class.getName());
+            createCache(cm, com.pfe.covite.domain.Vehicule.class.getName());
+            createCache(cm, com.pfe.covite.domain.Vehicule.class.getName() + ".commandes");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,34 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "Categorie",
+            "fieldValues": "PERSONNE,ANIMAL,PANIERMENAGER,REPAS,OBJET"
+        },
+        {
+            "fieldName": "typeservice",
+            "fieldType": "Service",
+            "fieldValues": "TRANSPORT,LIVRAISON"
+        }
+    ],
+    "changelogDate": "20200723123948",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "commandes",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}
