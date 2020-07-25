@@ -18,10 +18,11 @@
         <span jhiTranslate="coviteApp.commandeTransport.home.notFound">No commandeTransports found</span>
     </div>
 
+
     <div class="table-responsive" id="entities" *ngIf="commandeTransports?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)" >
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseDepart"><span jhiTranslate="coviteApp.commandeTransport.adresseDepart">Adresse Depart</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseArrivee"><span jhiTranslate="coviteApp.commandeTransport.adresseArrivee">Adresse Arrivee</span> <fa-icon icon="sort"></fa-icon></th>
@@ -70,6 +71,8 @@
             </tbody>
         </table>
     </div>
+
+
 
     <div *ngIf="commandeTransports?.length > 0">
         <div class="row justify-content-center">
