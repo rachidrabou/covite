@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="commandeLivraisonAnimal">
+            <h2><span jhiTranslate="coviteApp.commandeLivraisonAnimal.detail.title">Commande Livraison Animal</span> {{ commandeLivraisonAnimal.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.adresseDepart">Adresse Depart</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.adresseDepart }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.adresseArrivee">Adresse Arrivee</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.adresseArrivee }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.dateHeure">Date Heure</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.dateHeure }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.animal">Animal</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.animal }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.moyenDeTransport">Moyen De Transport</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.moyenDeTransport }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.numeroClient">Numero Client</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.numeroClient }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.prix">Prix</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.prix }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/commande-livraison-animal', commandeLivraisonAnimal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-commande-livraison-heading" jhiTranslate="coviteApp.commandeLivraison.home.createOrEditLabel">Create or edit a Commande Livraison</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraison.adresseDepart" for="field_adresseDepart">Adresse Depart</label>
+                    <input type="text" class="form-control" name="adresseDepart" id="field_adresseDepart"
+                           formControlName="adresseDepart"/>
+                    <div *ngIf="editForm.get('adresseDepart')!.invalid && (editForm.get('adresseDepart')!.dirty || editForm.get('adresseDepart')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('adresseDepart')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraison.adresseArrivee" for="field_adresseArrivee">Adresse Arrivee</label>
+                    <input type="text" class="form-control" name="adresseArrivee" id="field_adresseArrivee"
+                           formControlName="adresseArrivee"/>
+                    <div *ngIf="editForm.get('adresseArrivee')!.invalid && (editForm.get('adresseArrivee')!.dirty || editForm.get('adresseArrivee')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('adresseArrivee')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraison.dateHeure" for="field_dateHeure">Date Heure</label>
+                    <div class="input-group">
+                        <input id="field_dateHeure" type="text" class="form-control" name="dateHeure" ngbDatepicker #dateHeureDp="ngbDatepicker" formControlName="dateHeure"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateHeureDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dateHeure')!.invalid && (editForm.get('dateHeure')!.dirty || editForm.get('dateHeure')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateHeure')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraison.prix" for="field_prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" id="field_prix"
+                           formControlName="prix"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraison.numeroClient" for="field_numeroClient">Numero Client</label>
+                    <input type="text" class="form-control" name="numeroClient" id="field_numeroClient"
+                           formControlName="numeroClient"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraison.objet" for="field_objet">Objet</label>
+                    <input type="text" class="form-control" name="objet" id="field_objet"
+                           formControlName="objet"/>
+                    <div *ngIf="editForm.get('objet')!.invalid && (editForm.get('objet')!.dirty || editForm.get('objet')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('objet')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

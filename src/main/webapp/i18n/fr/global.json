@@ -10,6 +10,9 @@
         "main": "Entités",
         "commandes": "Commandes",
         "vehicule": "Vehicule",
+        "commandeTransport": "Commande Transport",
+        "commandeLivraison": "Commande Livraison",
+        "commandeLivraisonAnimal": "Commande Livraison Animal",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "statistic": "statistiques",

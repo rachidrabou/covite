@@ -1,0 +1,28 @@
+{
+  "coviteApp": {
+    "commandeTransport": {
+      "home": {
+        "title": "Commande Transports",
+        "createLabel": "Create a new Commande Transport",
+        "createOrEditLabel": "Create or edit a Commande Transport",
+        "notFound": "No Commande Transports found"
+      },
+      "created": "A new Commande Transport is created with identifier {{ param }}",
+      "updated": "A Commande Transport is updated with identifier {{ param }}",
+      "deleted": "A Commande Transport is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Commande Transport {{ id }}?"
+      },
+      "detail": {
+        "title": "Commande Transport"
+      },
+      "adresseDepart": "Adresse Depart",
+      "adresseArrivee": "Adresse Arrivee",
+      "dateHeure": "Date Heure",
+      "moyenDeTransport": "Moyen De Transport",
+      "prix": "Prix",
+      "nombreDePersonnes": "Nombre De Personnes",
+      "numeroClient": "Numero Client"
+    }
+  }
+}

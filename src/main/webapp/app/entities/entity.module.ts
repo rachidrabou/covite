@@ -11,6 +11,19 @@ import { RouterModule } from '@angular/router';
       {
         path: 'vehicule',
         loadChildren: () => import('./vehicule/vehicule.module').then(m => m.CoviteVehiculeModule)
+      },
+      {
+        path: 'commande-transport',
+        loadChildren: () => import('./commande-transport/commande-transport.module').then(m => m.CoviteCommandeTransportModule)
+      },
+      {
+        path: 'commande-livraison',
+        loadChildren: () => import('./commande-livraison/commande-livraison.module').then(m => m.CoviteCommandeLivraisonModule)
+      },
+      {
+        path: 'commande-livraison-animal',
+        loadChildren: () =>
+          import('./commande-livraison-animal/commande-livraison-animal.module').then(m => m.CoviteCommandeLivraisonAnimalModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

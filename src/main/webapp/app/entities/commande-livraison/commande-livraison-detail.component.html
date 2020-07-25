@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="commandeLivraison">
+            <h2><span jhiTranslate="coviteApp.commandeLivraison.detail.title">Commande Livraison</span> {{ commandeLivraison.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.adresseDepart">Adresse Depart</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.adresseDepart }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.adresseArrivee">Adresse Arrivee</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.adresseArrivee }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.dateHeure">Date Heure</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.dateHeure }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.prix">Prix</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.prix }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.numeroClient">Numero Client</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.numeroClient }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.objet">Objet</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.objet }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/commande-livraison', commandeLivraison.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

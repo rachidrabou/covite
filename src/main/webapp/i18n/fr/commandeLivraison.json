@@ -1,0 +1,27 @@
+{
+  "coviteApp": {
+    "commandeLivraison": {
+      "home": {
+        "title": "CommandeLivraisons",
+        "createLabel": "Créer un nouveau Commande Livraison",
+        "createOrEditLabel": "Créer ou éditer un Commande Livraison",
+        "notFound": "Aucun Commande Livraison trouvé"
+      },
+      "created": "Un nouveau Commande Livraison a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Commande Livraison avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Commande Livraison avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Commande Livraison {{ id }} ?"
+      },
+      "detail": {
+        "title": "Commande Livraison"
+      },
+      "adresseDepart": "Adresse Depart",
+      "adresseArrivee": "Adresse Arrivee",
+      "dateHeure": "Date Heure",
+      "prix": "Prix",
+      "numeroClient": "Numero Client",
+      "objet": "Objet"
+    }
+  }
+}

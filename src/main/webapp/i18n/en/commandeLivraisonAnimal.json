@@ -1,0 +1,28 @@
+{
+  "coviteApp": {
+    "commandeLivraisonAnimal": {
+      "home": {
+        "title": "Commande Livraison Animals",
+        "createLabel": "Create a new Commande Livraison Animal",
+        "createOrEditLabel": "Create or edit a Commande Livraison Animal",
+        "notFound": "No Commande Livraison Animals found"
+      },
+      "created": "A new Commande Livraison Animal is created with identifier {{ param }}",
+      "updated": "A Commande Livraison Animal is updated with identifier {{ param }}",
+      "deleted": "A Commande Livraison Animal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Commande Livraison Animal {{ id }}?"
+      },
+      "detail": {
+        "title": "Commande Livraison Animal"
+      },
+      "adresseDepart": "Adresse Depart",
+      "adresseArrivee": "Adresse Arrivee",
+      "dateHeure": "Date Heure",
+      "animal": "Animal",
+      "moyenDeTransport": "Moyen De Transport",
+      "numeroClient": "Numero Client",
+      "prix": "Prix"
+    }
+  }
+}

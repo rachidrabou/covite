@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="commandeTransport">
+            <h2><span jhiTranslate="coviteApp.commandeTransport.detail.title">Commande Transport</span> {{ commandeTransport.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="coviteApp.commandeTransport.adresseDepart">Adresse Depart</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.adresseDepart }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.adresseArrivee">Adresse Arrivee</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.adresseArrivee }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.dateHeure">Date Heure</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.dateHeure }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.moyenDeTransport">Moyen De Transport</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.moyenDeTransport }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.prix">Prix</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.prix }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.nombreDePersonnes">Nombre De Personnes</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.nombreDePersonnes }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.numeroClient">Numero Client</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.numeroClient }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/commande-transport', commandeTransport.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
