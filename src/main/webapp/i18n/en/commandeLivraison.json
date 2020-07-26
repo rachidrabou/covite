@@ -21,7 +21,8 @@
       "dateHeure": "Date Heure",
       "prix": "Prix",
       "numeroClient": "Numero Client",
-      "objet": "Objet"
+      "objet": "Objet",
+      "client": "Client"
     }
   }
 }

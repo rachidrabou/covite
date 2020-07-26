@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { ICommandeLivraison, CommandeLivraison } from 'app/shared/model/commande-livraison.model';
 import { CommandeLivraisonService } from './commande-livraison.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-commande-livraison-update',
@@ -14,6 +16,7 @@ import { CommandeLivraisonService } from './commande-livraison.service';
 })
 export class CommandeLivraisonUpdateComponent implements OnInit {
   isSaving = false;
+  users: IUser[] = [];
   dateHeureDp: any;
 
   editForm = this.fb.group({
@@ -23,11 +26,13 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
     dateHeure: [null, [Validators.required]],
     prix: [],
     numeroClient: [],
-    objet: [null, [Validators.required]]
+    objet: [null, [Validators.required]],
+    client: []
   });
 
   constructor(
     protected commandeLivraisonService: CommandeLivraisonService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -35,6 +40,8 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ commandeLivraison }) => {
       this.updateForm(commandeLivraison);
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -46,7 +53,8 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       dateHeure: commandeLivraison.dateHeure,
       prix: commandeLivraison.prix,
       numeroClient: commandeLivraison.numeroClient,
-      objet: commandeLivraison.objet
+      objet: commandeLivraison.objet,
+      client: commandeLivraison.client
     });
   }
 
@@ -73,7 +81,8 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       dateHeure: this.editForm.get(['dateHeure'])!.value,
       prix: this.editForm.get(['prix'])!.value,
       numeroClient: this.editForm.get(['numeroClient'])!.value,
-      objet: this.editForm.get(['objet'])!.value
+      objet: this.editForm.get(['objet'])!.value,
+      client: this.editForm.get(['client'])!.value
     };
   }
 
@@ -91,5 +100,9 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IUser): any {
+    return item.id;
   }
 }

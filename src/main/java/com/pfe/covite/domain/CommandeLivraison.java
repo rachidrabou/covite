@@ -46,6 +46,10 @@ public class CommandeLivraison implements Serializable {
     @Column(name = "objet", nullable = false)
     private String objet;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User client;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -131,6 +135,19 @@ public class CommandeLivraison implements Serializable {
 
     public void setObjet(String objet) {
         this.objet = objet;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public CommandeLivraison client(User user) {
+        this.client = user;
+        return this;
+    }
+
+    public void setClient(User user) {
+        this.client = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

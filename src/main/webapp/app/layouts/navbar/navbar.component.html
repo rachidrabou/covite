@@ -40,6 +40,15 @@
                     </span>
                 </a>
             </li>
+            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="notification" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="home"></fa-icon>
+                        <span >Notifications</span>
+                    </span>
+                </a>
+            </li>
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
 <!-- Entities -->
 
@@ -90,6 +99,7 @@
                </ul>
             </li>
             <!-- FIN Entities -->
+
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
 
              <!-- statistiques-->

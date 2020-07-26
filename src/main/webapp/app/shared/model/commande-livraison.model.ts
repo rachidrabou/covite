@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IUser } from 'app/core/user/user.model';
 
 export interface ICommandeLivraison {
   id?: number;
@@ -8,6 +9,7 @@ export interface ICommandeLivraison {
   prix?: number;
   numeroClient?: string;
   objet?: string;
+  client?: IUser;
 }
 
 export class CommandeLivraison implements ICommandeLivraison {
@@ -18,6 +20,7 @@ export class CommandeLivraison implements ICommandeLivraison {
     public dateHeure?: Moment,
     public prix?: number,
     public numeroClient?: string,
-    public objet?: string
+    public objet?: string,
+    public client?: IUser
   ) {}
 }
