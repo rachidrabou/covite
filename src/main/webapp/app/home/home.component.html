@@ -4,6 +4,8 @@
         <h1 class="display-4 text-center" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
         <h2 class="display-4 text-center" jhiTranslate="home.subtitle">the all in one solution</h2>-->
         <!--<p class="lead text-center" jhiTranslate="home.subtitle">This is your homepage</p><br><br>-->
+
+
         <div class="row text-center" >
             <div class="logo">
                 <div   class="col-md-12 " >
@@ -12,73 +14,47 @@
             </div>
         </div>
 
-        <div   class="col-md-12 " >
+
+
+        <!-- SLIIDER -->
+        <div   class="mimi" >
 
             <ngb-carousel>
                 <ng-template ngbSlide>
-                    <img  src="../../content/images/girlinthecar.jpeg" alt="Delhi Metro" style=" width:700 px">
+                    <img class="d-block w-100" src="../../content/images/girlinthecar.jpeg" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
-                        <h3 style="color: white">deplacez vous en toute liberté</h3>
+                        <h1 style="color: white">deplacez vous en toute liberté</h1>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img src="../../content/images/driver.jpeg" alt="Bangalore Metro" style="width:500 px">
+                    <img class="d-block w-100" src="../../content/images/driver.jpeg" alt="Bangalore Metro" style="width:500 px">
                     <div class="carousel-caption">
-                        <h3 style="color:white">nos meilleurs maitres sont a votre disposition</h3>
+                        <h1 style="color:white">nos meilleurs maitres sont a votre disposition</h1>
                     </div>
                 </ng-template>
 
                 <ng-template ngbSlide>
-                    <img src="../../content/images/delivery-guy.jpeg" alt="Bangalore Metro" style=" width:700 px">
+                    <img class="d-block w-100" src="../../content/images/delivery-guy.jpeg" alt="Bangalore Metro" style=" width:700 px">
                     <div class="carousel-caption">
-                        <h3 style="color: white">nos livreurs sont la pour vous</h3>
+                        <h1 style="color: white">nos livreurs sont la pour vous</h1>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img src="../../content/images/test1.png" alt="Channai Metro" style=" width:700 px">
+                    <img class="d-block w-100" src="../../content/images/test1.png" alt="Channai Metro" style=" width:700 px">
                     <div class="carousel-caption">
-                        <h3 style="color: orange">mais aussi vos animaux</h3>
+                        <h1 style="color: orange">mais aussi vos animaux</h1>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img src="../../content/images/map.jpeg" alt="Bangalore Metro" style="width:700 px">
+                    <img class="d-block w-100" src="../../content/images/map.jpeg" alt="Bangalore Metro" style="width:700 px">
                     <div class="carousel-caption">
-                        <h3 style="color: white">itineéraire simplifié</h3>
+                        <h1 style="color: white">itineéraire simplifié</h1>
                     </div>
                 </ng-template>
 
             </ngb-carousel>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -91,24 +67,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
+        <br>
 
             <h1 *jhiHasAnyAuthority="'ROLE_USER'" class="display-4 text-center" >quel service souhaiteriez-vous utiliser ?</h1>
+        <br>
             <div class="card-deck" *jhiHasAnyAuthority="'ROLE_USER'">
                 <div class="card" routerLink="/commande-transport/new">
                     <img class="card-img-top" src="../../content/images/van.jpeg" alt="Card image cap">
@@ -137,3 +100,143 @@
             </div>
         </div>
 </div>
+
+<br>
+
+
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h1 class="m-b-40">  <br> </h1>
+            <h1 class="m-b-20"><strong> Allezz fait VITEEE et passe ta commande chez COVITEEE ;) !!! </strong></h1>
+        </div>
+    </div>
+</div>
+
+
+<br><br>
+
+<div class="col-md-12">
+    <div class="float-left">
+        <img src="../../content/images/yed.png" alt="" style="width:640px; height:400px ; margin-right:3rem;" >
+    </div>
+
+    <br><br><br><br><br>
+
+    <div class="new-feature" >
+        <div class="new-feature-image"></div>
+        <div class="container">
+            <div class="col-lg-5 offset-lg-6">
+                <h2 class="m-b-20 text-center"> Difficile de prendre les transport en commun ? </h2>
+                <h1 class="m-b-20 text-center"><strong>La solution est entre vos mains</strong></h1>
+                <p></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br>
+
+<div class="col-md-12">
+        <div class="float-right">
+            <img src="../../content/images/personne.png"alt="" style="width:630px; height:400px ; margin-right:3rem;" >
+        </div>
+
+    <br><br>
+
+    <div class="new-feature" >
+        <div class="new-feature-image" style="background-image: url('../../content/images/merci.png')"></div>
+
+            <div class="col-md-6">
+                <br><br><br><br>
+                <h2  class="m-b-20 text-center" >Faites un tour !</h2>
+                <h1 class="m-b-20 text-center">Bla bla, Bla bla bla !</h1>
+        </div>
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div class="col-md-12">
+    <div class="float-left">
+        <img src="../../content/images/commander.png"  alt="" style="width:630px; height:400px ; margin-right:3rem;" >
+    </div>
+
+    <br><br><br><br><br><br>
+
+    <div class="new-feature" id="new-feature-1">
+        <div class="new-feature-image" ></div>
+        <div class="container">
+            <div class="col-lg-5 offset-lg-6">
+                <h2  class="m-b-20 text-center" >Commander !</h2>
+                <h1 class="m-b-20 text-center">On vous fait livrer.</h1>
+                <p></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+<div class="col-md-12">
+    <div class="float-right">
+        <img src="../../content/images/winou.png" alt="" style="width:610px; height:400px ; margin-right:3rem;" >
+    </div>
+
+    <br><br><br><br><br>
+
+    <div class="new-feature" >
+        <div class="new-feature-image" ></div>
+
+        <div class="col-md-6">
+            <br><br><br><br>
+            <h2  class="m-b-20 text-center" >Transporter vos annimaux !</h2>
+            <h1 class="m-b-20 text-center">  Bla bla bla bla.  </h1>
+        </div>
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+
+<div class="col-md-12">
+    <div class="float-left">
+        <img src="../../content/images/merci.png"  alt="" style="width:630px; height:400px ; margin-right:3rem;" >
+    </div>
+
+<br><br><br><br><br><br><br>
+
+<div class="new-feature" >
+    <div class="new-feature-image" style="background-image: url('../../content/images/driver.jpeg')"></div>
+
+          <div class="col-lg-6 offset-lg-6">
+                <h2 class="m-b-20 text-center" > Covite propose une large sélection de services, pour vous faciliter la vie sans <br> vous ruiner.</h2>
+                <!-- <h1 class="m-b-20 text-center">Alors pour ça, merci COVITEE !</h1> -->
+                <p></p>
+            </div>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br>
+
+
+ <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+
+                    <h1 class="m-b-20"><strong> Alors pour ça, merci COVITEE ! </strong></h1>
+
+                </div>
+            </div>
+</div>
+
+<!--
+<div class="xx">
+<p><img src="../../content/images/merci.png" alt=""/> Texte texte texte texte</p>
+</div> -->
