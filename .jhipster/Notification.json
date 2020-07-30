@@ -10,6 +10,15 @@
             "ownerSide": true,
             "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "notification"
+        },
+        {
+            "relationshipName": "commandeLivraison",
+            "otherEntityName": "commandeLivraison",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "notification"
         }
     ],
     "fields": [

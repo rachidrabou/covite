@@ -29,6 +29,7 @@
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeLivraison.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeLivraison.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="objet"><span jhiTranslate="coviteApp.commandeLivraison.objet">Objet</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeLivraison.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraison.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -42,6 +43,7 @@
                     <td>{{ commandeLivraison.prix }}</td>
                     <td>{{ commandeLivraison.numeroClient }}</td>
                     <td>{{ commandeLivraison.objet }}</td>
+                    <td>{{ commandeLivraison.validated }}</td>
                     <td>
                         {{ commandeLivraison.client?.login }}
                     </td>

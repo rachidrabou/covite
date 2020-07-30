@@ -4,11 +4,16 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { INotification, Notification } from 'app/shared/model/notification.model';
 import { NotificationService } from './notification.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+import { ICommandeLivraison } from 'app/shared/model/commande-livraison.model';
+import { CommandeLivraisonService } from 'app/entities/commande-livraison/commande-livraison.service';
+
+type SelectableEntity = IUser | ICommandeLivraison;
 
 @Component({
   selector: 'jhi-notification-update',
@@ -17,16 +22,19 @@ import { UserService } from 'app/core/user/user.service';
 export class NotificationUpdateComponent implements OnInit {
   isSaving = false;
   users: IUser[] = [];
+  commandelivraisons: ICommandeLivraison[] = [];
 
   editForm = this.fb.group({
     id: [],
     titre: [],
-    client: []
+    client: [],
+    commandeLivraison: []
   });
 
   constructor(
     protected notificationService: NotificationService,
     protected userService: UserService,
+    protected commandeLivraisonService: CommandeLivraisonService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -36,6 +44,28 @@ export class NotificationUpdateComponent implements OnInit {
       this.updateForm(notification);
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+
+      this.commandeLivraisonService
+        .query({ filter: 'notification-is-null' })
+        .pipe(
+          map((res: HttpResponse<ICommandeLivraison[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: ICommandeLivraison[]) => {
+          if (!notification.commandeLivraison || !notification.commandeLivraison.id) {
+            this.commandelivraisons = resBody;
+          } else {
+            this.commandeLivraisonService
+              .find(notification.commandeLivraison.id)
+              .pipe(
+                map((subRes: HttpResponse<ICommandeLivraison>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: ICommandeLivraison[]) => (this.commandelivraisons = concatRes));
+          }
+        });
     });
   }
 
@@ -43,7 +73,8 @@ export class NotificationUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: notification.id,
       titre: notification.titre,
-      client: notification.client
+      client: notification.client,
+      commandeLivraison: notification.commandeLivraison
     });
   }
 
@@ -66,7 +97,8 @@ export class NotificationUpdateComponent implements OnInit {
       ...new Notification(),
       id: this.editForm.get(['id'])!.value,
       titre: this.editForm.get(['titre'])!.value,
-      client: this.editForm.get(['client'])!.value
+      client: this.editForm.get(['client'])!.value,
+      commandeLivraison: this.editForm.get(['commandeLivraison'])!.value
     };
   }
 
@@ -86,7 +118,7 @@ export class NotificationUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IUser): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
   }
 }

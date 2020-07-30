@@ -9,6 +9,7 @@ export interface ICommandeLivraison {
   prix?: number;
   numeroClient?: string;
   objet?: string;
+  validated?: boolean;
   client?: IUser;
 }
 
@@ -21,6 +22,9 @@ export class CommandeLivraison implements ICommandeLivraison {
     public prix?: number,
     public numeroClient?: string,
     public objet?: string,
+    public validated?: boolean,
     public client?: IUser
-  ) {}
+  ) {
+    this.validated = this.validated || false;
+  }
 }

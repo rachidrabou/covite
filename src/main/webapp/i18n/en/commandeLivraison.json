@@ -22,6 +22,7 @@
       "prix": "Prix",
       "numeroClient": "Numero Client",
       "objet": "Objet",
+      "validated": "Validated",
       "client": "Client"
     }
   }

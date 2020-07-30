@@ -17,7 +17,8 @@
         "title": "Notification"
       },
       "titre": "Titre",
-      "client": "Client"
+      "client": "Client",
+      "commandeLivraison": "Commande Livraison"
     }
   }
 }

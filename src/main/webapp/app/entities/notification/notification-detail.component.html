@@ -16,6 +16,12 @@
                 <dd>
                     {{ notification.client?.login }}
                 </dd>
+                <dt><span jhiTranslate="coviteApp.notification.commandeLivraison">Commande Livraison</span></dt>
+                <dd>
+                    <div *ngIf="notification.commandeLivraison">
+                        <a [routerLink]="['/commande-livraison', notification.commandeLivraison?.id, 'view']">{{ notification.commandeLivraison?.id }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

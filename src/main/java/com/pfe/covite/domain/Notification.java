@@ -29,10 +29,9 @@ public class Notification implements Serializable {
     @JoinColumn(unique = true)
     private User client;
 
-    public Notification(String titre, User client) {
-        this.titre = titre;
-        this.client = client;
-    }
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CommandeLivraison commandeLivraison;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,6 +51,16 @@ public class Notification implements Serializable {
         return this;
     }
 
+    public Notification(String titre, User client) {
+        this.titre = titre;
+        this.client = client;
+    }
+
+    public Notification(String titre, User client, CommandeLivraison commandeLivraison) {
+        this.titre = titre;
+        this.client = client;
+        this.commandeLivraison = commandeLivraison;
+    }
 
     public Notification() {
     }
@@ -71,6 +80,19 @@ public class Notification implements Serializable {
 
     public void setClient(User user) {
         this.client = user;
+    }
+
+    public CommandeLivraison getCommandeLivraison() {
+        return commandeLivraison;
+    }
+
+    public Notification commandeLivraison(CommandeLivraison commandeLivraison) {
+        this.commandeLivraison = commandeLivraison;
+        return this;
+    }
+
+    public void setCommandeLivraison(CommandeLivraison commandeLivraison) {
+        this.commandeLivraison = commandeLivraison;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

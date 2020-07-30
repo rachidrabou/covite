@@ -25,6 +25,7 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="titre"><span jhiTranslate="coviteApp.notification.titre">Titre</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.notification.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="commandeLivraison.id"><span jhiTranslate="coviteApp.notification.commandeLivraison">Commande Livraison</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -34,6 +35,11 @@
                     <td>{{ notification.titre }}</td>
                     <td>
                         {{ notification.client?.login }}
+                    </td>
+                    <td>
+                        <div *ngIf="notification.commandeLivraison">
+                            <a [routerLink]="['/commande-livraison', notification.commandeLivraison?.id, 'view']" >{{ notification.commandeLivraison?.id }}</a>
+                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

@@ -27,6 +27,7 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
     prix: [],
     numeroClient: [],
     objet: [null, [Validators.required]],
+    validated: [],
     client: []
   });
 
@@ -54,6 +55,7 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       prix: commandeLivraison.prix,
       numeroClient: commandeLivraison.numeroClient,
       objet: commandeLivraison.objet,
+      validated: commandeLivraison.validated,
       client: commandeLivraison.client
     });
   }
@@ -82,6 +84,7 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       prix: this.editForm.get(['prix'])!.value,
       numeroClient: this.editForm.get(['numeroClient'])!.value,
       objet: this.editForm.get(['objet'])!.value,
+      validated: this.editForm.get(['validated'])!.value,
       client: this.editForm.get(['client'])!.value
     };
   }

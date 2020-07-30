@@ -46,6 +46,9 @@ public class CommandeLivraison implements Serializable {
     @Column(name = "objet", nullable = false)
     private String objet;
 
+    @Column(name = "validated")
+    private Boolean validated;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User client;
@@ -137,6 +140,19 @@ public class CommandeLivraison implements Serializable {
         this.objet = objet;
     }
 
+    public Boolean isValidated() {
+        return validated;
+    }
+
+    public CommandeLivraison validated(Boolean validated) {
+        this.validated = validated;
+        return this;
+    }
+
+    public void setValidated(Boolean validated) {
+        this.validated = validated;
+    }
+
     public User getClient() {
         return client;
     }
@@ -177,6 +193,7 @@ public class CommandeLivraison implements Serializable {
             ", prix=" + getPrix() +
             ", numeroClient='" + getNumeroClient() + "'" +
             ", objet='" + getObjet() + "'" +
+            ", validated='" + isValidated() + "'" +
             "}";
     }
 }
