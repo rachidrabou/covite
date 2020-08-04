@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IUser } from 'app/core/user/user.model';
 
 export interface ICommandeTransport {
   id?: number;
@@ -9,6 +10,8 @@ export interface ICommandeTransport {
   prix?: number;
   nombreDePersonnes?: number;
   numeroClient?: string;
+  validated?: boolean;
+  client?: IUser;
 }
 
 export class CommandeTransport implements ICommandeTransport {
@@ -20,6 +23,10 @@ export class CommandeTransport implements ICommandeTransport {
     public moyenDeTransport?: string,
     public prix?: number,
     public nombreDePersonnes?: number,
-    public numeroClient?: string
-  ) {}
+    public numeroClient?: string,
+    public validated?: boolean,
+    public client?: IUser
+  ) {
+    this.validated = this.validated || false;
+  }
 }

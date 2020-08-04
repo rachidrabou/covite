@@ -36,6 +36,14 @@
                 <dd>
                     <span>{{ commandeTransport.numeroClient }}</span>
                 </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.validated">Validated</span></dt>
+                <dd>
+                    <span>{{ commandeTransport.validated }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeTransport.client">Client</span></dt>
+                <dd>
+                    {{ commandeTransport.client?.login }}
+                </dd>
             </dl>
 
             <button type="submit"

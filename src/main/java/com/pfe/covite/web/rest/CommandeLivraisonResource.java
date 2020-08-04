@@ -62,7 +62,7 @@ public class CommandeLivraisonResource {
     @PostMapping("/commande-livraisons")
     public ResponseEntity<CommandeLivraison> createCommandeLivraison(@Valid @RequestBody CommandeLivraison commandeLivraison) throws URISyntaxException {
 
-        notificationRepository.save(new Notification("le titre de la notification", commandeLivraison.getClient(), commandeLivraison));
+        notificationRepository.save(new Notification("Commande service livraison", commandeLivraison.getClient(), commandeLivraison));
 
         log.debug("REST request to save CommandeLivraison : {}", commandeLivraison);
         if (commandeLivraison.getId() != null) {

@@ -1,7 +1,17 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "client",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "commandeLivraisonAnimal"
+        }
+    ],
     "fields": [
         {
             "fieldName": "adresseDepart",
@@ -40,6 +50,10 @@
         {
             "fieldName": "prix",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "validated",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20200724232500",

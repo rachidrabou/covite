@@ -12,8 +12,12 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { ICommandeLivraison } from 'app/shared/model/commande-livraison.model';
 import { CommandeLivraisonService } from 'app/entities/commande-livraison/commande-livraison.service';
+import { ICommandeLivraisonAnimal } from 'app/shared/model/commande-livraison-animal.model';
+import { CommandeLivraisonAnimalService } from 'app/entities/commande-livraison-animal/commande-livraison-animal.service';
+import { ICommandeTransport } from 'app/shared/model/commande-transport.model';
+import { CommandeTransportService } from 'app/entities/commande-transport/commande-transport.service';
 
-type SelectableEntity = IUser | ICommandeLivraison;
+type SelectableEntity = IUser | ICommandeLivraison | ICommandeLivraisonAnimal | ICommandeTransport;
 
 @Component({
   selector: 'jhi-notification-update',
@@ -23,18 +27,24 @@ export class NotificationUpdateComponent implements OnInit {
   isSaving = false;
   users: IUser[] = [];
   commandelivraisons: ICommandeLivraison[] = [];
+  commandelivraisonanimals: ICommandeLivraisonAnimal[] = [];
+  commandetransports: ICommandeTransport[] = [];
 
   editForm = this.fb.group({
     id: [],
     titre: [],
     client: [],
-    commandeLivraison: []
+    commandeLivraison: [],
+    commandeLivraisonAnimal: [],
+    commandeTransport: []
   });
 
   constructor(
     protected notificationService: NotificationService,
     protected userService: UserService,
     protected commandeLivraisonService: CommandeLivraisonService,
+    protected commandeLivraisonAnimalService: CommandeLivraisonAnimalService,
+    protected commandeTransportService: CommandeTransportService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -66,6 +76,50 @@ export class NotificationUpdateComponent implements OnInit {
               .subscribe((concatRes: ICommandeLivraison[]) => (this.commandelivraisons = concatRes));
           }
         });
+
+      this.commandeLivraisonAnimalService
+        .query({ filter: 'notification-is-null' })
+        .pipe(
+          map((res: HttpResponse<ICommandeLivraisonAnimal[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: ICommandeLivraisonAnimal[]) => {
+          if (!notification.commandeLivraisonAnimal || !notification.commandeLivraisonAnimal.id) {
+            this.commandelivraisonanimals = resBody;
+          } else {
+            this.commandeLivraisonAnimalService
+              .find(notification.commandeLivraisonAnimal.id)
+              .pipe(
+                map((subRes: HttpResponse<ICommandeLivraisonAnimal>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: ICommandeLivraisonAnimal[]) => (this.commandelivraisonanimals = concatRes));
+          }
+        });
+
+      this.commandeTransportService
+        .query({ filter: 'notification-is-null' })
+        .pipe(
+          map((res: HttpResponse<ICommandeTransport[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: ICommandeTransport[]) => {
+          if (!notification.commandeTransport || !notification.commandeTransport.id) {
+            this.commandetransports = resBody;
+          } else {
+            this.commandeTransportService
+              .find(notification.commandeTransport.id)
+              .pipe(
+                map((subRes: HttpResponse<ICommandeTransport>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: ICommandeTransport[]) => (this.commandetransports = concatRes));
+          }
+        });
     });
   }
 
@@ -74,7 +128,9 @@ export class NotificationUpdateComponent implements OnInit {
       id: notification.id,
       titre: notification.titre,
       client: notification.client,
-      commandeLivraison: notification.commandeLivraison
+      commandeLivraison: notification.commandeLivraison,
+      commandeLivraisonAnimal: notification.commandeLivraisonAnimal,
+      commandeTransport: notification.commandeTransport
     });
   }
 
@@ -98,7 +154,9 @@ export class NotificationUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       titre: this.editForm.get(['titre'])!.value,
       client: this.editForm.get(['client'])!.value,
-      commandeLivraison: this.editForm.get(['commandeLivraison'])!.value
+      commandeLivraison: this.editForm.get(['commandeLivraison'])!.value,
+      commandeLivraisonAnimal: this.editForm.get(['commandeLivraisonAnimal'])!.value,
+      commandeTransport: this.editForm.get(['commandeTransport'])!.value
     };
   }
 

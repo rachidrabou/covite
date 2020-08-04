@@ -18,7 +18,9 @@
       },
       "titre": "Titre",
       "client": "Client",
-      "commandeLivraison": "Commande Livraison"
+      "commandeLivraison": "Commande Livraison",
+      "commandeLivraisonAnimal": "Commande Livraison Animal",
+      "commandeTransport": "Commande Transport"
     }
   }
 }

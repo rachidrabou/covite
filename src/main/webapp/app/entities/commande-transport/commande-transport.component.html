@@ -1,8 +1,8 @@
 <div>
-    <h2 id="page-heading" *jhiHasAnyAuthority="'ROLE_USER'">
+    <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeTransport.home.title">Commande Transports</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-transport" [routerLink]="['/commande-transport/new']">
+        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-transport" [routerLink]="['/commande-transport/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.commandeTransport.home.createLabel">
             Create a new Commande Transport
@@ -18,11 +18,10 @@
         <span jhiTranslate="coviteApp.commandeTransport.home.notFound">No commandeTransports found</span>
     </div>
 
-
     <div class="table-responsive" id="entities" *ngIf="commandeTransports?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)" >
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseDepart"><span jhiTranslate="coviteApp.commandeTransport.adresseDepart">Adresse Depart</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseArrivee"><span jhiTranslate="coviteApp.commandeTransport.adresseArrivee">Adresse Arrivee</span> <fa-icon icon="sort"></fa-icon></th>
@@ -31,6 +30,8 @@
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeTransport.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nombreDePersonnes"><span jhiTranslate="coviteApp.commandeTransport.nombreDePersonnes">Nombre De Personnes</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeTransport.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeTransport.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeTransport.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,6 +45,10 @@
                     <td>{{ commandeTransport.prix }}</td>
                     <td>{{ commandeTransport.nombreDePersonnes }}</td>
                     <td>{{ commandeTransport.numeroClient }}</td>
+                    <td>{{ commandeTransport.validated }}</td>
+                    <td>
+                        {{ commandeTransport.client?.login }}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -71,8 +76,6 @@
             </tbody>
         </table>
     </div>
-
-
 
     <div *ngIf="commandeTransports?.length > 0">
         <div class="row justify-content-center">

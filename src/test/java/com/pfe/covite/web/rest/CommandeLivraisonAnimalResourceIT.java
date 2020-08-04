@@ -53,6 +53,9 @@ public class CommandeLivraisonAnimalResourceIT {
     private static final Double DEFAULT_PRIX = 1D;
     private static final Double UPDATED_PRIX = 2D;
 
+    private static final Boolean DEFAULT_VALIDATED = false;
+    private static final Boolean UPDATED_VALIDATED = true;
+
     @Autowired
     private CommandeLivraisonAnimalRepository commandeLivraisonAnimalRepository;
 
@@ -78,7 +81,8 @@ public class CommandeLivraisonAnimalResourceIT {
             .animal(DEFAULT_ANIMAL)
             .moyenDeTransport(DEFAULT_MOYEN_DE_TRANSPORT)
             .numeroClient(DEFAULT_NUMERO_CLIENT)
-            .prix(DEFAULT_PRIX);
+            .prix(DEFAULT_PRIX)
+            .validated(DEFAULT_VALIDATED);
         return commandeLivraisonAnimal;
     }
     /**
@@ -95,7 +99,8 @@ public class CommandeLivraisonAnimalResourceIT {
             .animal(UPDATED_ANIMAL)
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .numeroClient(UPDATED_NUMERO_CLIENT)
-            .prix(UPDATED_PRIX);
+            .prix(UPDATED_PRIX)
+            .validated(UPDATED_VALIDATED);
         return commandeLivraisonAnimal;
     }
 
@@ -126,6 +131,7 @@ public class CommandeLivraisonAnimalResourceIT {
         assertThat(testCommandeLivraisonAnimal.getMoyenDeTransport()).isEqualTo(DEFAULT_MOYEN_DE_TRANSPORT);
         assertThat(testCommandeLivraisonAnimal.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
         assertThat(testCommandeLivraisonAnimal.getPrix()).isEqualTo(DEFAULT_PRIX);
+        assertThat(testCommandeLivraisonAnimal.isValidated()).isEqualTo(DEFAULT_VALIDATED);
     }
 
     @Test
@@ -219,7 +225,8 @@ public class CommandeLivraisonAnimalResourceIT {
             .andExpect(jsonPath("$.[*].animal").value(hasItem(DEFAULT_ANIMAL)))
             .andExpect(jsonPath("$.[*].moyenDeTransport").value(hasItem(DEFAULT_MOYEN_DE_TRANSPORT)))
             .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
-            .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())));
+            .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
+            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())));
     }
     
     @Test
@@ -239,7 +246,8 @@ public class CommandeLivraisonAnimalResourceIT {
             .andExpect(jsonPath("$.animal").value(DEFAULT_ANIMAL))
             .andExpect(jsonPath("$.moyenDeTransport").value(DEFAULT_MOYEN_DE_TRANSPORT))
             .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
-            .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()));
+            .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
+            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()));
     }
 
     @Test
@@ -269,7 +277,8 @@ public class CommandeLivraisonAnimalResourceIT {
             .animal(UPDATED_ANIMAL)
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .numeroClient(UPDATED_NUMERO_CLIENT)
-            .prix(UPDATED_PRIX);
+            .prix(UPDATED_PRIX)
+            .validated(UPDATED_VALIDATED);
 
         restCommandeLivraisonAnimalMockMvc.perform(put("/api/commande-livraison-animals")
             .contentType(MediaType.APPLICATION_JSON)
@@ -287,6 +296,7 @@ public class CommandeLivraisonAnimalResourceIT {
         assertThat(testCommandeLivraisonAnimal.getMoyenDeTransport()).isEqualTo(UPDATED_MOYEN_DE_TRANSPORT);
         assertThat(testCommandeLivraisonAnimal.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
         assertThat(testCommandeLivraisonAnimal.getPrix()).isEqualTo(UPDATED_PRIX);
+        assertThat(testCommandeLivraisonAnimal.isValidated()).isEqualTo(UPDATED_VALIDATED);
     }
 
     @Test

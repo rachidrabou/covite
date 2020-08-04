@@ -20,5 +20,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="commande_livraison"/>
 
+        <addForeignKeyConstraint baseColumnNames="commande_livraison_animal_id"
+                                 baseTableName="notification"
+                                 constraintName="fk_notification_commande_livraison_animal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commande_livraison_animal"/>
+
+        <addForeignKeyConstraint baseColumnNames="commande_transport_id"
+                                 baseTableName="notification"
+                                 constraintName="fk_notification_commande_transport_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commande_transport"/>
+
     </changeSet>
 </databaseChangeLog>

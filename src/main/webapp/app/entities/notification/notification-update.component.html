@@ -32,6 +32,22 @@
                         <option [ngValue]="commandeLivraisonOption.id === editForm.get('commandeLivraison')!.value?.id ? editForm.get('commandeLivraison')!.value : commandeLivraisonOption" *ngFor="let commandeLivraisonOption of commandelivraisons; trackBy: trackById">{{ commandeLivraisonOption.id }}</option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.notification.commandeLivraisonAnimal" for="field_commandeLivraisonAnimal">Commande Livraison Animal</label>
+                    <select class="form-control" id="field_commandeLivraisonAnimal" name="commandeLivraisonAnimal" formControlName="commandeLivraisonAnimal">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="commandeLivraisonAnimalOption.id === editForm.get('commandeLivraisonAnimal')!.value?.id ? editForm.get('commandeLivraisonAnimal')!.value : commandeLivraisonAnimalOption" *ngFor="let commandeLivraisonAnimalOption of commandelivraisonanimals; trackBy: trackById">{{ commandeLivraisonAnimalOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.notification.commandeTransport" for="field_commandeTransport">Commande Transport</label>
+                    <select class="form-control" id="field_commandeTransport" name="commandeTransport" formControlName="commandeTransport">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="commandeTransportOption.id === editForm.get('commandeTransport')!.value?.id ? editForm.get('commandeTransport')!.value : commandeTransportOption" *ngFor="let commandeTransportOption of commandetransports; trackBy: trackById">{{ commandeTransportOption.id }}</option>
+                    </select>
+                </div>
             </div>
 
             <div>

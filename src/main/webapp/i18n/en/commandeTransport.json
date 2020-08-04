@@ -22,7 +22,9 @@
       "moyenDeTransport": "Moyen De Transport",
       "prix": "Prix",
       "nombreDePersonnes": "Nombre De Personnes",
-      "numeroClient": "Numero Client"
+      "numeroClient": "Numero Client",
+      "validated": "Validated",
+      "client": "Client"
     }
   }
 }

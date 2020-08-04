@@ -1,8 +1,8 @@
 <div>
-    <h2 id="page-heading" *jhiHasAnyAuthority="'ROLE_USER'">
+    <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeLivraisonAnimal.home.title">Commande Livraison Animals</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison-animal" [routerLink]="['/commande-livraison-animal/new']">
+        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison-animal" [routerLink]="['/commande-livraison-animal/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.commandeLivraisonAnimal.home.createLabel">
             Create a new Commande Livraison Animal
@@ -30,6 +30,8 @@
                     <th scope="col"  jhiSortBy="moyenDeTransport"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.moyenDeTransport">Moyen De Transport</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -43,6 +45,10 @@
                     <td>{{ commandeLivraisonAnimal.moyenDeTransport }}</td>
                     <td>{{ commandeLivraisonAnimal.numeroClient }}</td>
                     <td>{{ commandeLivraisonAnimal.prix }}</td>
+                    <td>{{ commandeLivraisonAnimal.validated }}</td>
+                    <td>
+                        {{ commandeLivraisonAnimal.client?.login }}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

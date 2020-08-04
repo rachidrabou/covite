@@ -48,6 +48,13 @@ public class CommandeTransport implements Serializable {
     @Column(name = "numero_client")
     private String numeroClient;
 
+    @Column(name = "validated")
+    private Boolean validated;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User client;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -147,6 +154,32 @@ public class CommandeTransport implements Serializable {
     public void setNumeroClient(String numeroClient) {
         this.numeroClient = numeroClient;
     }
+
+    public Boolean isValidated() {
+        return validated;
+    }
+
+    public CommandeTransport validated(Boolean validated) {
+        this.validated = validated;
+        return this;
+    }
+
+    public void setValidated(Boolean validated) {
+        this.validated = validated;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public CommandeTransport client(User user) {
+        this.client = user;
+        return this;
+    }
+
+    public void setClient(User user) {
+        this.client = user;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -176,6 +209,7 @@ public class CommandeTransport implements Serializable {
             ", prix=" + getPrix() +
             ", nombreDePersonnes=" + getNombreDePersonnes() +
             ", numeroClient='" + getNumeroClient() + "'" +
+            ", validated='" + isValidated() + "'" +
             "}";
     }
 }

@@ -53,6 +53,9 @@ public class CommandeTransportResourceIT {
     private static final String DEFAULT_NUMERO_CLIENT = "AAAAAAAAAA";
     private static final String UPDATED_NUMERO_CLIENT = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_VALIDATED = false;
+    private static final Boolean UPDATED_VALIDATED = true;
+
     @Autowired
     private CommandeTransportRepository commandeTransportRepository;
 
@@ -78,7 +81,8 @@ public class CommandeTransportResourceIT {
             .moyenDeTransport(DEFAULT_MOYEN_DE_TRANSPORT)
             .prix(DEFAULT_PRIX)
             .nombreDePersonnes(DEFAULT_NOMBRE_DE_PERSONNES)
-            .numeroClient(DEFAULT_NUMERO_CLIENT);
+            .numeroClient(DEFAULT_NUMERO_CLIENT)
+            .validated(DEFAULT_VALIDATED);
         return commandeTransport;
     }
     /**
@@ -95,7 +99,8 @@ public class CommandeTransportResourceIT {
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .prix(UPDATED_PRIX)
             .nombreDePersonnes(UPDATED_NOMBRE_DE_PERSONNES)
-            .numeroClient(UPDATED_NUMERO_CLIENT);
+            .numeroClient(UPDATED_NUMERO_CLIENT)
+            .validated(UPDATED_VALIDATED);
         return commandeTransport;
     }
 
@@ -126,6 +131,7 @@ public class CommandeTransportResourceIT {
         assertThat(testCommandeTransport.getPrix()).isEqualTo(DEFAULT_PRIX);
         assertThat(testCommandeTransport.getNombreDePersonnes()).isEqualTo(DEFAULT_NOMBRE_DE_PERSONNES);
         assertThat(testCommandeTransport.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
+        assertThat(testCommandeTransport.isValidated()).isEqualTo(DEFAULT_VALIDATED);
     }
 
     @Test
@@ -219,7 +225,8 @@ public class CommandeTransportResourceIT {
             .andExpect(jsonPath("$.[*].moyenDeTransport").value(hasItem(DEFAULT_MOYEN_DE_TRANSPORT)))
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
             .andExpect(jsonPath("$.[*].nombreDePersonnes").value(hasItem(DEFAULT_NOMBRE_DE_PERSONNES)))
-            .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)));
+            .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
+            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())));
     }
     
     @Test
@@ -239,7 +246,8 @@ public class CommandeTransportResourceIT {
             .andExpect(jsonPath("$.moyenDeTransport").value(DEFAULT_MOYEN_DE_TRANSPORT))
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
             .andExpect(jsonPath("$.nombreDePersonnes").value(DEFAULT_NOMBRE_DE_PERSONNES))
-            .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT));
+            .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
+            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()));
     }
 
     @Test
@@ -269,7 +277,8 @@ public class CommandeTransportResourceIT {
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .prix(UPDATED_PRIX)
             .nombreDePersonnes(UPDATED_NOMBRE_DE_PERSONNES)
-            .numeroClient(UPDATED_NUMERO_CLIENT);
+            .numeroClient(UPDATED_NUMERO_CLIENT)
+            .validated(UPDATED_VALIDATED);
 
         restCommandeTransportMockMvc.perform(put("/api/commande-transports")
             .contentType(MediaType.APPLICATION_JSON)
@@ -287,6 +296,7 @@ public class CommandeTransportResourceIT {
         assertThat(testCommandeTransport.getPrix()).isEqualTo(UPDATED_PRIX);
         assertThat(testCommandeTransport.getNombreDePersonnes()).isEqualTo(UPDATED_NOMBRE_DE_PERSONNES);
         assertThat(testCommandeTransport.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
+        assertThat(testCommandeTransport.isValidated()).isEqualTo(UPDATED_VALIDATED);
     }
 
     @Test

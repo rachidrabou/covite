@@ -50,9 +50,9 @@
             </li>
 
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-<!-- Entities -->
+            <!-- Entities -->
 
-           <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
@@ -63,12 +63,12 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
 
-                 <!--  <li>
-                        <a class="dropdown-item" routerLink="commandes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.commandes">Commandes</span>
-                        </a>
-                    </li> -->
+                    <!--  <li>
+                           <a class="dropdown-item" routerLink="commandes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                               <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                               <span jhiTranslate="global.menu.entities.commandes">Commandes</span>
+                           </a>
+                       </li> -->
 
                     <li>
                         <a class="dropdown-item" routerLink="vehicule" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
@@ -96,14 +96,14 @@
                     </li>
 
 
-               </ul>
-               <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                </ul>
+                <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
             </li>
             <!-- FIN Entities -->
 
 
 
-             <!-- statistiques-->
+            <!-- statistiques-->
             <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_LIVREUR']" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="statistic-menu">
@@ -133,7 +133,7 @@
             </li>
 
 
-       <!-- solde -->
+            <!-- solde -->
 
             <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
@@ -155,7 +155,7 @@
                     </li>
                 </ul>
 
-                    <!--******-->
+                <!--******-->
 
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">

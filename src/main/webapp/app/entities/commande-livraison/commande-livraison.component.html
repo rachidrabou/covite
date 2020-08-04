@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeLivraison.home.title">Commande Livraisons</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison" [routerLink]="['/commande-livraison/new']">
+        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison" [routerLink]="['/commande-livraison/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.commandeLivraison.home.createLabel">
             Create a new Commande Livraison

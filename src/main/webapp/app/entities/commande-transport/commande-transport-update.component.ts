@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { ICommandeTransport, CommandeTransport } from 'app/shared/model/commande-transport.model';
 import { CommandeTransportService } from './commande-transport.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-commande-transport-update',
@@ -14,6 +16,7 @@ import { CommandeTransportService } from './commande-transport.service';
 })
 export class CommandeTransportUpdateComponent implements OnInit {
   isSaving = false;
+  users: IUser[] = [];
   dateHeureDp: any;
 
   editForm = this.fb.group({
@@ -24,11 +27,14 @@ export class CommandeTransportUpdateComponent implements OnInit {
     moyenDeTransport: [],
     prix: [],
     nombreDePersonnes: [],
-    numeroClient: []
+    numeroClient: [],
+    validated: [],
+    client: []
   });
 
   constructor(
     protected commandeTransportService: CommandeTransportService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -36,6 +42,8 @@ export class CommandeTransportUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ commandeTransport }) => {
       this.updateForm(commandeTransport);
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -48,7 +56,9 @@ export class CommandeTransportUpdateComponent implements OnInit {
       moyenDeTransport: commandeTransport.moyenDeTransport,
       prix: commandeTransport.prix,
       nombreDePersonnes: commandeTransport.nombreDePersonnes,
-      numeroClient: commandeTransport.numeroClient
+      numeroClient: commandeTransport.numeroClient,
+      validated: commandeTransport.validated,
+      client: commandeTransport.client
     });
   }
 
@@ -76,7 +86,9 @@ export class CommandeTransportUpdateComponent implements OnInit {
       moyenDeTransport: this.editForm.get(['moyenDeTransport'])!.value,
       prix: this.editForm.get(['prix'])!.value,
       nombreDePersonnes: this.editForm.get(['nombreDePersonnes'])!.value,
-      numeroClient: this.editForm.get(['numeroClient'])!.value
+      numeroClient: this.editForm.get(['numeroClient'])!.value,
+      validated: this.editForm.get(['validated'])!.value,
+      client: this.editForm.get(['client'])!.value
     };
   }
 
@@ -94,5 +106,9 @@ export class CommandeTransportUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IUser): any {
+    return item.id;
   }
 }

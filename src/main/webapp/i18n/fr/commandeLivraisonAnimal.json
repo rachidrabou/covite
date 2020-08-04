@@ -22,7 +22,9 @@
       "animal": "Animal",
       "moyenDeTransport": "Moyen De Transport",
       "numeroClient": "Numero Client",
-      "prix": "Prix"
+      "prix": "Prix",
+      "validated": "Validated",
+      "client": "Client"
     }
   }
 }

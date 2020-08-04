@@ -33,6 +33,14 @@ public class Notification implements Serializable {
     @JoinColumn(unique = true)
     private CommandeLivraison commandeLivraison;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CommandeLivraisonAnimal commandeLivraisonAnimal;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CommandeTransport commandeTransport;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -60,6 +68,18 @@ public class Notification implements Serializable {
         this.titre = titre;
         this.client = client;
         this.commandeLivraison = commandeLivraison;
+    }
+
+    public Notification(String titre, User client, CommandeLivraisonAnimal commandeLivraisonAnimal) {
+        this.titre = titre;
+        this.client = client;
+        this.commandeLivraisonAnimal = commandeLivraisonAnimal;
+    }
+
+    public Notification(String titre, User client, CommandeTransport commandeTransport) {
+        this.titre = titre;
+        this.client = client;
+        this.commandeTransport = commandeTransport;
     }
 
     public Notification() {
@@ -93,6 +113,32 @@ public class Notification implements Serializable {
 
     public void setCommandeLivraison(CommandeLivraison commandeLivraison) {
         this.commandeLivraison = commandeLivraison;
+    }
+
+    public CommandeLivraisonAnimal getCommandeLivraisonAnimal() {
+        return commandeLivraisonAnimal;
+    }
+
+    public Notification commandeLivraisonAnimal(CommandeLivraisonAnimal commandeLivraisonAnimal) {
+        this.commandeLivraisonAnimal = commandeLivraisonAnimal;
+        return this;
+    }
+
+    public void setCommandeLivraisonAnimal(CommandeLivraisonAnimal commandeLivraisonAnimal) {
+        this.commandeLivraisonAnimal = commandeLivraisonAnimal;
+    }
+
+    public CommandeTransport getCommandeTransport() {
+        return commandeTransport;
+    }
+
+    public Notification commandeTransport(CommandeTransport commandeTransport) {
+        this.commandeTransport = commandeTransport;
+        return this;
+    }
+
+    public void setCommandeTransport(CommandeTransport commandeTransport) {
+        this.commandeTransport = commandeTransport;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -19,6 +19,24 @@
             "ownerSide": true,
             "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "notification"
+        },
+        {
+            "relationshipName": "commandeLivraisonAnimal",
+            "otherEntityName": "commandeLivraisonAnimal",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "notification"
+        },
+        {
+            "relationshipName": "commandeTransport",
+            "otherEntityName": "commandeTransport",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "notification"
         }
     ],
     "fields": [

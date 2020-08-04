@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { ICommandeLivraisonAnimal, CommandeLivraisonAnimal } from 'app/shared/model/commande-livraison-animal.model';
 import { CommandeLivraisonAnimalService } from './commande-livraison-animal.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-commande-livraison-animal-update',
@@ -14,6 +16,7 @@ import { CommandeLivraisonAnimalService } from './commande-livraison-animal.serv
 })
 export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
   isSaving = false;
+  users: IUser[] = [];
   dateHeureDp: any;
 
   editForm = this.fb.group({
@@ -24,11 +27,14 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
     animal: [null, [Validators.required]],
     moyenDeTransport: [],
     numeroClient: [],
-    prix: []
+    prix: [],
+    validated: [],
+    client: []
   });
 
   constructor(
     protected commandeLivraisonAnimalService: CommandeLivraisonAnimalService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -36,6 +42,8 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ commandeLivraisonAnimal }) => {
       this.updateForm(commandeLivraisonAnimal);
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -48,7 +56,9 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
       animal: commandeLivraisonAnimal.animal,
       moyenDeTransport: commandeLivraisonAnimal.moyenDeTransport,
       numeroClient: commandeLivraisonAnimal.numeroClient,
-      prix: commandeLivraisonAnimal.prix
+      prix: commandeLivraisonAnimal.prix,
+      validated: commandeLivraisonAnimal.validated,
+      client: commandeLivraisonAnimal.client
     });
   }
 
@@ -76,7 +86,9 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
       animal: this.editForm.get(['animal'])!.value,
       moyenDeTransport: this.editForm.get(['moyenDeTransport'])!.value,
       numeroClient: this.editForm.get(['numeroClient'])!.value,
-      prix: this.editForm.get(['prix'])!.value
+      prix: this.editForm.get(['prix'])!.value,
+      validated: this.editForm.get(['validated'])!.value,
+      client: this.editForm.get(['client'])!.value
     };
   }
 
@@ -94,5 +106,9 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IUser): any {
+    return item.id;
   }
 }

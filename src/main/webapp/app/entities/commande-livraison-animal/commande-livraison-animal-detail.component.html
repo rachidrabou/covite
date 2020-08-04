@@ -36,6 +36,14 @@
                 <dd>
                     <span>{{ commandeLivraisonAnimal.prix }}</span>
                 </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.validated">Validated</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.validated }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.client">Client</span></dt>
+                <dd>
+                    {{ commandeLivraisonAnimal.client?.login }}
+                </dd>
             </dl>
 
             <button type="submit"

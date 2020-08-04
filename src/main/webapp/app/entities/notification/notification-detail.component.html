@@ -22,6 +22,18 @@
                         <a [routerLink]="['/commande-livraison', notification.commandeLivraison?.id, 'view']">{{ notification.commandeLivraison?.id }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="coviteApp.notification.commandeLivraisonAnimal">Commande Livraison Animal</span></dt>
+                <dd>
+                    <div *ngIf="notification.commandeLivraisonAnimal">
+                        <a [routerLink]="['/commande-livraison-animal', notification.commandeLivraisonAnimal?.id, 'view']">{{ notification.commandeLivraisonAnimal?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.notification.commandeTransport">Commande Transport</span></dt>
+                <dd>
+                    <div *ngIf="notification.commandeTransport">
+                        <a [routerLink]="['/commande-transport', notification.commandeTransport?.id, 'view']">{{ notification.commandeTransport?.id }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"
