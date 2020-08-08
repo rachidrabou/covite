@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(NotificationService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Notification(0, 'AAAAAAA');
+      elemDefault = new Notification(0, 'AAAAAAA', 0, false);
     });
 
     describe('Service methods', () => {
@@ -54,7 +54,9 @@ describe('Service Tests', () => {
       it('should update a Notification', () => {
         const returnedFromService = Object.assign(
           {
-            titre: 'BBBBBB'
+            titre: 'BBBBBB',
+            prix: 1,
+            prixValider: true
           },
           elemDefault
         );
@@ -71,7 +73,9 @@ describe('Service Tests', () => {
       it('should return a list of Notification', () => {
         const returnedFromService = Object.assign(
           {
-            titre: 'BBBBBB'
+            titre: 'BBBBBB',
+            prix: 1,
+            prixValider: true
           },
           elemDefault
         );

@@ -49,9 +49,16 @@ public class CommandeLivraison implements Serializable {
     @Column(name = "validated")
     private Boolean validated;
 
+    @Column(name = "cin")
+    private String cin;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User client;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User livreur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -153,6 +160,19 @@ public class CommandeLivraison implements Serializable {
         this.validated = validated;
     }
 
+    public String getCin() {
+        return cin;
+    }
+
+    public CommandeLivraison cin(String cin) {
+        this.cin = cin;
+        return this;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
     public User getClient() {
         return client;
     }
@@ -164,6 +184,19 @@ public class CommandeLivraison implements Serializable {
 
     public void setClient(User user) {
         this.client = user;
+    }
+
+    public User getLivreur() {
+        return livreur;
+    }
+
+    public CommandeLivraison livreur(User user) {
+        this.livreur = user;
+        return this;
+    }
+
+    public void setLivreur(User user) {
+        this.livreur = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -194,6 +227,7 @@ public class CommandeLivraison implements Serializable {
             ", numeroClient='" + getNumeroClient() + "'" +
             ", objet='" + getObjet() + "'" +
             ", validated='" + isValidated() + "'" +
+            ", cin='" + getCin() + "'" +
             "}";
     }
 }

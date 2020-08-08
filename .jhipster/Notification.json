@@ -37,12 +37,29 @@
             "ownerSide": true,
             "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "notification"
+        },
+        {
+            "relationshipName": "livreur",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "notification"
         }
     ],
     "fields": [
         {
             "fieldName": "titre",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "prixValider",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20200726000227",

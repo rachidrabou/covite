@@ -32,5 +32,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="commande_transport"/>
 
+        <addForeignKeyConstraint baseColumnNames="livreur_id"
+                                 baseTableName="notification"
+                                 constraintName="fk_notification_livreur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -28,7 +28,9 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
     numeroClient: [],
     objet: [null, [Validators.required]],
     validated: [],
-    client: []
+    cin: [],
+    client: [],
+    livreur: []
   });
 
   constructor(
@@ -56,7 +58,9 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       numeroClient: commandeLivraison.numeroClient,
       objet: commandeLivraison.objet,
       validated: commandeLivraison.validated,
-      client: commandeLivraison.client
+      cin: commandeLivraison.cin,
+      client: commandeLivraison.client,
+      livreur: commandeLivraison.livreur
     });
   }
 
@@ -85,7 +89,9 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       numeroClient: this.editForm.get(['numeroClient'])!.value,
       objet: this.editForm.get(['objet'])!.value,
       validated: this.editForm.get(['validated'])!.value,
-      client: this.editForm.get(['client'])!.value
+      cin: this.editForm.get(['cin'])!.value,
+      client: this.editForm.get(['client'])!.value,
+      livreur: this.editForm.get(['livreur'])!.value
     };
   }
 

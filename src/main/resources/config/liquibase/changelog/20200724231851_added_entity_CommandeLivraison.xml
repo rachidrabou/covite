@@ -37,8 +37,14 @@
             <column name="validated" type="boolean">
                 <constraints nullable="true" />
             </column>
+            <column name="cin" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="client_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_commande_livraison_client_id" />
+            </column>
+            <column name="livreur_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_commande_livraison_livreur_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -70,6 +76,7 @@
             <column name="numero_client" type="string"/>
             <column name="objet" type="string"/>
             <column name="validated" type="boolean"/>
+            <column name="cin" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

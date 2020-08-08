@@ -25,6 +25,12 @@ public class Notification implements Serializable {
     @Column(name = "titre")
     private String titre;
 
+    @Column(name = "prix")
+    private Float prix;
+
+    @Column(name = "prix_valider")
+    private Boolean prixValider;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User client;
@@ -40,6 +46,10 @@ public class Notification implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private CommandeTransport commandeTransport;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User livreur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -57,6 +67,10 @@ public class Notification implements Serializable {
     public Notification titre(String titre) {
         this.titre = titre;
         return this;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public Notification(String titre, User client) {
@@ -82,11 +96,42 @@ public class Notification implements Serializable {
         this.commandeTransport = commandeTransport;
     }
 
+    public Notification(String titre, User client, CommandeLivraison commandeLivraison, User livreur) {
+        this.titre = titre;
+        this.client = client;
+        this.commandeLivraison = commandeLivraison;
+        this.livreur = livreur;
+    }
+
     public Notification() {
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+
+
+    public Float getPrix() {
+        return prix;
+    }
+
+    public Notification prix(Float prix) {
+        this.prix = prix;
+        return this;
+    }
+
+    public void setPrix(Float prix) {
+        this.prix = prix;
+    }
+
+    public Boolean isPrixValider() {
+        return prixValider;
+    }
+
+    public Notification prixValider(Boolean prixValider) {
+        this.prixValider = prixValider;
+        return this;
+    }
+
+    public void setPrixValider(Boolean prixValider) {
+        this.prixValider = prixValider;
     }
 
     public User getClient() {
@@ -140,6 +185,19 @@ public class Notification implements Serializable {
     public void setCommandeTransport(CommandeTransport commandeTransport) {
         this.commandeTransport = commandeTransport;
     }
+
+    public User getLivreur() {
+        return livreur;
+    }
+
+    public Notification livreur(User user) {
+        this.livreur = user;
+        return this;
+    }
+
+    public void setLivreur(User user) {
+        this.livreur = user;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -163,6 +221,8 @@ public class Notification implements Serializable {
         return "Notification{" +
             "id=" + getId() +
             ", titre='" + getTitre() + "'" +
+            ", prix=" + getPrix() +
+            ", prixValider='" + isPrixValider() + "'" +
             "}";
     }
 }

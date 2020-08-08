@@ -28,6 +28,18 @@ import { RouterModule } from '@angular/router';
       {
         path: 'notification',
         loadChildren: () => import('./notification/notification.module').then(m => m.CoviteNotificationModule)
+      },
+      {
+        path: 'tarif-transport',
+        loadChildren: () => import('./tarif-transport/tarif-transport.module').then(m => m.CoviteTarifTransportModule)
+      },
+      {
+        path: 'tarif-livraison',
+        loadChildren: () => import('./tarif-livraison/tarif-livraison.module').then(m => m.CoviteTarifLivraisonModule)
+      },
+      {
+        path: 'tarif-transport-animal',
+        loadChildren: () => import('./tarif-transport-animal/tarif-transport-animal.module').then(m => m.CoviteTarifTransportAnimalModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

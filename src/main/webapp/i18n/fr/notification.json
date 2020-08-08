@@ -17,10 +17,13 @@
         "title": "Notification"
       },
       "titre": "Titre",
+      "prix": "Prix",
+      "prixValider": "Prix Valider",
       "client": "Client",
       "commandeLivraison": "Commande Livraison",
       "commandeLivraisonAnimal": "Commande Livraison Animal",
-      "commandeTransport": "Commande Transport"
+      "commandeTransport": "Commande Transport",
+      "livreur": "Livreur"
     }
   }
 }

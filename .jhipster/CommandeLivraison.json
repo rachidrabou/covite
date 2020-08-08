@@ -10,6 +10,15 @@
             "ownerSide": true,
             "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeLivraison"
+        },
+        {
+            "relationshipName": "livreur",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "commandeLivraison"
         }
     ],
     "fields": [
@@ -52,6 +61,10 @@
         {
             "fieldName": "validated",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "cin",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20200724231851",

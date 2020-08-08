@@ -33,10 +33,13 @@ export class NotificationUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     titre: [],
+    prix: [],
+    prixValider: [],
     client: [],
     commandeLivraison: [],
     commandeLivraisonAnimal: [],
-    commandeTransport: []
+    commandeTransport: [],
+    livreur: []
   });
 
   constructor(
@@ -127,10 +130,13 @@ export class NotificationUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: notification.id,
       titre: notification.titre,
+      prix: notification.prix,
+      prixValider: notification.prixValider,
       client: notification.client,
       commandeLivraison: notification.commandeLivraison,
       commandeLivraisonAnimal: notification.commandeLivraisonAnimal,
-      commandeTransport: notification.commandeTransport
+      commandeTransport: notification.commandeTransport,
+      livreur: notification.livreur
     });
   }
 
@@ -153,10 +159,13 @@ export class NotificationUpdateComponent implements OnInit {
       ...new Notification(),
       id: this.editForm.get(['id'])!.value,
       titre: this.editForm.get(['titre'])!.value,
+      prix: this.editForm.get(['prix'])!.value,
+      prixValider: this.editForm.get(['prixValider'])!.value,
       client: this.editForm.get(['client'])!.value,
       commandeLivraison: this.editForm.get(['commandeLivraison'])!.value,
       commandeLivraisonAnimal: this.editForm.get(['commandeLivraisonAnimal'])!.value,
-      commandeTransport: this.editForm.get(['commandeTransport'])!.value
+      commandeTransport: this.editForm.get(['commandeTransport'])!.value,
+      livreur: this.editForm.get(['livreur'])!.value
     };
   }
 

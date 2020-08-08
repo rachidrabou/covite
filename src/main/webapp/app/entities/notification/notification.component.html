@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.notification.home.title">Notifications</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-notification" [routerLink]="['/notification/new']">
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-notification" [routerLink]="['/notification/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.notification.home.createLabel">
             Create a new Notification
@@ -24,10 +24,13 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="titre"><span jhiTranslate="coviteApp.notification.titre">Titre</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.notification.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prixValider"><span jhiTranslate="coviteApp.notification.prixValider">Prix Valider</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.notification.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="commandeLivraison.id"><span jhiTranslate="coviteApp.notification.commandeLivraison">Commande Livraison</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="commandeLivraisonAnimal.id"><span jhiTranslate="coviteApp.notification.commandeLivraisonAnimal">Commande Livraison Animal</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="commandeTransport.id"><span jhiTranslate="coviteApp.notification.commandeTransport">Commande Transport</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.notification.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,6 +38,8 @@
                 <tr *ngFor="let notification of notifications ;trackBy: trackId">
                     <td><a [routerLink]="['/notification', notification.id, 'view']">{{ notification.id }}</a></td>
                     <td>{{ notification.titre }}</td>
+                    <td>{{ notification.prix }}</td>
+                    <td>{{ notification.prixValider }}</td>
                     <td>
                         {{ notification.client?.login }}
                     </td>
@@ -53,6 +58,9 @@
                             <a [routerLink]="['/commande-transport', notification.commandeTransport?.id, 'view']" >{{ notification.commandeTransport?.id }}</a>
                         </div>
                     </td>
+                    <td>
+                        {{ notification.livreur?.login }}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -62,14 +70,14 @@
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
-                            <button type="submit"
+                            <button *jhiHasAnyAuthority="['ROLE_LIVREUR','ROLE_ADMIN']" type="submit"
                                     [routerLink]="['/notification', notification.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(notification)"
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" (click)="delete(notification)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>

@@ -16,31 +16,49 @@
                     </span>
                 </a>
             </li>
-            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="commande-transport" (click)="collapseNavbar()">
+
+
+            <!-- HISTORIQUES COMMANDES -->
+
+            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="listescommande-menu">
                     <span>
-                        <fa-icon icon="home"></fa-icon>
-                        <span >Commandes transport</span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span jhiTranslate="global.menu.listescommande">
+                           Listes des commandes
+                        </span>
                     </span>
                 </a>
-            </li>
-            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="commande-livraison" (click)="collapseNavbar()">
-                    <span>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+
+                    <!-- Button commande transport-->
+                    <li >
+                      <a class="dropdown-item" routerLink="commande-transport">
+                        <fa-icon icon="asterisk"></fa-icon>
+                        <span >Commandes transport</span>
+                        </a>
+                    </li>
+
+                    <!-- Button LIvraison -->
+                    <li>
+                         <a class="dropdown-item" routerLink="commande-livraison">
                         <fa-icon icon="bicycle"></fa-icon>
                         <span >Commandes livraison</span>
-                    </span>
-                </a>
-            </li>
-            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="commande-livraison-animal" (click)="collapseNavbar()">
-                    <span>
+                        </a>
+                    </li>
+
+                    <!-- Button animal -->
+                    <li>
+                        <a class="dropdown-item" routerLink="commande-livraison-animal">
                         <fa-icon icon="home"></fa-icon>
                         <span >Commandes transport Animal</span>
-                    </span>
-                </a>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li *jhiHasAnyAuthority="'ROLE_LIVREUR'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+
+            <li *jhiHasAnyAuthority="['ROLE_USER','ROLE_LIVREUR']" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="notification" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="home"></fa-icon>
@@ -95,11 +113,47 @@
                         </a>
                     </li>
 
-
                 </ul>
+
                 <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
             </li>
             <!-- FIN Entities -->
+
+            <!-- TARIFS-->
+            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="tarif-menu">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span jhiTranslate="global.menu.tarif">
+                            Nos tarifs
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <!-- Button tarif transport-->
+                    <li>
+                        <a class="dropdown-item" routerLink="tarif-transport" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.tarifTransport">Tarif Transport</span>
+                        </a>
+                    </li>
+                    <!-- Button tarif livraison -->
+                    <li>
+                        <a class="dropdown-item" routerLink="tarif-livraison" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.tarifLivraison">Tarif Livraison</span>
+                        </a>
+                    </li>
+                    <!-- Button tarif transport animal-->
+                    <li>
+                        <a class="dropdown-item" routerLink="tarif-transport-animal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.tarifTransportAnimal">Tarif Transport Animal</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
 
 

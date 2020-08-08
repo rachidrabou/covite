@@ -23,7 +23,9 @@
       "numeroClient": "Numero Client",
       "objet": "Objet",
       "validated": "Validated",
-      "client": "Client"
+      "cin": "Cin",
+      "client": "Client",
+      "livreur": "Livreur"
     }
   }
 }

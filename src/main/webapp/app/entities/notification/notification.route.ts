@@ -39,7 +39,7 @@ export const notificationRoute: Routes = [
     path: '',
     component: NotificationComponent,
     data: {
-      authorities: [Authority.LIVREUR],
+      authorities: [Authority.LIVREUR, Authority.USER],
       pageTitle: 'coviteApp.notification.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const notificationRoute: Routes = [
       notification: NotificationResolve
     },
     data: {
-      authorities: [Authority.LIVREUR],
+      authorities: [Authority.LIVREUR, Authority.USER],
       pageTitle: 'coviteApp.notification.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -63,7 +63,7 @@ export const notificationRoute: Routes = [
       notification: NotificationResolve
     },
     data: {
-      authorities: [Authority.LIVREUR],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.notification.home.title'
     },
     canActivate: [UserRouteAccessService]

@@ -36,9 +36,17 @@
                 <dd>
                     <span>{{ commandeLivraison.validated }}</span>
                 </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.cin">Cin</span></dt>
+                <dd>
+                    <span>{{ commandeLivraison.cin }}</span>
+                </dd>
                 <dt><span jhiTranslate="coviteApp.commandeLivraison.client">Client</span></dt>
                 <dd>
                     {{ commandeLivraison.client?.login }}
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraison.livreur">Livreur</span></dt>
+                <dd>
+                    {{ commandeLivraison.livreur?.login }}
                 </dd>
             </dl>
 
@@ -48,7 +56,7 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasAnyAuthority="['ROLE_LIVREUR','ROLE_ADMIN']" type="button"
                     [routerLink]="['/commande-livraison', commandeLivraison.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>

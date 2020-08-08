@@ -53,6 +53,9 @@ public class CommandeLivraisonResourceIT {
     private static final Boolean DEFAULT_VALIDATED = false;
     private static final Boolean UPDATED_VALIDATED = true;
 
+    private static final String DEFAULT_CIN = "AAAAAAAAAA";
+    private static final String UPDATED_CIN = "BBBBBBBBBB";
+
     @Autowired
     private CommandeLivraisonRepository commandeLivraisonRepository;
 
@@ -78,7 +81,8 @@ public class CommandeLivraisonResourceIT {
             .prix(DEFAULT_PRIX)
             .numeroClient(DEFAULT_NUMERO_CLIENT)
             .objet(DEFAULT_OBJET)
-            .validated(DEFAULT_VALIDATED);
+            .validated(DEFAULT_VALIDATED)
+            .cin(DEFAULT_CIN);
         return commandeLivraison;
     }
     /**
@@ -95,7 +99,8 @@ public class CommandeLivraisonResourceIT {
             .prix(UPDATED_PRIX)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .objet(UPDATED_OBJET)
-            .validated(UPDATED_VALIDATED);
+            .validated(UPDATED_VALIDATED)
+            .cin(UPDATED_CIN);
         return commandeLivraison;
     }
 
@@ -126,6 +131,7 @@ public class CommandeLivraisonResourceIT {
         assertThat(testCommandeLivraison.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
         assertThat(testCommandeLivraison.getObjet()).isEqualTo(DEFAULT_OBJET);
         assertThat(testCommandeLivraison.isValidated()).isEqualTo(DEFAULT_VALIDATED);
+        assertThat(testCommandeLivraison.getCin()).isEqualTo(DEFAULT_CIN);
     }
 
     @Test
@@ -237,7 +243,8 @@ public class CommandeLivraisonResourceIT {
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
             .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
             .andExpect(jsonPath("$.[*].objet").value(hasItem(DEFAULT_OBJET)))
-            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())));
+            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())))
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)));
     }
     
     @Test
@@ -257,7 +264,8 @@ public class CommandeLivraisonResourceIT {
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
             .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
             .andExpect(jsonPath("$.objet").value(DEFAULT_OBJET))
-            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()));
+            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()))
+            .andExpect(jsonPath("$.cin").value(DEFAULT_CIN));
     }
 
     @Test
@@ -287,7 +295,8 @@ public class CommandeLivraisonResourceIT {
             .prix(UPDATED_PRIX)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .objet(UPDATED_OBJET)
-            .validated(UPDATED_VALIDATED);
+            .validated(UPDATED_VALIDATED)
+            .cin(UPDATED_CIN);
 
         restCommandeLivraisonMockMvc.perform(put("/api/commande-livraisons")
             .contentType(MediaType.APPLICATION_JSON)
@@ -305,6 +314,7 @@ public class CommandeLivraisonResourceIT {
         assertThat(testCommandeLivraison.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
         assertThat(testCommandeLivraison.getObjet()).isEqualTo(UPDATED_OBJET);
         assertThat(testCommandeLivraison.isValidated()).isEqualTo(UPDATED_VALIDATED);
+        assertThat(testCommandeLivraison.getCin()).isEqualTo(UPDATED_CIN);
     }
 
     @Test

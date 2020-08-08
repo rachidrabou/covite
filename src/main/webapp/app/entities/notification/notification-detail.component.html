@@ -12,6 +12,14 @@
                 <dd>
                     <span>{{ notification.titre }}</span>
                 </dd>
+                <dt><span jhiTranslate="coviteApp.notification.prix">Prix</span></dt>
+                <dd>
+                    <span>{{ notification.prix }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.notification.prixValider">Prix Valider</span></dt>
+                <dd>
+                    <span>{{ notification.prixValider }}</span>
+                </dd>
                 <dt><span jhiTranslate="coviteApp.notification.client">Client</span></dt>
                 <dd>
                     {{ notification.client?.login }}
@@ -33,6 +41,10 @@
                     <div *ngIf="notification.commandeTransport">
                         <a [routerLink]="['/commande-transport', notification.commandeTransport?.id, 'view']">{{ notification.commandeTransport?.id }}</a>
                     </div>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.notification.livreur">Livreur</span></dt>
+                <dd>
+                    {{ notification.livreur?.login }}
                 </dd>
             </dl>
 

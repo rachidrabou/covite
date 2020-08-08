@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeLivraison.home.title">Commande Livraisons</span>
 
-        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison" [routerLink]="['/commande-livraison/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison" [routerLink]="['/commande-livraison/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.commandeLivraison.home.createLabel">
             Create a new Commande Livraison
@@ -30,7 +30,9 @@
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeLivraison.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="objet"><span jhiTranslate="coviteApp.commandeLivraison.objet">Objet</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeLivraison.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cin"><span jhiTranslate="coviteApp.commandeLivraison.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraison.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.commandeLivraison.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,8 +46,12 @@
                     <td>{{ commandeLivraison.numeroClient }}</td>
                     <td>{{ commandeLivraison.objet }}</td>
                     <td>{{ commandeLivraison.validated }}</td>
+                    <td>{{ commandeLivraison.cin }}</td>
                     <td>
                         {{ commandeLivraison.client?.login }}
+                    </td>
+                    <td>
+                        {{ commandeLivraison.livreur?.login }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

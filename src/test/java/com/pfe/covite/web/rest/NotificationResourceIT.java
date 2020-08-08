@@ -33,6 +33,12 @@ public class NotificationResourceIT {
     private static final String DEFAULT_TITRE = "AAAAAAAAAA";
     private static final String UPDATED_TITRE = "BBBBBBBBBB";
 
+    private static final Float DEFAULT_PRIX = 1F;
+    private static final Float UPDATED_PRIX = 2F;
+
+    private static final Boolean DEFAULT_PRIX_VALIDER = false;
+    private static final Boolean UPDATED_PRIX_VALIDER = true;
+
     @Autowired
     private NotificationRepository notificationRepository;
 
@@ -52,7 +58,9 @@ public class NotificationResourceIT {
      */
     public static Notification createEntity(EntityManager em) {
         Notification notification = new Notification()
-            .titre(DEFAULT_TITRE);
+            .titre(DEFAULT_TITRE)
+            .prix(DEFAULT_PRIX)
+            .prixValider(DEFAULT_PRIX_VALIDER);
         return notification;
     }
     /**
@@ -63,7 +71,9 @@ public class NotificationResourceIT {
      */
     public static Notification createUpdatedEntity(EntityManager em) {
         Notification notification = new Notification()
-            .titre(UPDATED_TITRE);
+            .titre(UPDATED_TITRE)
+            .prix(UPDATED_PRIX)
+            .prixValider(UPDATED_PRIX_VALIDER);
         return notification;
     }
 
@@ -88,6 +98,8 @@ public class NotificationResourceIT {
         assertThat(notificationList).hasSize(databaseSizeBeforeCreate + 1);
         Notification testNotification = notificationList.get(notificationList.size() - 1);
         assertThat(testNotification.getTitre()).isEqualTo(DEFAULT_TITRE);
+        assertThat(testNotification.getPrix()).isEqualTo(DEFAULT_PRIX);
+        assertThat(testNotification.isPrixValider()).isEqualTo(DEFAULT_PRIX_VALIDER);
     }
 
     @Test
@@ -121,7 +133,9 @@ public class NotificationResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(notification.getId().intValue())))
-            .andExpect(jsonPath("$.[*].titre").value(hasItem(DEFAULT_TITRE)));
+            .andExpect(jsonPath("$.[*].titre").value(hasItem(DEFAULT_TITRE)))
+            .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
+            .andExpect(jsonPath("$.[*].prixValider").value(hasItem(DEFAULT_PRIX_VALIDER.booleanValue())));
     }
     
     @Test
@@ -135,7 +149,9 @@ public class NotificationResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(notification.getId().intValue()))
-            .andExpect(jsonPath("$.titre").value(DEFAULT_TITRE));
+            .andExpect(jsonPath("$.titre").value(DEFAULT_TITRE))
+            .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
+            .andExpect(jsonPath("$.prixValider").value(DEFAULT_PRIX_VALIDER.booleanValue()));
     }
 
     @Test
@@ -159,7 +175,9 @@ public class NotificationResourceIT {
         // Disconnect from session so that the updates on updatedNotification are not directly saved in db
         em.detach(updatedNotification);
         updatedNotification
-            .titre(UPDATED_TITRE);
+            .titre(UPDATED_TITRE)
+            .prix(UPDATED_PRIX)
+            .prixValider(UPDATED_PRIX_VALIDER);
 
         restNotificationMockMvc.perform(put("/api/notifications")
             .contentType(MediaType.APPLICATION_JSON)
@@ -171,6 +189,8 @@ public class NotificationResourceIT {
         assertThat(notificationList).hasSize(databaseSizeBeforeUpdate);
         Notification testNotification = notificationList.get(notificationList.size() - 1);
         assertThat(testNotification.getTitre()).isEqualTo(UPDATED_TITRE);
+        assertThat(testNotification.getPrix()).isEqualTo(UPDATED_PRIX);
+        assertThat(testNotification.isPrixValider()).isEqualTo(UPDATED_PRIX_VALIDER);
     }
 
     @Test
