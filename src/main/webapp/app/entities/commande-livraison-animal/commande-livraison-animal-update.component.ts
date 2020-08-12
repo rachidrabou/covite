@@ -29,7 +29,8 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
     numeroClient: [],
     prix: [],
     validated: [],
-    client: []
+    client: [],
+    livreur: []
   });
 
   constructor(
@@ -58,7 +59,8 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
       numeroClient: commandeLivraisonAnimal.numeroClient,
       prix: commandeLivraisonAnimal.prix,
       validated: commandeLivraisonAnimal.validated,
-      client: commandeLivraisonAnimal.client
+      client: commandeLivraisonAnimal.client,
+      livreur: commandeLivraisonAnimal.livreur
     });
   }
 
@@ -88,7 +90,8 @@ export class CommandeLivraisonAnimalUpdateComponent implements OnInit {
       numeroClient: this.editForm.get(['numeroClient'])!.value,
       prix: this.editForm.get(['prix'])!.value,
       validated: this.editForm.get(['validated'])!.value,
-      client: this.editForm.get(['client'])!.value
+      client: this.editForm.get(['client'])!.value,
+      livreur: this.editForm.get(['livreur'])!.value
     };
   }
 

@@ -55,6 +55,10 @@ public class CommandeTransport implements Serializable {
     @JoinColumn(unique = true)
     private User client;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User livreur;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -179,6 +183,19 @@ public class CommandeTransport implements Serializable {
 
     public void setClient(User user) {
         this.client = user;
+    }
+
+    public User getLivreur() {
+        return livreur;
+    }
+
+    public CommandeTransport livreur(User user) {
+        this.livreur = user;
+        return this;
+    }
+
+    public void setLivreur(User user) {
+        this.livreur = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

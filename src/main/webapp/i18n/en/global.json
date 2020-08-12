@@ -16,6 +16,7 @@
         "tarifTransport": "Tarif Transport",
         "tarifLivraison": "Tarif Livraison",
         "tarifTransportAnimal": "Tarif Transport Animal",
+        "livreur": "Livreur",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

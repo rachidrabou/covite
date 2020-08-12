@@ -43,6 +43,9 @@
             <column name="client_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_commande_transport_client_id" />
             </column>
+            <column name="livreur_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_commande_transport_livreur_id" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>

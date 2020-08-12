@@ -24,7 +24,8 @@
       "numeroClient": "Numero Client",
       "prix": "Prix",
       "validated": "Validated",
-      "client": "Client"
+      "client": "Client",
+      "livreur": "Livreur"
     }
   }
 }

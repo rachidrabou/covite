@@ -10,6 +10,15 @@
             "ownerSide": true,
             "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeLivraisonAnimal"
+        },
+        {
+            "relationshipName": "livreur",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "commandeLivraisonAnimal"
         }
     ],
     "fields": [

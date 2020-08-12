@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label"  for="field_adresseDepart">Lieu de prise en charge ?</label>
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeTransport.adresseDepart" for="field_adresseDepart">Adresse Depart</label>
                     <input type="text" class="form-control" name="adresseDepart" id="field_adresseDepart"
                            formControlName="adresseDepart"/>
                     <div *ngIf="editForm.get('adresseDepart')!.invalid && (editForm.get('adresseDepart')!.dirty || editForm.get('adresseDepart')!.touched)">
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label"  for="field_adresseArrivee">Ou allez-vous ?</label>
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeTransport.adresseArrivee" for="field_adresseArrivee">Adresse Arrivee</label>
                     <input type="text" class="form-control" name="adresseArrivee" id="field_adresseArrivee"
                            formControlName="adresseArrivee"/>
                     <div *ngIf="editForm.get('adresseArrivee')!.invalid && (editForm.get('adresseArrivee')!.dirty || editForm.get('adresseArrivee')!.touched)">
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_dateHeure">Date et heure de collecte</label>
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeTransport.dateHeure" for="field_dateHeure">Date Heure</label>
                     <div class="input-group">
                         <input id="field_dateHeure" type="text" class="form-control" name="dateHeure" ngbDatepicker #dateHeureDp="ngbDatepicker" formControlName="dateHeure"/>
                         <span class="input-group-append">
@@ -70,12 +70,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label"  for="field_numeroClient">Numero du contact</label>
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeTransport.numeroClient" for="field_numeroClient">Numero Client</label>
                     <input type="text" class="form-control" name="numeroClient" id="field_numeroClient"
                            formControlName="numeroClient"/>
                 </div>
 
-                <div *jhiHasAnyAuthority="'ROLE_LIVREUR'" class="form-group">
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="coviteApp.commandeTransport.validated" for="field_validated">Validated</label>
                     <input type="checkbox" class="form-control" name="validated" id="field_validated"
                            formControlName="validated"/>
@@ -86,6 +86,14 @@
                     <select class="form-control" id="field_client" name="client" formControlName="client">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeTransport.livreur" for="field_livreur">Livreur</label>
+                    <select class="form-control" id="field_livreur" name="livreur" formControlName="livreur">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('livreur')!.value?.id ? editForm.get('livreur')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
                     </select>
                 </div>
             </div>

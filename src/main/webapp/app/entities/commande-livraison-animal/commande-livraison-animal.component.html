@@ -2,7 +2,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeLivraisonAnimal.home.title">Commande Livraison Animals</span>
 
-        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison-animal" [routerLink]="['/commande-livraison-animal/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-livraison-animal" [routerLink]="['/commande-livraison-animal/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.commandeLivraisonAnimal.home.createLabel">
             Create a new Commande Livraison Animal
@@ -32,6 +32,7 @@
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -48,6 +49,9 @@
                     <td>{{ commandeLivraisonAnimal.validated }}</td>
                     <td>
                         {{ commandeLivraisonAnimal.client?.login }}
+                    </td>
+                    <td>
+                        {{ commandeLivraisonAnimal.livreur?.login }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

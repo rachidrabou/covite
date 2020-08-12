@@ -12,6 +12,7 @@ export interface ICommandeLivraisonAnimal {
   prix?: number;
   validated?: boolean;
   client?: IUser;
+  livreur?: IUser;
 }
 
 export class CommandeLivraisonAnimal implements ICommandeLivraisonAnimal {
@@ -25,7 +26,8 @@ export class CommandeLivraisonAnimal implements ICommandeLivraisonAnimal {
     public numeroClient?: string,
     public prix?: number,
     public validated?: boolean,
-    public client?: IUser
+    public client?: IUser,
+    public livreur?: IUser
   ) {
     this.validated = this.validated || false;
   }

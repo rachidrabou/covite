@@ -29,7 +29,8 @@ export class CommandeTransportUpdateComponent implements OnInit {
     nombreDePersonnes: [],
     numeroClient: [],
     validated: [],
-    client: []
+    client: [],
+    livreur: []
   });
 
   constructor(
@@ -58,7 +59,8 @@ export class CommandeTransportUpdateComponent implements OnInit {
       nombreDePersonnes: commandeTransport.nombreDePersonnes,
       numeroClient: commandeTransport.numeroClient,
       validated: commandeTransport.validated,
-      client: commandeTransport.client
+      client: commandeTransport.client,
+      livreur: commandeTransport.livreur
     });
   }
 
@@ -88,7 +90,8 @@ export class CommandeTransportUpdateComponent implements OnInit {
       nombreDePersonnes: this.editForm.get(['nombreDePersonnes'])!.value,
       numeroClient: this.editForm.get(['numeroClient'])!.value,
       validated: this.editForm.get(['validated'])!.value,
-      client: this.editForm.get(['client'])!.value
+      client: this.editForm.get(['client'])!.value,
+      livreur: this.editForm.get(['livreur'])!.value
     };
   }
 

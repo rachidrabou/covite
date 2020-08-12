@@ -12,6 +12,7 @@ export interface ICommandeTransport {
   numeroClient?: string;
   validated?: boolean;
   client?: IUser;
+  livreur?: IUser;
 }
 
 export class CommandeTransport implements ICommandeTransport {
@@ -25,7 +26,8 @@ export class CommandeTransport implements ICommandeTransport {
     public nombreDePersonnes?: number,
     public numeroClient?: string,
     public validated?: boolean,
-    public client?: IUser
+    public client?: IUser,
+    public livreur?: IUser
   ) {
     this.validated = this.validated || false;
   }

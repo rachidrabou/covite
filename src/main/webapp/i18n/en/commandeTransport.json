@@ -24,7 +24,8 @@
       "nombreDePersonnes": "Nombre De Personnes",
       "numeroClient": "Numero Client",
       "validated": "Validated",
-      "client": "Client"
+      "client": "Client",
+      "livreur": "Livreur"
     }
   }
 }

@@ -5,14 +5,14 @@
         <h2 class="display-4 text-center" jhiTranslate="home.subtitle">the all in one solution</h2>-->
         <!--<p class="lead text-center" jhiTranslate="home.subtitle">This is your homepage</p><br><br>-->
 
-
+       <!--Image LOGOOOOOOO
         <div class="row text-center" >
             <div class="logo">
                 <div   class="col-md-12 " >
                     <img src="../../content/images/mi.jpg">
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -20,6 +20,18 @@
         <div   class="mimi" >
 
             <ngb-carousel>
+                <ng-template ngbSlide>
+                    <img class="d-block w-100" src="../../content/images/Jaune.png" alt="Delhi Metro" style=" width:700 px">
+                    <div class="carousel-caption">
+                        <h1 style="color: white"> </h1>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img class="d-block w-100" src="../../content/images/soyez.png" alt="Delhi Metro" style=" width:700 px">
+                    <div class="carousel-caption">
+                        <h1 style="color: white"> </h1>
+                    </div>
+                </ng-template>
                 <ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/girlinthecar.jpeg" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
@@ -57,21 +69,19 @@
         </div>
 
 
-
-
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
                      [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
             </div>
 
+       </div>
 
 
-    </div>
-        <br>
-
+        <!-- <br>
             <h1 *jhiHasAnyAuthority="'ROLE_USER'" class="display-4 text-center" >quel service souhaiteriez-vous utiliser ?</h1>
-        <br>
+        <br> -->
+
             <div class="card-deck" *jhiHasAnyAuthority="'ROLE_USER'">
                 <div class="card" routerLink="/commande-transport/new">
                     <img class="card-img-top" src="../../content/images/van.jpeg" alt="Card image cap">
@@ -202,6 +212,7 @@
 </div>
 
 
+
 <br><br><br><br><br><br><br><br><br><br><br>
 
 
@@ -235,6 +246,7 @@
                 </div>
             </div>
 </div>
+
 
 <!--
 <div class="xx">

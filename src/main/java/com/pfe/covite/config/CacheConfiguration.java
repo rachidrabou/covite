@@ -52,6 +52,7 @@ public class CacheConfiguration {
             createCache(cm, com.pfe.covite.domain.TarifTransport.class.getName());
             createCache(cm, com.pfe.covite.domain.TarifLivraison.class.getName());
             createCache(cm, com.pfe.covite.domain.TarifTransportAnimal.class.getName());
+            createCache(cm, com.pfe.covite.domain.Livreur.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
