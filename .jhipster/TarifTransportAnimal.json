@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "service",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "animal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "distance",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20200808150701",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "tarif_transport_animal",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": true,
+    "pagination": "infinite-scroll"
+}

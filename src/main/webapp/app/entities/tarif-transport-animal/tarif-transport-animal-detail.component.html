@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tarifTransportAnimal">
+            <h2><span jhiTranslate="coviteApp.tarifTransportAnimal.detail.title">Tarif Transport Animal</span> {{ tarifTransportAnimal.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="coviteApp.tarifTransportAnimal.service">Service</span></dt>
+                <dd>
+                    <span>{{ tarifTransportAnimal.service }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.tarifTransportAnimal.animal">Animal</span></dt>
+                <dd>
+                    <span>{{ tarifTransportAnimal.animal }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.tarifTransportAnimal.distance">Distance</span></dt>
+                <dd>
+                    <span>{{ tarifTransportAnimal.distance }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.tarifTransportAnimal.prix">Prix</span></dt>
+                <dd>
+                    <span>{{ tarifTransportAnimal.prix }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tarif-transport-animal', tarifTransportAnimal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

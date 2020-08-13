@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="coviteApp.tarifTransport.home.title">Tarif Transports</span>
+
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-tarif-transport" [routerLink]="['/tarif-transport/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="coviteApp.tarifTransport.home.createLabel">
+            Create a new Tarif Transport
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tarifTransports?.length === 0">
+        <span jhiTranslate="coviteApp.tarifTransport.home.notFound">No tarifTransports found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tarifTransports?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="service"><span jhiTranslate="coviteApp.tarifTransport.service">Service</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="vehicule"><span jhiTranslate="coviteApp.tarifTransport.vehicule">Vehicule</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nombreDePersonne"><span jhiTranslate="coviteApp.tarifTransport.nombreDePersonne">Nombre De Personne</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="distance"><span jhiTranslate="coviteApp.tarifTransport.distance">Distance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.tarifTransport.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let tarifTransport of tarifTransports ;trackBy: trackId">
+                    <td><a [routerLink]="['/tarif-transport', tarifTransport.id, 'view']">{{ tarifTransport.id }}</a></td>
+                    <td>{{ tarifTransport.service }}</td>
+                    <td>{{ tarifTransport.vehicule }}</td>
+                    <td>{{ tarifTransport.nombreDePersonne }}</td>
+                    <td>{{ tarifTransport.distance }}</td>
+                    <td>{{ tarifTransport.prix }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/tarif-transport', tarifTransport.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  type="submit"
+                                    [routerLink]="['/tarif-transport', tarifTransport.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  type="submit" (click)="delete(tarifTransport)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

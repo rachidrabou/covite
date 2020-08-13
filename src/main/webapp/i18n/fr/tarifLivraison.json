@@ -1,0 +1,25 @@
+{
+  "coviteApp": {
+    "tarifLivraison": {
+      "home": {
+        "title": "TarifLivraisons",
+        "createLabel": "Créer un nouveau Tarif Livraison",
+        "createOrEditLabel": "Créer ou éditer un Tarif Livraison",
+        "notFound": "Aucun Tarif Livraison trouvé"
+      },
+      "created": "Un nouveau Tarif Livraison a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tarif Livraison avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tarif Livraison avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Tarif Livraison {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tarif Livraison"
+      },
+      "service": "Service",
+      "objet": "Objet",
+      "distance": "Distance",
+      "prix": "Prix"
+    }
+  }
+}

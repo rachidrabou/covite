@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tarifLivraison">
+            <h2><span jhiTranslate="coviteApp.tarifLivraison.detail.title">Tarif Livraison</span> {{ tarifLivraison.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="coviteApp.tarifLivraison.service">Service</span></dt>
+                <dd>
+                    <span>{{ tarifLivraison.service }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.tarifLivraison.objet">Objet</span></dt>
+                <dd>
+                    <span>{{ tarifLivraison.objet }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.tarifLivraison.distance">Distance</span></dt>
+                <dd>
+                    <span>{{ tarifLivraison.distance }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.tarifLivraison.prix">Prix</span></dt>
+                <dd>
+                    <span>{{ tarifLivraison.prix }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tarif-livraison', tarifLivraison.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

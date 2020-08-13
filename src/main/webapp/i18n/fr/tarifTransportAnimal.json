@@ -1,0 +1,25 @@
+{
+  "coviteApp": {
+    "tarifTransportAnimal": {
+      "home": {
+        "title": "TarifTransportAnimals",
+        "createLabel": "Créer un nouveau Tarif Transport Animal",
+        "createOrEditLabel": "Créer ou éditer un Tarif Transport Animal",
+        "notFound": "Aucun Tarif Transport Animal trouvé"
+      },
+      "created": "Un nouveau Tarif Transport Animal a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tarif Transport Animal avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tarif Transport Animal avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Tarif Transport Animal {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tarif Transport Animal"
+      },
+      "service": "Service",
+      "animal": "Animal",
+      "distance": "Distance",
+      "prix": "Prix"
+    }
+  }
+}

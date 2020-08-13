@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "service",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vehicule",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombreDePersonne",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "distance",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20200808144556",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "tarif_transport",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": true,
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-tarif-transport-heading" jhiTranslate="coviteApp.tarifTransport.home.createOrEditLabel">Create or edit a Tarif Transport</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.tarifTransport.service" for="field_service">Service</label>
+                    <input type="text" class="form-control" name="service" id="field_service"
+                           formControlName="service"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.tarifTransport.vehicule" for="field_vehicule">Vehicule</label>
+                    <input type="text" class="form-control" name="vehicule" id="field_vehicule"
+                           formControlName="vehicule"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.tarifTransport.nombreDePersonne" for="field_nombreDePersonne">Nombre De Personne</label>
+                    <input type="number" class="form-control" name="nombreDePersonne" id="field_nombreDePersonne"
+                           formControlName="nombreDePersonne"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.tarifTransport.distance" for="field_distance">Distance</label>
+                    <input type="number" class="form-control" name="distance" id="field_distance"
+                           formControlName="distance"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.tarifTransport.prix" for="field_prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" id="field_prix"
+                           formControlName="prix"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

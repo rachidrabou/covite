@@ -1,0 +1,25 @@
+{
+  "coviteApp": {
+    "tarifTransportAnimal": {
+      "home": {
+        "title": "Tarif Transport Animals",
+        "createLabel": "Create a new Tarif Transport Animal",
+        "createOrEditLabel": "Create or edit a Tarif Transport Animal",
+        "notFound": "No Tarif Transport Animals found"
+      },
+      "created": "A new Tarif Transport Animal is created with identifier {{ param }}",
+      "updated": "A Tarif Transport Animal is updated with identifier {{ param }}",
+      "deleted": "A Tarif Transport Animal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tarif Transport Animal {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarif Transport Animal"
+      },
+      "service": "Service",
+      "animal": "Animal",
+      "distance": "Distance",
+      "prix": "Prix"
+    }
+  }
+}
