@@ -10,6 +10,8 @@ import { ICommandeLivraison } from 'app/shared/model/commande-livraison.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CommandeLivraisonService } from './commande-livraison.service';
 import { CommandeLivraisonDeleteDialogComponent } from './commande-livraison-delete-dialog.component';
+import { Account } from 'app/core/user/account.model';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-commande-livraison',
@@ -25,12 +27,16 @@ export class CommandeLivraisonComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
 
+  account!: Account;
+  authSubscription?: Subscription;
+
   constructor(
     protected commandeLivraisonService: CommandeLivraisonService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private accountService: AccountService
   ) {}
 
   loadPage(page?: number): void {
@@ -57,6 +63,7 @@ export class CommandeLivraisonComponent implements OnInit, OnDestroy {
       this.loadPage();
     });
     this.registerChangeInCommandeLivraisons();
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));
   }
 
   ngOnDestroy(): void {

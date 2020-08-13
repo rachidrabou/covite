@@ -1,8 +1,11 @@
 package com.pfe.covite.web.rest;
 
 import com.pfe.covite.domain.CommandeLivraison;
+import com.pfe.covite.domain.Livreur;
 import com.pfe.covite.domain.Notification;
+import com.pfe.covite.domain.User;
 import com.pfe.covite.repository.CommandeLivraisonRepository;
+import com.pfe.covite.repository.LivreurRepository;
 import com.pfe.covite.repository.NotificationRepository;
 import com.pfe.covite.web.rest.errors.BadRequestAlertException;
 
@@ -46,6 +49,9 @@ public class CommandeLivraisonResource {
     @Autowired
     NotificationRepository notificationRepository;
 
+    @Autowired
+    LivreurRepository livreurRepository;
+
     private final CommandeLivraisonRepository commandeLivraisonRepository;
 
     public CommandeLivraisonResource(CommandeLivraisonRepository commandeLivraisonRepository) {
@@ -62,6 +68,12 @@ public class CommandeLivraisonResource {
     @PostMapping("/commande-livraisons")
     public ResponseEntity<CommandeLivraison> createCommandeLivraison(@Valid @RequestBody CommandeLivraison commandeLivraison) throws URISyntaxException {
 
+        User livreur = commandeLivraison.getLivreur();
+        Livreur livreur1 = livreurRepository.findByUser(livreur);
+        float soldeBefore = livreur1.getSolde();
+        soldeBefore = (float) (soldeBefore + commandeLivraison.getPrix());
+        livreur1.setSolde(soldeBefore);
+        livreurRepository.save(livreur1);
         notificationRepository.save(new Notification("Commande service livraison", commandeLivraison.getClient(), commandeLivraison, commandeLivraison.getLivreur()));
 
         log.debug("REST request to save CommandeLivraison : {}", commandeLivraison);
@@ -85,6 +97,14 @@ public class CommandeLivraisonResource {
      */
     @PutMapping("/commande-livraisons")
     public ResponseEntity<CommandeLivraison> updateCommandeLivraison(@Valid @RequestBody CommandeLivraison commandeLivraison) throws URISyntaxException {
+        // copier coller
+        User livreur = commandeLivraison.getLivreur();
+        Livreur livreur1 = livreurRepository.findByUser(livreur);
+        float soldeBefore = livreur1.getSolde();
+        soldeBefore = (float) (soldeBefore + 0.20*commandeLivraison.getPrix());
+        livreur1.setSolde(soldeBefore);
+        livreurRepository.save(livreur1);
+
         log.debug("REST request to update CommandeLivraison : {}", commandeLivraison);
         if (commandeLivraison.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

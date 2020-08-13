@@ -2,6 +2,7 @@ package com.pfe.covite.repository;
 
 import com.pfe.covite.domain.Livreur;
 
+import com.pfe.covite.domain.User;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +12,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface LivreurRepository extends JpaRepository<Livreur, Long>, JpaSpecificationExecutor<Livreur> {
+
+    Livreur findByUser(User user);
 }
