@@ -101,7 +101,7 @@ public class CommandeLivraisonResource {
         User livreur = commandeLivraison.getLivreur();
         Livreur livreur1 = livreurRepository.findByUser(livreur);
         float soldeBefore = livreur1.getSolde();
-        soldeBefore = (float) (soldeBefore + 0.20*commandeLivraison.getPrix());
+        soldeBefore = (float) (soldeBefore + 0.10*commandeLivraison.getPrix());
         livreur1.setSolde(soldeBefore);
         livreurRepository.save(livreur1);
 

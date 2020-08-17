@@ -34,8 +34,11 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0" >
+
                 <tr *ngFor="let notification of notifications ;trackBy: trackId">
+
                     <td><a [routerLink]="['/notification', notification.id, 'view']">{{ notification.id }}</a></td>
                     <td>{{ notification.titre }}</td>
                     <td>{{ notification.prix }}</td>
@@ -84,6 +87,7 @@
                             </button>
                         </div>
                     </td>
+
                 </tr>
             </tbody>
         </table>

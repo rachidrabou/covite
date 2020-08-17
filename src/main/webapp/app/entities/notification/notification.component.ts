@@ -10,6 +10,9 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { NotificationService } from './notification.service';
 import { NotificationDeleteDialogComponent } from './notification-delete-dialog.component';
 
+import { Account } from 'app/core/user/account.model';
+import { AccountService } from 'app/core/auth/account.service';
+
 @Component({
   selector: 'jhi-notification',
   templateUrl: './notification.component.html'
@@ -23,11 +26,15 @@ export class NotificationComponent implements OnInit, OnDestroy {
   predicate: string;
   ascending: boolean;
 
+  account!: Account;
+  authSubscription?: Subscription;
+
   constructor(
     protected notificationService: NotificationService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    private accountService: AccountService
   ) {
     this.notifications = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -63,6 +70,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInNotifications();
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));
   }
 
   ngOnDestroy(): void {

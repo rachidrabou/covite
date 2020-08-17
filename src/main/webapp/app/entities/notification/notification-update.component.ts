@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { INotification, Notification } from 'app/shared/model/notification.model';
@@ -17,6 +17,9 @@ import { CommandeLivraisonAnimalService } from 'app/entities/commande-livraison-
 import { ICommandeTransport } from 'app/shared/model/commande-transport.model';
 import { CommandeTransportService } from 'app/entities/commande-transport/commande-transport.service';
 
+import { Account } from 'app/core/user/account.model';
+import { AccountService } from 'app/core/auth/account.service';
+
 type SelectableEntity = IUser | ICommandeLivraison | ICommandeLivraisonAnimal | ICommandeTransport;
 
 @Component({
@@ -29,6 +32,9 @@ export class NotificationUpdateComponent implements OnInit {
   commandelivraisons: ICommandeLivraison[] = [];
   commandelivraisonanimals: ICommandeLivraisonAnimal[] = [];
   commandetransports: ICommandeTransport[] = [];
+
+  account!: Account;
+  authSubscription?: Subscription;
 
   editForm = this.fb.group({
     id: [],
@@ -49,7 +55,8 @@ export class NotificationUpdateComponent implements OnInit {
     protected commandeLivraisonAnimalService: CommandeLivraisonAnimalService,
     protected commandeTransportService: CommandeTransportService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -124,6 +131,8 @@ export class NotificationUpdateComponent implements OnInit {
           }
         });
     });
+
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));
   }
 
   updateForm(notification: INotification): void {
@@ -147,6 +156,9 @@ export class NotificationUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const notification = this.createFromForm();
+
+    notification.livreur = this.account;
+
     if (notification.id !== undefined) {
       this.subscribeToSaveResponse(this.notificationService.update(notification));
     } else {

@@ -1,1 +1,70 @@
-<p>commission works!</p>
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="coviteApp.livreur.home.title">Mon solde</span>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="livreurs?.length === 0">
+        <span jhiTranslate="coviteApp.livreur.home.notFound">No livreurs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="livreurs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading" style="position:center ">
+            <thead>
+            <!-- <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="coviteApp.livreur.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="user.email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="coviteApp.livreur.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="solde"><span jhiTranslate="coviteApp.livreur.solde">Solde</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"></th>
+            </tr> -->
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let livreur of livreurs ;trackBy: trackId">
+                <div *ngIf="livreur.user?.login === account.login">
+                <td> Votre ID : <a [routerLink]="['/livreur', livreur.id, 'view']">{{ livreur.id }}</a></td>
+                </div>
+                <div *ngIf="livreur.user?.login === account.login">
+                <td>Votre login :
+                    {{ livreur.user?.login }}
+                </td>
+                </div>
+                <div *ngIf="livreur.user?.login === account.login">
+                <td> Votre email :
+                    {{ livreur.user?.email }}
+                </td>
+                </div>
+                    <div *ngIf="livreur.user?.login === account.login">
+                <td> Votre telephone : {{ livreur.telephone }}</td>
+                    </div>
+                    <div *ngIf="livreur.user?.login === account.login">
+                <td> Votre Solde :{{ livreur.solde }}</td>
+                    </div>
+                    <div *ngIf="livreur.user?.login === account.login">
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/livreur', livreur.id, 'view']"
+                                class="btn btn-info btn-sm">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+
+                    </div>
+                </td>
+
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+

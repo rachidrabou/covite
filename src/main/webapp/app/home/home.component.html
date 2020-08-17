@@ -15,9 +15,16 @@
         </div> -->
 
 
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" *ngSwitchCase="true">
+               <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+                     [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
+            </div>
+
+        </div>
 
         <!-- SLIIDER -->
-        <div   class="mimi" >
+        <div  class="mimi" >
 
             <ngb-carousel>
                 <ng-template ngbSlide>
@@ -69,18 +76,22 @@
         </div>
 
 
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-               <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                     [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
+
+        <br> <br> <br><br> <br> <br>
+
+        <h1 *jhiHasAnyAuthority="'ROLE_USER'" class="display-4 text-center" >Une application de tous les jours</h1>
+
+        <br> <br> <br><br> <br> <br>
+
+
+        <div class="row text-center" >
+            <div class="couverture" >
+                <div   class="col-md-12 " >
+                    <img src="../../content/images/gris3.png">
+                </div>
             </div>
-
-       </div>
-
-
-        <!-- <br>
-            <h1 *jhiHasAnyAuthority="'ROLE_USER'" class="display-4 text-center" >quel service souhaiteriez-vous utiliser ?</h1>
-        <br> -->
+        </div>
+        <br> <br> <br><br> <br> <br> <br> <br><br>
 
             <div class="card-deck" *jhiHasAnyAuthority="'ROLE_USER'">
                 <div class="card" routerLink="/commande-transport/new">

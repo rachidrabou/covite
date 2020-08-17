@@ -1,7 +1,12 @@
 package com.pfe.covite.web.rest;
 
 import com.pfe.covite.domain.CommandeLivraisonAnimal;
+import com.pfe.covite.domain.Livreur;
+import com.pfe.covite.domain.Notification;
+import com.pfe.covite.domain.User;
 import com.pfe.covite.repository.CommandeLivraisonAnimalRepository;
+import com.pfe.covite.repository.LivreurRepository;
+import com.pfe.covite.repository.NotificationRepository;
 import com.pfe.covite.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -9,6 +14,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +46,12 @@ public class CommandeLivraisonAnimalResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    @Autowired
+    NotificationRepository notificationRepository;
+
+    @Autowired
+    LivreurRepository livreurRepository;
+
     private final CommandeLivraisonAnimalRepository commandeLivraisonAnimalRepository;
 
     public CommandeLivraisonAnimalResource(CommandeLivraisonAnimalRepository commandeLivraisonAnimalRepository) {
@@ -55,6 +67,15 @@ public class CommandeLivraisonAnimalResource {
      */
     @PostMapping("/commande-livraison-animals")
     public ResponseEntity<CommandeLivraisonAnimal> createCommandeLivraisonAnimal(@Valid @RequestBody CommandeLivraisonAnimal commandeLivraisonAnimal) throws URISyntaxException {
+
+        User livreur = commandeLivraisonAnimal.getLivreur();
+        Livreur livreur1 = livreurRepository.findByUser(livreur);
+        float soldeBefore = livreur1.getSolde();
+        soldeBefore = (float) (soldeBefore + commandeLivraisonAnimal.getPrix());
+        livreur1.setSolde(soldeBefore);
+        livreurRepository.save(livreur1);
+        notificationRepository.save(new Notification("Commande service transport animaux", commandeLivraisonAnimal.getClient(), commandeLivraisonAnimal, commandeLivraisonAnimal.getLivreur()));
+
         log.debug("REST request to save CommandeLivraisonAnimal : {}", commandeLivraisonAnimal);
         if (commandeLivraisonAnimal.getId() != null) {
             throw new BadRequestAlertException("A new commandeLivraisonAnimal cannot already have an ID", ENTITY_NAME, "idexists");
@@ -76,6 +97,14 @@ public class CommandeLivraisonAnimalResource {
      */
     @PutMapping("/commande-livraison-animals")
     public ResponseEntity<CommandeLivraisonAnimal> updateCommandeLivraisonAnimal(@Valid @RequestBody CommandeLivraisonAnimal commandeLivraisonAnimal) throws URISyntaxException {
+
+        User livreur = commandeLivraisonAnimal.getLivreur();
+        Livreur livreur1 = livreurRepository.findByUser(livreur);
+        float soldeBefore = livreur1.getSolde();
+        soldeBefore = (float) (soldeBefore + 0.20*commandeLivraisonAnimal.getPrix());
+        livreur1.setSolde(soldeBefore);
+        livreurRepository.save(livreur1);
+
         log.debug("REST request to update CommandeLivraisonAnimal : {}", commandeLivraisonAnimal);
         if (commandeLivraisonAnimal.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

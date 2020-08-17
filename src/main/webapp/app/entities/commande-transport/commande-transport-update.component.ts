@@ -3,12 +3,15 @@ import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { ICommandeTransport, CommandeTransport } from 'app/shared/model/commande-transport.model';
 import { CommandeTransportService } from './commande-transport.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+
+import { Account } from 'app/core/user/account.model';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-commande-transport-update',
@@ -18,6 +21,9 @@ export class CommandeTransportUpdateComponent implements OnInit {
   isSaving = false;
   users: IUser[] = [];
   dateHeureDp: any;
+
+  account!: Account;
+  authSubscription?: Subscription;
 
   editForm = this.fb.group({
     id: [],
@@ -37,7 +43,8 @@ export class CommandeTransportUpdateComponent implements OnInit {
     protected commandeTransportService: CommandeTransportService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +53,8 @@ export class CommandeTransportUpdateComponent implements OnInit {
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
+
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));
   }
 
   updateForm(commandeTransport: ICommandeTransport): void {
@@ -71,6 +80,9 @@ export class CommandeTransportUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const commandeTransport = this.createFromForm();
+
+    commandeTransport.client = this.account;
+
     if (commandeTransport.id !== undefined) {
       this.subscribeToSaveResponse(this.commandeTransportService.update(commandeTransport));
     } else {

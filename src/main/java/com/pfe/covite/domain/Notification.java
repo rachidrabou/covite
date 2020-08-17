@@ -103,6 +103,20 @@ public class Notification implements Serializable {
         this.livreur = livreur;
     }
 
+    public Notification(String titre, User client, CommandeLivraisonAnimal commandeLivraisonAnimal, User livreur) {
+        this.titre = titre;
+        this.client = client;
+        this.commandeLivraisonAnimal = commandeLivraisonAnimal;
+        this.livreur = livreur;
+    }
+
+    public Notification(String titre, User client, CommandeTransport commandeTransport, User livreur) {
+        this.titre = titre;
+        this.client = client;
+        this.commandeTransport = commandeTransport;
+        this.livreur = livreur;
+    }
+
     public Notification() {
     }
 

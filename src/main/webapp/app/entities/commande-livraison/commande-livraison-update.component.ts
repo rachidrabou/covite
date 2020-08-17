@@ -3,14 +3,12 @@ import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { ICommandeLivraison, CommandeLivraison } from 'app/shared/model/commande-livraison.model';
 import { CommandeLivraisonService } from './commande-livraison.service';
-import { IUser, User } from 'app/core/user/user.model';
+import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
-import { Account } from 'app/core/user/account.model';
-import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-commande-livraison-update',
@@ -20,9 +18,6 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
   isSaving = false;
   users: IUser[] = [];
   dateHeureDp: any;
-
-  account!: Account;
-  authSubscription?: Subscription;
 
   editForm = this.fb.group({
     id: [],
@@ -42,8 +37,7 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
     protected commandeLivraisonService: CommandeLivraisonService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    private accountService: AccountService
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -52,8 +46,6 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
-
-    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));
   }
 
   updateForm(commandeLivraison: ICommandeLivraison): void {
@@ -79,7 +71,6 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const commandeLivraison = this.createFromForm();
-    commandeLivraison.client = this.account;
     if (commandeLivraison.id !== undefined) {
       this.subscribeToSaveResponse(this.commandeLivraisonService.update(commandeLivraison));
     } else {
