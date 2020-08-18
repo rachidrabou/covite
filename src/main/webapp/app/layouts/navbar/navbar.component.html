@@ -67,6 +67,29 @@
                 </a>
             </li>
 
+            <!-- commandes users -->
+
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="mescommandes" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="home"></fa-icon>
+                        <span >Mes commandes</span>
+                    </span>
+                </a>
+            </li>
+
+            <!-- TARIFS -->
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="tarifs" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="bicycle"></fa-icon>
+                        <span >Nos tarifs</span>
+                    </span>
+                </a>
+            </li>
+
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <!-- Entities -->
 
@@ -127,6 +150,7 @@
             <!-- FIN Entities -->
 
             <!-- TARIFS-->
+            <!--
             <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="tarif-menu">
@@ -137,30 +161,33 @@
                         </span>
                     </span>
                 </a>
-                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu"> -->
                     <!-- Button tarif transport-->
+                   <!--
                     <li>
                         <a class="dropdown-item" routerLink="tarif-transport" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.tarifTransport">Tarif Transport</span>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- Button tarif livraison -->
-                    <li>
+                   <!-- <li>
                         <a class="dropdown-item" routerLink="tarif-livraison" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.tarifLivraison">Tarif Livraison</span>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- Button tarif transport animal-->
-                    <li>
+                    <!-- <li>
                         <a class="dropdown-item" routerLink="tarif-transport-animal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.tarifTransportAnimal">Tarif Transport Animal</span>
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
+
+
 
 
 

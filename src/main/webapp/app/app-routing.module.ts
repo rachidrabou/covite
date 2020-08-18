@@ -9,6 +9,8 @@ import { LivreurComponent } from './livreur/livreur.component';
 import { TransportComponent } from './transport/transport.component';
 import { LivraisonComponent } from './livraison/livraison.component';
 import { CommissionComponent } from './commission/commission.component';
+import { MescommandesComponent } from './mescommandes/mescommandes.component';
+import { TarifsComponent } from './tarifs/tarifs.component';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
@@ -18,6 +20,14 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: 'tarifs',
+          component: TarifsComponent
+        },
+        {
+          path: 'mescommandes',
+          component: MescommandesComponent
+        },
         {
           path: 'boutoncommission',
           component: CommissionComponent

@@ -39,7 +39,7 @@ export const tarifLivraisonRoute: Routes = [
     path: '',
     component: TarifLivraisonComponent,
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER, Authority.LIVREUR, Authority.ADMIN],
       pageTitle: 'coviteApp.tarifLivraison.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +75,7 @@ export const tarifLivraisonRoute: Routes = [
       tarifLivraison: TarifLivraisonResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.tarifLivraison.home.title'
     },
     canActivate: [UserRouteAccessService]

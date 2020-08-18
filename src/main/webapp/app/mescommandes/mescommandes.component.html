@@ -1,0 +1,117 @@
+<div class="card jh-card">
+    <h2 id="page-heading">
+        <span>Historique de mes commandes</span>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="notifications?.length === 0">
+        <span jhiTranslate="coviteApp.notification.home.notFound">No notifications found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="notifications?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="titre"><span jhiTranslate="coviteApp.notification.titre">Titre</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.notification.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="prixValider"><span jhiTranslate="coviteApp.notification.prixValider">Prix Valider</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.notification.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="commandeLivraison.id"><span jhiTranslate="coviteApp.notification.commandeLivraison">Commande Livraison</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="commandeLivraisonAnimal.id"><span jhiTranslate="coviteApp.notification.commandeLivraisonAnimal">Commande Livraison Animal</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="commandeTransport.id"><span jhiTranslate="coviteApp.notification.commandeTransport">Commande Transport</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.notification.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0" >
+
+            <tr *ngFor="let notification of notifications ;trackBy: trackId" >
+
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                        <a [routerLink]="['/notification', notification.id, 'view']">{{ notification.id }}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                        {{ notification.titre }}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                        {{ notification.prix }}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                    {{ notification.prixValider }}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                    {{ notification.client?.login }}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                    <div *ngIf="notification.commandeLivraison">
+                        <a [routerLink]="['/commande-livraison', notification.commandeLivraison?.id, 'view']" >{{ notification.commandeLivraison?.id }}</a>
+                    </div>
+
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                    <div *ngIf="notification.commandeLivraisonAnimal">
+                        <a [routerLink]="['/commande-livraison-animal', notification.commandeLivraisonAnimal?.id, 'view']" >{{ notification.commandeLivraisonAnimal?.id }}</a>
+                    </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                    <div *ngIf="notification.commandeTransport">
+                        <a [routerLink]="['/commande-transport', notification.commandeTransport?.id, 'view']" >{{ notification.commandeTransport?.id }}</a>
+                    </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="notification.client?.login == account.login">
+                    {{ notification.livreur?.login }}
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/notification', notification.id, 'view']"
+                                class="btn btn-info btn-sm">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+
+                        <button *jhiHasAnyAuthority="['ROLE_LIVREUR','ROLE_ADMIN']" type="submit"
+                                [routerLink]="['/notification', notification.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon icon="pencil-alt"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+
+                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" (click)="delete(notification)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon icon="times"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
