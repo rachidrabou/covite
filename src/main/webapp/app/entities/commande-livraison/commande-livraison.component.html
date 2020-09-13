@@ -25,11 +25,9 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseDepart"><span jhiTranslate="coviteApp.commandeLivraison.adresseDepart">Adresse Depart</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseArrivee"><span jhiTranslate="coviteApp.commandeLivraison.adresseArrivee">Adresse Arrivee</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateHeure"><span jhiTranslate="coviteApp.commandeLivraison.dateHeure">Date Heure</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeLivraison.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeLivraison.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="objet"><span jhiTranslate="coviteApp.commandeLivraison.objet">Objet</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeLivraison.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cin"><span jhiTranslate="coviteApp.commandeLivraison.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraison.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.commandeLivraison.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
@@ -38,45 +36,42 @@
             </thead>
             <tbody>
                 <tr *ngFor="let commandeLivraison of commandeLivraisons ;trackBy: trackId">
-                        <td><a [routerLink]="['/commande-livraison', commandeLivraison.id, 'view']">{{ commandeLivraison.id }}</a></td>
-                        <td>{{ commandeLivraison.adresseDepart }}</td>
-                        <td>{{ commandeLivraison.adresseArrivee }}</td>
-                        <td>{{ commandeLivraison.dateHeure | date:'mediumDate' }}</td>
-                        <td>{{ commandeLivraison.prix }}</td>
-                        <td>{{ commandeLivraison.numeroClient }}</td>
-                        <td>{{ commandeLivraison.objet }}</td>
-                        <td>{{ commandeLivraison.validated }}</td>
-                        <td>{{ commandeLivraison.cin }}</td>
-                        <td>
-                            {{ commandeLivraison.client?.login }}
-                        </td>
-                        <td>
-                            {{ commandeLivraison.livreur?.login }}
-                        </td>
-                        <td class="text-right">
-                            <div class="btn-group">
-                                <button type="submit"
-                                        [routerLink]="['/commande-livraison', commandeLivraison.id, 'view']"
-                                        class="btn btn-info btn-sm">
-                                    <fa-icon icon="eye"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                                </button>
+                    <td><a [routerLink]="['/commande-livraison', commandeLivraison.id, 'view']">{{ commandeLivraison.id }}</a></td>
+                    <td>{{ commandeLivraison.adresseDepart }}</td>
+                    <td>{{ commandeLivraison.adresseArrivee }}</td>
+                    <td>{{ commandeLivraison.prix }}</td>
+                    <td>{{ commandeLivraison.numeroClient }}</td>
+                    <td>{{ commandeLivraison.objet }}</td>
+                    <td>{{ commandeLivraison.cin }}</td>
+                    <td>
+                        {{ commandeLivraison.client?.login }}
+                    </td>
+                    <td>
+                        {{ commandeLivraison.livreur?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/commande-livraison', commandeLivraison.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
 
-                                <button type="submit"
-                                        [routerLink]="['/commande-livraison', commandeLivraison.id, 'edit']"
-                                        class="btn btn-primary btn-sm">
-                                    <fa-icon icon="pencil-alt"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                                </button>
+                            <button type="submit"
+                                    [routerLink]="['/commande-livraison', commandeLivraison.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
 
-                                <button type="submit" (click)="delete(commandeLivraison)"
-                                        class="btn btn-danger btn-sm">
-                                    <fa-icon icon="times"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                </button>
-                            </div>
-                        </td>
-
+                            <button type="submit" (click)="delete(commandeLivraison)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -1,6 +1,7 @@
 package com.pfe.covite.web.rest;
 
 import com.pfe.covite.domain.Livreur;
+import com.pfe.covite.repository.NotificationRepository;
 import com.pfe.covite.service.LivreurService;
 import com.pfe.covite.web.rest.errors.BadRequestAlertException;
 import com.pfe.covite.service.dto.LivreurCriteria;
@@ -11,6 +12,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +40,7 @@ public class LivreurResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
 
     private final LivreurService livreurService;
 

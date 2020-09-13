@@ -8,7 +8,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.time.LocalDate;
 
 /**
  * A CommandeLivraison.
@@ -32,10 +31,6 @@ public class CommandeLivraison implements Serializable {
     @Column(name = "adresse_arrivee", nullable = false)
     private String adresseArrivee;
 
-    @NotNull
-    @Column(name = "date_heure", nullable = false)
-    private LocalDate dateHeure;
-
     @Column(name = "prix")
     private Double prix;
 
@@ -45,9 +40,6 @@ public class CommandeLivraison implements Serializable {
     @NotNull
     @Column(name = "objet", nullable = false)
     private String objet;
-
-    @Column(name = "validated")
-    private Boolean validated;
 
     @Column(name = "cin")
     private String cin;
@@ -95,19 +87,6 @@ public class CommandeLivraison implements Serializable {
         this.adresseArrivee = adresseArrivee;
     }
 
-    public LocalDate getDateHeure() {
-        return dateHeure;
-    }
-
-    public CommandeLivraison dateHeure(LocalDate dateHeure) {
-        this.dateHeure = dateHeure;
-        return this;
-    }
-
-    public void setDateHeure(LocalDate dateHeure) {
-        this.dateHeure = dateHeure;
-    }
-
     public Double getPrix() {
         return prix;
     }
@@ -145,19 +124,6 @@ public class CommandeLivraison implements Serializable {
 
     public void setObjet(String objet) {
         this.objet = objet;
-    }
-
-    public Boolean isValidated() {
-        return validated;
-    }
-
-    public CommandeLivraison validated(Boolean validated) {
-        this.validated = validated;
-        return this;
-    }
-
-    public void setValidated(Boolean validated) {
-        this.validated = validated;
     }
 
     public String getCin() {
@@ -222,11 +188,9 @@ public class CommandeLivraison implements Serializable {
             "id=" + getId() +
             ", adresseDepart='" + getAdresseDepart() + "'" +
             ", adresseArrivee='" + getAdresseArrivee() + "'" +
-            ", dateHeure='" + getDateHeure() + "'" +
             ", prix=" + getPrix() +
             ", numeroClient='" + getNumeroClient() + "'" +
             ", objet='" + getObjet() + "'" +
-            ", validated='" + isValidated() + "'" +
             ", cin='" + getCin() + "'" +
             "}";
     }

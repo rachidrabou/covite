@@ -37,13 +37,6 @@
             ]
         },
         {
-            "fieldName": "dateHeure",
-            "fieldType": "LocalDate",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "prix",
             "fieldType": "Double"
         },
@@ -57,10 +50,6 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "validated",
-            "fieldType": "Boolean"
         },
         {
             "fieldName": "cin",

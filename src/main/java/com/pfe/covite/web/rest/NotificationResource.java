@@ -1,6 +1,10 @@
 package com.pfe.covite.web.rest;
 
+import com.pfe.covite.domain.CommandeLivraison;
+import com.pfe.covite.domain.Livreur;
 import com.pfe.covite.domain.Notification;
+import com.pfe.covite.domain.User;
+import com.pfe.covite.repository.LivreurRepository;
 import com.pfe.covite.repository.NotificationRepository;
 import com.pfe.covite.web.rest.errors.BadRequestAlertException;
 
@@ -9,6 +13,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +45,9 @@ public class NotificationResource {
     private String applicationName;
 
     private final NotificationRepository notificationRepository;
+
+    @Autowired
+    LivreurRepository livreurRepository;
 
     public NotificationResource(NotificationRepository notificationRepository) {
         this.notificationRepository = notificationRepository;
@@ -75,6 +83,15 @@ public class NotificationResource {
      */
     @PutMapping("/notifications")
     public ResponseEntity<Notification> updateNotification(@RequestBody Notification notification) throws URISyntaxException {
+
+
+        User livreur = notification.getLivreur();
+        Livreur livreur1 = livreurRepository.findByUser(livreur);
+        float soldeBefore = livreur1.getSolde();
+        soldeBefore = (float) (soldeBefore + 0.10*notification.getPrix());
+        livreur1.setSolde(soldeBefore);
+        livreurRepository.save(livreur1);
+
         log.debug("REST request to update Notification : {}", notification);
         if (notification.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

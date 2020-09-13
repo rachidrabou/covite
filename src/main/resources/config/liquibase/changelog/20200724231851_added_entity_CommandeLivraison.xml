@@ -22,9 +22,6 @@
             <column name="adresse_arrivee" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="date_heure" type="date">
-                <constraints nullable="false" />
-            </column>
             <column name="prix" type="double">
                 <constraints nullable="true" />
             </column>
@@ -33,9 +30,6 @@
             </column>
             <column name="objet" type="varchar(255)">
                 <constraints nullable="false" />
-            </column>
-            <column name="validated" type="boolean">
-                <constraints nullable="true" />
             </column>
             <column name="cin" type="varchar(255)">
                 <constraints nullable="true" />
@@ -71,11 +65,9 @@
             <column name="id" type="numeric"/>
             <column name="adresse_depart" type="string"/>
             <column name="adresse_arrivee" type="string"/>
-            <column name="date_heure" type="date"/>
             <column name="prix" type="numeric"/>
             <column name="numero_client" type="string"/>
             <column name="objet" type="string"/>
-            <column name="validated" type="boolean"/>
             <column name="cin" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>

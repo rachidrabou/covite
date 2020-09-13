@@ -17,17 +17,14 @@ import { UserService } from 'app/core/user/user.service';
 export class CommandeLivraisonUpdateComponent implements OnInit {
   isSaving = false;
   users: IUser[] = [];
-  dateHeureDp: any;
 
   editForm = this.fb.group({
     id: [],
     adresseDepart: [null, [Validators.required]],
     adresseArrivee: [null, [Validators.required]],
-    dateHeure: [null, [Validators.required]],
     prix: [],
     numeroClient: [],
     objet: [null, [Validators.required]],
-    validated: [],
     cin: [],
     client: [],
     livreur: []
@@ -53,11 +50,9 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       id: commandeLivraison.id,
       adresseDepart: commandeLivraison.adresseDepart,
       adresseArrivee: commandeLivraison.adresseArrivee,
-      dateHeure: commandeLivraison.dateHeure,
       prix: commandeLivraison.prix,
       numeroClient: commandeLivraison.numeroClient,
       objet: commandeLivraison.objet,
-      validated: commandeLivraison.validated,
       cin: commandeLivraison.cin,
       client: commandeLivraison.client,
       livreur: commandeLivraison.livreur
@@ -84,11 +79,9 @@ export class CommandeLivraisonUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       adresseDepart: this.editForm.get(['adresseDepart'])!.value,
       adresseArrivee: this.editForm.get(['adresseArrivee'])!.value,
-      dateHeure: this.editForm.get(['dateHeure'])!.value,
       prix: this.editForm.get(['prix'])!.value,
       numeroClient: this.editForm.get(['numeroClient'])!.value,
       objet: this.editForm.get(['objet'])!.value,
-      validated: this.editForm.get(['validated'])!.value,
       cin: this.editForm.get(['cin'])!.value,
       client: this.editForm.get(['client'])!.value,
       livreur: this.editForm.get(['livreur'])!.value

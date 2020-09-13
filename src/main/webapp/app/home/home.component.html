@@ -15,18 +15,17 @@
         </div> -->
 
 
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-               <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                     [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
-            </div>
-
-        </div>
 
         <!-- SLIIDER -->
         <div  class="mimi" >
 
             <ngb-carousel>
+                <ng-template ngbSlide>
+                    <img class="d-block w-100" src="../../content/images/premiere.png" alt="Delhi Metro" style=" width:700 px">
+                    <div class="carousel-caption">
+                        <h1 style="color: white"> </h1>
+                    </div>
+                </ng-template>
                 <ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/Jaune.png" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
@@ -70,7 +69,7 @@
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img class="d-block w-100" src="../../content/images/driver.jpeg" alt="Bangalore Metro" style="width:500 px">
+                    <img class="d-block w-100" src="../../content/images/delivery1.png" alt="Bangalore Metro" style="width:500 px">
                     <div class="carousel-caption">
                         <h1 style="color:white">nos meilleurs maitres sont a votre disposition</h1>
                     </div>
@@ -99,6 +98,14 @@
 
         </div>
 
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" *ngSwitchCase="true">
+               <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+                     [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
+            </div>
+
+        </div>
+
 
         <br> <br> <br><br> <br> <br> <br><br> <br> <br>
 
@@ -114,7 +121,7 @@
         <div class="row text-center" >
             <div class="couverture" >
                 <div   class="col-md-12" >
-                    <img src="../../content/images/gris3.png">
+                    <img class="img-responsive" src="../../content/images/gris3.png">
                 </div>
             </div>
         </div>
@@ -127,8 +134,8 @@
                 <div class="card" routerLink="/commande-transport/new">
                     <img class="card-img-top" src="../../content/images/van.jpeg" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Commande Transport</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <h5 class="card-title" style="text-align: 'center'">Commande Transport</h5>
+                        <p class="card-text" style="font-weight:'bold'">Nous vous accompagnons dans vos déplacements, nous somme à l'écoute de toutes les demandes de notre clientel et proposons un service personalisé.</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
@@ -136,8 +143,8 @@
                 <div class="card" routerLink="/commande-livraison/new">
                     <img class="card-img-top" src="../../content/images/delivery-guy.jpeg" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Commande Livraison</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <h5 class="card-title" style="text-align: 'center'">Commande Livraison</h5>
+                        <p class="card-text" style="font-weight:'bold'">Suivant la destination et suivant vos besoins, nous vous faisons livrez en un clic !</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
@@ -145,8 +152,9 @@
                 <div class="card" routerLink="/commande-livraison-animal/new">
                     <img class="card-img-top" src="../../content/images/cheval.png" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Commande Livraison Animal</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        <h5 class="card-title" style="text-align: 'center'">Commande transport Animal</h5>
+                        <p class="card-text" style="font-weight:'bold'" >Besoin de vous déplacer avec votre animal avec tout confort,
+                            petite virée chez le vétérinaire ? <br> Nous proposons l'auto special animal adéquate !</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
@@ -205,8 +213,8 @@
 
             <div class="col-md-6">
                 <br><br><br><br>
-                <h2  class="m-b-20 text-center" >Faites un tour !</h2>
-                <h1 class="m-b-20 text-center">Bla bla, Bla bla bla !</h1>
+                <h2  class="m-b-20 text-center" >Faites un tour en toute tranquilité</h2>
+                <h1 class="m-b-20 text-center"></h1>
         </div>
     </div>
 </div>
@@ -225,8 +233,8 @@
         <div class="new-feature-image" ></div>
         <div class="container">
             <div class="col-lg-5 offset-lg-6">
-                <h2  class="m-b-20 text-center" >Commander !</h2>
-                <h1 class="m-b-20 text-center">On vous fait livrer.</h1>
+                <h2  class="m-b-20 text-center" >PAS BESOINS DE BOUGER.COMMANDEZ ? </h2>
+                <h1 class="m-b-20 text-center"> On vous fait livrer.</h1>
                 <p></p>
 
             </div>
@@ -248,8 +256,8 @@
 
         <div class="col-md-6">
             <br><br><br><br>
-            <h2  class="m-b-20 text-center" >Transporter vos annimaux !</h2>
-            <h1 class="m-b-20 text-center">  Bla bla bla bla.  </h1>
+            <h2  class="m-b-20 text-center" > Pour une premiere, meme votre animal peut vous accompagner dans votre sortie !!!</h2>
+            <h1 class="m-b-20 text-center">  </h1>
         </div>
     </div>
 </div>

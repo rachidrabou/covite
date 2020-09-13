@@ -14,8 +14,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,9 +36,6 @@ public class CommandeLivraisonResourceIT {
     private static final String DEFAULT_ADRESSE_ARRIVEE = "AAAAAAAAAA";
     private static final String UPDATED_ADRESSE_ARRIVEE = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_DATE_HEURE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_HEURE = LocalDate.now(ZoneId.systemDefault());
-
     private static final Double DEFAULT_PRIX = 1D;
     private static final Double UPDATED_PRIX = 2D;
 
@@ -49,9 +44,6 @@ public class CommandeLivraisonResourceIT {
 
     private static final String DEFAULT_OBJET = "AAAAAAAAAA";
     private static final String UPDATED_OBJET = "BBBBBBBBBB";
-
-    private static final Boolean DEFAULT_VALIDATED = false;
-    private static final Boolean UPDATED_VALIDATED = true;
 
     private static final String DEFAULT_CIN = "AAAAAAAAAA";
     private static final String UPDATED_CIN = "BBBBBBBBBB";
@@ -77,11 +69,9 @@ public class CommandeLivraisonResourceIT {
         CommandeLivraison commandeLivraison = new CommandeLivraison()
             .adresseDepart(DEFAULT_ADRESSE_DEPART)
             .adresseArrivee(DEFAULT_ADRESSE_ARRIVEE)
-            .dateHeure(DEFAULT_DATE_HEURE)
             .prix(DEFAULT_PRIX)
             .numeroClient(DEFAULT_NUMERO_CLIENT)
             .objet(DEFAULT_OBJET)
-            .validated(DEFAULT_VALIDATED)
             .cin(DEFAULT_CIN);
         return commandeLivraison;
     }
@@ -95,11 +85,9 @@ public class CommandeLivraisonResourceIT {
         CommandeLivraison commandeLivraison = new CommandeLivraison()
             .adresseDepart(UPDATED_ADRESSE_DEPART)
             .adresseArrivee(UPDATED_ADRESSE_ARRIVEE)
-            .dateHeure(UPDATED_DATE_HEURE)
             .prix(UPDATED_PRIX)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .objet(UPDATED_OBJET)
-            .validated(UPDATED_VALIDATED)
             .cin(UPDATED_CIN);
         return commandeLivraison;
     }
@@ -126,11 +114,9 @@ public class CommandeLivraisonResourceIT {
         CommandeLivraison testCommandeLivraison = commandeLivraisonList.get(commandeLivraisonList.size() - 1);
         assertThat(testCommandeLivraison.getAdresseDepart()).isEqualTo(DEFAULT_ADRESSE_DEPART);
         assertThat(testCommandeLivraison.getAdresseArrivee()).isEqualTo(DEFAULT_ADRESSE_ARRIVEE);
-        assertThat(testCommandeLivraison.getDateHeure()).isEqualTo(DEFAULT_DATE_HEURE);
         assertThat(testCommandeLivraison.getPrix()).isEqualTo(DEFAULT_PRIX);
         assertThat(testCommandeLivraison.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
         assertThat(testCommandeLivraison.getObjet()).isEqualTo(DEFAULT_OBJET);
-        assertThat(testCommandeLivraison.isValidated()).isEqualTo(DEFAULT_VALIDATED);
         assertThat(testCommandeLivraison.getCin()).isEqualTo(DEFAULT_CIN);
     }
 
@@ -192,24 +178,6 @@ public class CommandeLivraisonResourceIT {
 
     @Test
     @Transactional
-    public void checkDateHeureIsRequired() throws Exception {
-        int databaseSizeBeforeTest = commandeLivraisonRepository.findAll().size();
-        // set the field null
-        commandeLivraison.setDateHeure(null);
-
-        // Create the CommandeLivraison, which fails.
-
-        restCommandeLivraisonMockMvc.perform(post("/api/commande-livraisons")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(commandeLivraison)))
-            .andExpect(status().isBadRequest());
-
-        List<CommandeLivraison> commandeLivraisonList = commandeLivraisonRepository.findAll();
-        assertThat(commandeLivraisonList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkObjetIsRequired() throws Exception {
         int databaseSizeBeforeTest = commandeLivraisonRepository.findAll().size();
         // set the field null
@@ -239,11 +207,9 @@ public class CommandeLivraisonResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(commandeLivraison.getId().intValue())))
             .andExpect(jsonPath("$.[*].adresseDepart").value(hasItem(DEFAULT_ADRESSE_DEPART)))
             .andExpect(jsonPath("$.[*].adresseArrivee").value(hasItem(DEFAULT_ADRESSE_ARRIVEE)))
-            .andExpect(jsonPath("$.[*].dateHeure").value(hasItem(DEFAULT_DATE_HEURE.toString())))
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
             .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
             .andExpect(jsonPath("$.[*].objet").value(hasItem(DEFAULT_OBJET)))
-            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())))
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)));
     }
     
@@ -260,11 +226,9 @@ public class CommandeLivraisonResourceIT {
             .andExpect(jsonPath("$.id").value(commandeLivraison.getId().intValue()))
             .andExpect(jsonPath("$.adresseDepart").value(DEFAULT_ADRESSE_DEPART))
             .andExpect(jsonPath("$.adresseArrivee").value(DEFAULT_ADRESSE_ARRIVEE))
-            .andExpect(jsonPath("$.dateHeure").value(DEFAULT_DATE_HEURE.toString()))
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
             .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
             .andExpect(jsonPath("$.objet").value(DEFAULT_OBJET))
-            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()))
             .andExpect(jsonPath("$.cin").value(DEFAULT_CIN));
     }
 
@@ -291,11 +255,9 @@ public class CommandeLivraisonResourceIT {
         updatedCommandeLivraison
             .adresseDepart(UPDATED_ADRESSE_DEPART)
             .adresseArrivee(UPDATED_ADRESSE_ARRIVEE)
-            .dateHeure(UPDATED_DATE_HEURE)
             .prix(UPDATED_PRIX)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .objet(UPDATED_OBJET)
-            .validated(UPDATED_VALIDATED)
             .cin(UPDATED_CIN);
 
         restCommandeLivraisonMockMvc.perform(put("/api/commande-livraisons")
@@ -309,11 +271,9 @@ public class CommandeLivraisonResourceIT {
         CommandeLivraison testCommandeLivraison = commandeLivraisonList.get(commandeLivraisonList.size() - 1);
         assertThat(testCommandeLivraison.getAdresseDepart()).isEqualTo(UPDATED_ADRESSE_DEPART);
         assertThat(testCommandeLivraison.getAdresseArrivee()).isEqualTo(UPDATED_ADRESSE_ARRIVEE);
-        assertThat(testCommandeLivraison.getDateHeure()).isEqualTo(UPDATED_DATE_HEURE);
         assertThat(testCommandeLivraison.getPrix()).isEqualTo(UPDATED_PRIX);
         assertThat(testCommandeLivraison.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
         assertThat(testCommandeLivraison.getObjet()).isEqualTo(UPDATED_OBJET);
-        assertThat(testCommandeLivraison.isValidated()).isEqualTo(UPDATED_VALIDATED);
         assertThat(testCommandeLivraison.getCin()).isEqualTo(UPDATED_CIN);
     }
 

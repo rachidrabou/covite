@@ -18,11 +18,9 @@
       },
       "adresseDepart": "Adresse Depart",
       "adresseArrivee": "Adresse Arrivee",
-      "dateHeure": "Date Heure",
       "prix": "Prix",
       "numeroClient": "Numero Client",
       "objet": "Objet",
-      "validated": "Validated",
       "cin": "Cin",
       "client": "Client",
       "livreur": "Livreur"

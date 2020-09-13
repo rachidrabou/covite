@@ -2,16 +2,16 @@
   "coviteApp": {
     "commandeTransport": {
       "home": {
-        "title": "CommandeTransports",
-        "createLabel": "Créer un nouveau Commande Transport",
-        "createOrEditLabel": "Créer ou éditer un Commande Transport",
-        "notFound": "Aucun Commande Transport trouvé"
+        "title": "Commande Transport",
+        "createLabel": "Créer une nouvelle Commande Transport",
+        "createOrEditLabel": "Créer une Commande Transport",
+        "notFound": "Aucune Commande Transport trouvée"
       },
-      "created": "Un nouveau Commande Transport a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Commande Transport avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Commande Transport avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Commande Transport a été créé avec l'identifiant {{ param }}",
+      "updated": "La Commande Transport avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La Commande Transport avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Commande Transport {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Commande Transport {{ id }} ?"
       },
       "detail": {
         "title": "Commande Transport"

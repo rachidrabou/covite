@@ -28,8 +28,8 @@ export class ServiceComponent implements OnInit {
       ]
     }
   };
-  chartDatameryem1 = [{ data: [3, 60, 26, 7], label: 'le plus commandé' }];
-  chartLabelsmeryem1 = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout'];
+  chartDatameryem1 = [{ data: [3, 60, 26, 7, 15, 50, 80, 49], label: 'le plus commandé' }];
+  chartLabelsmeryem1 = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre'];
   // deuxieme graphe
 
   chartOptionsmeryem2 = {
@@ -53,8 +53,8 @@ export class ServiceComponent implements OnInit {
       ]
     }
   };
-  chartDatameryem2 = [{ data: [33, 60, 26, 70], label: 'le plus commandé' }];
-  chartLabelsmeryem2 = ['2016', '2017', '2018', '2016'];
+  chartDatameryem2 = [{ data: [33, 60, 26, 70, 60, 20, 50], label: 'le plus commandé' }];
+  chartLabelsmeryem2 = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre'];
 
   constructor() {}
 
