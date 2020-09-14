@@ -1,10 +1,3 @@
-<div class="row" >
-    <div   class="col-md-12 " >
-
-        <div class="card jh-card">
-            <div class="card-deck">
-
-
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeTransport.home.title">Commande Transports</span>
@@ -32,12 +25,11 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseDepart"><span jhiTranslate="coviteApp.commandeTransport.adresseDepart">Adresse Depart</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseArrivee"><span jhiTranslate="coviteApp.commandeTransport.adresseArrivee">Adresse Arrivee</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateHeure"><span jhiTranslate="coviteApp.commandeTransport.dateHeure">Date Heure</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="moyenDeTransport"><span jhiTranslate="coviteApp.commandeTransport.moyenDeTransport">Moyen De Transport</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeTransport.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nombreDePersonnes"><span jhiTranslate="coviteApp.commandeTransport.nombreDePersonnes">Nombre De Personnes</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeTransport.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeTransport.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateheure"><span jhiTranslate="coviteApp.commandeTransport.dateheure">Dateheure</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeTransport.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.commandeTransport.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -48,12 +40,11 @@
                     <td><a [routerLink]="['/commande-transport', commandeTransport.id, 'view']">{{ commandeTransport.id }}</a></td>
                     <td>{{ commandeTransport.adresseDepart }}</td>
                     <td>{{ commandeTransport.adresseArrivee }}</td>
-                    <td>{{ commandeTransport.dateHeure | date:'mediumDate' }}</td>
                     <td>{{ commandeTransport.moyenDeTransport }}</td>
                     <td>{{ commandeTransport.prix }}</td>
                     <td>{{ commandeTransport.nombreDePersonnes }}</td>
                     <td>{{ commandeTransport.numeroClient }}</td>
-                    <td>{{ commandeTransport.validated }}</td>
+                    <td>{{ commandeTransport.dateheure | date:'medium' }}</td>
                     <td>
                         {{ commandeTransport.client?.login }}
                     </td>
@@ -98,10 +89,3 @@
         </div>
     </div>
 </div>
-
-
-</div>
-            </div>
-
-        </div>
-    </div>

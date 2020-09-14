@@ -14,10 +14,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
 import java.time.ZoneId;
 import java.util.List;
 
+import static com.pfe.covite.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -38,9 +41,6 @@ public class CommandeTransportResourceIT {
     private static final String DEFAULT_ADRESSE_ARRIVEE = "AAAAAAAAAA";
     private static final String UPDATED_ADRESSE_ARRIVEE = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_DATE_HEURE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_HEURE = LocalDate.now(ZoneId.systemDefault());
-
     private static final String DEFAULT_MOYEN_DE_TRANSPORT = "AAAAAAAAAA";
     private static final String UPDATED_MOYEN_DE_TRANSPORT = "BBBBBBBBBB";
 
@@ -53,8 +53,8 @@ public class CommandeTransportResourceIT {
     private static final String DEFAULT_NUMERO_CLIENT = "AAAAAAAAAA";
     private static final String UPDATED_NUMERO_CLIENT = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_VALIDATED = false;
-    private static final Boolean UPDATED_VALIDATED = true;
+    private static final ZonedDateTime DEFAULT_DATEHEURE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATEHEURE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Autowired
     private CommandeTransportRepository commandeTransportRepository;
@@ -77,12 +77,11 @@ public class CommandeTransportResourceIT {
         CommandeTransport commandeTransport = new CommandeTransport()
             .adresseDepart(DEFAULT_ADRESSE_DEPART)
             .adresseArrivee(DEFAULT_ADRESSE_ARRIVEE)
-            .dateHeure(DEFAULT_DATE_HEURE)
             .moyenDeTransport(DEFAULT_MOYEN_DE_TRANSPORT)
             .prix(DEFAULT_PRIX)
             .nombreDePersonnes(DEFAULT_NOMBRE_DE_PERSONNES)
             .numeroClient(DEFAULT_NUMERO_CLIENT)
-            .validated(DEFAULT_VALIDATED);
+            .dateheure(DEFAULT_DATEHEURE);
         return commandeTransport;
     }
     /**
@@ -95,12 +94,11 @@ public class CommandeTransportResourceIT {
         CommandeTransport commandeTransport = new CommandeTransport()
             .adresseDepart(UPDATED_ADRESSE_DEPART)
             .adresseArrivee(UPDATED_ADRESSE_ARRIVEE)
-            .dateHeure(UPDATED_DATE_HEURE)
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .prix(UPDATED_PRIX)
             .nombreDePersonnes(UPDATED_NOMBRE_DE_PERSONNES)
             .numeroClient(UPDATED_NUMERO_CLIENT)
-            .validated(UPDATED_VALIDATED);
+            .dateheure(UPDATED_DATEHEURE);
         return commandeTransport;
     }
 
@@ -126,12 +124,11 @@ public class CommandeTransportResourceIT {
         CommandeTransport testCommandeTransport = commandeTransportList.get(commandeTransportList.size() - 1);
         assertThat(testCommandeTransport.getAdresseDepart()).isEqualTo(DEFAULT_ADRESSE_DEPART);
         assertThat(testCommandeTransport.getAdresseArrivee()).isEqualTo(DEFAULT_ADRESSE_ARRIVEE);
-        assertThat(testCommandeTransport.getDateHeure()).isEqualTo(DEFAULT_DATE_HEURE);
         assertThat(testCommandeTransport.getMoyenDeTransport()).isEqualTo(DEFAULT_MOYEN_DE_TRANSPORT);
         assertThat(testCommandeTransport.getPrix()).isEqualTo(DEFAULT_PRIX);
         assertThat(testCommandeTransport.getNombreDePersonnes()).isEqualTo(DEFAULT_NOMBRE_DE_PERSONNES);
         assertThat(testCommandeTransport.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
-        assertThat(testCommandeTransport.isValidated()).isEqualTo(DEFAULT_VALIDATED);
+        assertThat(testCommandeTransport.getDateheure()).isEqualTo(DEFAULT_DATEHEURE);
     }
 
     @Test
@@ -192,24 +189,6 @@ public class CommandeTransportResourceIT {
 
     @Test
     @Transactional
-    public void checkDateHeureIsRequired() throws Exception {
-        int databaseSizeBeforeTest = commandeTransportRepository.findAll().size();
-        // set the field null
-        commandeTransport.setDateHeure(null);
-
-        // Create the CommandeTransport, which fails.
-
-        restCommandeTransportMockMvc.perform(post("/api/commande-transports")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(commandeTransport)))
-            .andExpect(status().isBadRequest());
-
-        List<CommandeTransport> commandeTransportList = commandeTransportRepository.findAll();
-        assertThat(commandeTransportList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllCommandeTransports() throws Exception {
         // Initialize the database
         commandeTransportRepository.saveAndFlush(commandeTransport);
@@ -221,12 +200,11 @@ public class CommandeTransportResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(commandeTransport.getId().intValue())))
             .andExpect(jsonPath("$.[*].adresseDepart").value(hasItem(DEFAULT_ADRESSE_DEPART)))
             .andExpect(jsonPath("$.[*].adresseArrivee").value(hasItem(DEFAULT_ADRESSE_ARRIVEE)))
-            .andExpect(jsonPath("$.[*].dateHeure").value(hasItem(DEFAULT_DATE_HEURE.toString())))
             .andExpect(jsonPath("$.[*].moyenDeTransport").value(hasItem(DEFAULT_MOYEN_DE_TRANSPORT)))
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
             .andExpect(jsonPath("$.[*].nombreDePersonnes").value(hasItem(DEFAULT_NOMBRE_DE_PERSONNES)))
             .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
-            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())));
+            .andExpect(jsonPath("$.[*].dateheure").value(hasItem(sameInstant(DEFAULT_DATEHEURE))));
     }
     
     @Test
@@ -242,12 +220,11 @@ public class CommandeTransportResourceIT {
             .andExpect(jsonPath("$.id").value(commandeTransport.getId().intValue()))
             .andExpect(jsonPath("$.adresseDepart").value(DEFAULT_ADRESSE_DEPART))
             .andExpect(jsonPath("$.adresseArrivee").value(DEFAULT_ADRESSE_ARRIVEE))
-            .andExpect(jsonPath("$.dateHeure").value(DEFAULT_DATE_HEURE.toString()))
             .andExpect(jsonPath("$.moyenDeTransport").value(DEFAULT_MOYEN_DE_TRANSPORT))
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
             .andExpect(jsonPath("$.nombreDePersonnes").value(DEFAULT_NOMBRE_DE_PERSONNES))
             .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
-            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()));
+            .andExpect(jsonPath("$.dateheure").value(sameInstant(DEFAULT_DATEHEURE)));
     }
 
     @Test
@@ -273,12 +250,11 @@ public class CommandeTransportResourceIT {
         updatedCommandeTransport
             .adresseDepart(UPDATED_ADRESSE_DEPART)
             .adresseArrivee(UPDATED_ADRESSE_ARRIVEE)
-            .dateHeure(UPDATED_DATE_HEURE)
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .prix(UPDATED_PRIX)
             .nombreDePersonnes(UPDATED_NOMBRE_DE_PERSONNES)
             .numeroClient(UPDATED_NUMERO_CLIENT)
-            .validated(UPDATED_VALIDATED);
+            .dateheure(UPDATED_DATEHEURE);
 
         restCommandeTransportMockMvc.perform(put("/api/commande-transports")
             .contentType(MediaType.APPLICATION_JSON)
@@ -291,12 +267,11 @@ public class CommandeTransportResourceIT {
         CommandeTransport testCommandeTransport = commandeTransportList.get(commandeTransportList.size() - 1);
         assertThat(testCommandeTransport.getAdresseDepart()).isEqualTo(UPDATED_ADRESSE_DEPART);
         assertThat(testCommandeTransport.getAdresseArrivee()).isEqualTo(UPDATED_ADRESSE_ARRIVEE);
-        assertThat(testCommandeTransport.getDateHeure()).isEqualTo(UPDATED_DATE_HEURE);
         assertThat(testCommandeTransport.getMoyenDeTransport()).isEqualTo(UPDATED_MOYEN_DE_TRANSPORT);
         assertThat(testCommandeTransport.getPrix()).isEqualTo(UPDATED_PRIX);
         assertThat(testCommandeTransport.getNombreDePersonnes()).isEqualTo(UPDATED_NOMBRE_DE_PERSONNES);
         assertThat(testCommandeTransport.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
-        assertThat(testCommandeTransport.isValidated()).isEqualTo(UPDATED_VALIDATED);
+        assertThat(testCommandeTransport.getDateheure()).isEqualTo(UPDATED_DATEHEURE);
     }
 
     @Test

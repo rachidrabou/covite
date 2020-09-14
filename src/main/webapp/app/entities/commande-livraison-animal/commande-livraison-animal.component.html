@@ -1,10 +1,3 @@
-<div class="row" >
-    <div   class="col-md-12 " >
-
-        <div class="card jh-card">
-            <div class="card-deck">
-
-
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeLivraisonAnimal.home.title">Commande Livraison Animals</span>
@@ -32,12 +25,12 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseDepart"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.adresseDepart">Adresse Depart</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="adresseArrivee"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.adresseArrivee">Adresse Arrivee</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateHeure"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.dateHeure">Date Heure</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="animal"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.animal">Animal</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="moyenDeTransport"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.moyenDeTransport">Moyen De Transport</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="prix"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.prix">Prix</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="validated"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.validated">Validated</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateheure"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.dateheure">Dateheure</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cvalider"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.cvalider">Cvalider</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.commandeLivraisonAnimal.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -48,12 +41,12 @@
                     <td><a [routerLink]="['/commande-livraison-animal', commandeLivraisonAnimal.id, 'view']">{{ commandeLivraisonAnimal.id }}</a></td>
                     <td>{{ commandeLivraisonAnimal.adresseDepart }}</td>
                     <td>{{ commandeLivraisonAnimal.adresseArrivee }}</td>
-                    <td>{{ commandeLivraisonAnimal.dateHeure | date:'mediumDate' }}</td>
                     <td>{{ commandeLivraisonAnimal.animal }}</td>
                     <td>{{ commandeLivraisonAnimal.moyenDeTransport }}</td>
                     <td>{{ commandeLivraisonAnimal.numeroClient }}</td>
                     <td>{{ commandeLivraisonAnimal.prix }}</td>
-                    <td>{{ commandeLivraisonAnimal.validated }}</td>
+                    <td>{{ commandeLivraisonAnimal.dateheure | date:'medium' }}</td>
+                    <td>{{ commandeLivraisonAnimal.cvalider }}</td>
                     <td>
                         {{ commandeLivraisonAnimal.client?.login }}
                     </td>
@@ -98,10 +91,3 @@
         </div>
     </div>
 </div>
-
-
-</div>
-            </div>
-
-        </div>
-    </div>

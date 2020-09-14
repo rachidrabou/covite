@@ -18,7 +18,9 @@
       },
       "telephone": "Telephone",
       "solde": "Solde",
-      "user": "User"
+      "cin": "Cin",
+      "user": "User",
+      "vehicule": "Vehicule"
     }
   }
 }

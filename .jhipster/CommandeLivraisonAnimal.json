@@ -5,19 +5,17 @@
         {
             "relationshipName": "client",
             "otherEntityName": "user",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityField": "login",
             "ownerSide": true,
-            "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeLivraisonAnimal"
         },
         {
             "relationshipName": "livreur",
             "otherEntityName": "user",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityField": "login",
             "ownerSide": true,
-            "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeLivraisonAnimal"
         }
     ],
@@ -30,13 +28,6 @@
         {
             "fieldName": "adresseArrivee",
             "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "dateHeure",
-            "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
             ]
@@ -61,7 +52,11 @@
             "fieldType": "Double"
         },
         {
-            "fieldName": "validated",
+            "fieldName": "dateheure",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "cvalider",
             "fieldType": "Boolean"
         }
     ],

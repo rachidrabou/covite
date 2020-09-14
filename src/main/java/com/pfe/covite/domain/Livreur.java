@@ -28,9 +28,16 @@ public class Livreur implements Serializable {
     @Column(name = "solde")
     private Float solde;
 
+    @Column(name = "cin")
+    private String cin;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Vehicule vehicule;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -67,6 +74,19 @@ public class Livreur implements Serializable {
         this.solde = solde;
     }
 
+    public String getCin() {
+        return cin;
+    }
+
+    public Livreur cin(String cin) {
+        this.cin = cin;
+        return this;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
     public User getUser() {
         return user;
     }
@@ -78,6 +98,19 @@ public class Livreur implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public Livreur vehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+        return this;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -103,6 +136,7 @@ public class Livreur implements Serializable {
             "id=" + getId() +
             ", telephone='" + getTelephone() + "'" +
             ", solde=" + getSolde() +
+            ", cin='" + getCin() + "'" +
             "}";
     }
 }

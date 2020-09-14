@@ -91,9 +91,16 @@ public class LivreurQueryService extends QueryService<Livreur> {
             if (criteria.getSolde() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getSolde(), Livreur_.solde));
             }
+            if (criteria.getCin() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCin(), Livreur_.cin));
+            }
             if (criteria.getUserId() != null) {
                 specification = specification.and(buildSpecification(criteria.getUserId(),
                     root -> root.join(Livreur_.user, JoinType.LEFT).get(User_.id)));
+            }
+            if (criteria.getVehiculeId() != null) {
+                specification = specification.and(buildSpecification(criteria.getVehiculeId(),
+                    root -> root.join(Livreur_.vehicule, JoinType.LEFT).get(Vehicule_.id)));
             }
         }
         return specification;

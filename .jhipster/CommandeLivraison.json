@@ -5,19 +5,17 @@
         {
             "relationshipName": "client",
             "otherEntityName": "user",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityField": "login",
             "ownerSide": true,
-            "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeLivraison"
         },
         {
             "relationshipName": "livreur",
             "otherEntityName": "user",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityField": "login",
             "ownerSide": true,
-            "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeLivraison"
         }
     ],
@@ -54,6 +52,14 @@
         {
             "fieldName": "cin",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "dateheure",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "cvalider",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20200724231851",

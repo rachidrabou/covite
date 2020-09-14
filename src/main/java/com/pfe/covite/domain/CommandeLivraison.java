@@ -1,5 +1,6 @@
 package com.pfe.covite.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.time.ZonedDateTime;
 
 /**
  * A CommandeLivraison.
@@ -44,12 +46,18 @@ public class CommandeLivraison implements Serializable {
     @Column(name = "cin")
     private String cin;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @Column(name = "dateheure")
+    private ZonedDateTime dateheure;
+
+    @Column(name = "cvalider")
+    private Boolean cvalider;
+
+    @ManyToOne
+    @JsonIgnoreProperties("commandeLivraisons")
     private User client;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("commandeLivraisons")
     private User livreur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -139,6 +147,32 @@ public class CommandeLivraison implements Serializable {
         this.cin = cin;
     }
 
+    public ZonedDateTime getDateheure() {
+        return dateheure;
+    }
+
+    public CommandeLivraison dateheure(ZonedDateTime dateheure) {
+        this.dateheure = dateheure;
+        return this;
+    }
+
+    public void setDateheure(ZonedDateTime dateheure) {
+        this.dateheure = dateheure;
+    }
+
+    public Boolean isCvalider() {
+        return cvalider;
+    }
+
+    public CommandeLivraison cvalider(Boolean cvalider) {
+        this.cvalider = cvalider;
+        return this;
+    }
+
+    public void setCvalider(Boolean cvalider) {
+        this.cvalider = cvalider;
+    }
+
     public User getClient() {
         return client;
     }
@@ -192,6 +226,8 @@ public class CommandeLivraison implements Serializable {
             ", numeroClient='" + getNumeroClient() + "'" +
             ", objet='" + getObjet() + "'" +
             ", cin='" + getCin() + "'" +
+            ", dateheure='" + getDateheure() + "'" +
+            ", cvalider='" + isCvalider() + "'" +
             "}";
     }
 }

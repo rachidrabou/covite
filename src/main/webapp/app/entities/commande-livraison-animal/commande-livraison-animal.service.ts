@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICommandeLivraisonAnimal } from 'app/shared/model/commande-livraison-animal.model';
@@ -51,9 +50,9 @@ export class CommandeLivraisonAnimalService {
 
   protected convertDateFromClient(commandeLivraisonAnimal: ICommandeLivraisonAnimal): ICommandeLivraisonAnimal {
     const copy: ICommandeLivraisonAnimal = Object.assign({}, commandeLivraisonAnimal, {
-      dateHeure:
-        commandeLivraisonAnimal.dateHeure && commandeLivraisonAnimal.dateHeure.isValid()
-          ? commandeLivraisonAnimal.dateHeure.format(DATE_FORMAT)
+      dateheure:
+        commandeLivraisonAnimal.dateheure && commandeLivraisonAnimal.dateheure.isValid()
+          ? commandeLivraisonAnimal.dateheure.toJSON()
           : undefined
     });
     return copy;
@@ -61,7 +60,7 @@ export class CommandeLivraisonAnimalService {
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
-      res.body.dateHeure = res.body.dateHeure ? moment(res.body.dateHeure) : undefined;
+      res.body.dateheure = res.body.dateheure ? moment(res.body.dateheure) : undefined;
     }
     return res;
   }
@@ -69,7 +68,7 @@ export class CommandeLivraisonAnimalService {
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
       res.body.forEach((commandeLivraisonAnimal: ICommandeLivraisonAnimal) => {
-        commandeLivraisonAnimal.dateHeure = commandeLivraisonAnimal.dateHeure ? moment(commandeLivraisonAnimal.dateHeure) : undefined;
+        commandeLivraisonAnimal.dateheure = commandeLivraisonAnimal.dateheure ? moment(commandeLivraisonAnimal.dateheure) : undefined;
       });
     }
     return res;

@@ -5,19 +5,17 @@
         {
             "relationshipName": "client",
             "otherEntityName": "user",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityField": "login",
             "ownerSide": true,
-            "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeTransport"
         },
         {
             "relationshipName": "livreur",
             "otherEntityName": "user",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityField": "login",
             "ownerSide": true,
-            "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "commandeTransport"
         }
     ],
@@ -32,13 +30,6 @@
         {
             "fieldName": "adresseArrivee",
             "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "dateHeure",
-            "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
             ]
@@ -60,8 +51,8 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "validated",
-            "fieldType": "Boolean"
+            "fieldName": "dateheure",
+            "fieldType": "ZonedDateTime"
         }
     ],
     "changelogDate": "20200724231522",

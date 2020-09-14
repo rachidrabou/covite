@@ -11,7 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link Vehicule}.
@@ -51,6 +54,20 @@ public class VehiculeServiceImpl implements VehiculeService {
     public Page<Vehicule> findAll(Pageable pageable) {
         log.debug("Request to get all Vehicules");
         return vehiculeRepository.findAll(pageable);
+    }
+
+
+    /**
+     *  Get all the vehicules where Livreur is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true) 
+    public List<Vehicule> findAllWhereLivreurIsNull() {
+        log.debug("Request to get all vehicules where Livreur is null");
+        return StreamSupport
+            .stream(vehiculeRepository.findAll().spliterator(), false)
+            .filter(vehicule -> vehicule.getLivreur() == null)
+            .collect(Collectors.toList());
     }
 
     /**

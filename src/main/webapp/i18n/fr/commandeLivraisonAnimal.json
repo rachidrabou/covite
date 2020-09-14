@@ -2,28 +2,28 @@
   "coviteApp": {
     "commandeLivraisonAnimal": {
       "home": {
-        "title": "Commande transport Animal",
-        "createLabel": "Créer une nouvelle Commande Transport Animal",
-        "createOrEditLabel": "Créer une Commande Transport Animal",
+        "title": "Commande transport animal",
+        "createLabel": "Créer une nouvelle commande transport animal",
+        "createOrEditLabel": "Créer une Commande transport animal",
         "notFound": "Aucune Commande Livraison Animal trouvée"
       },
-      "created": "Une nouvelle Commande Livraison Animal a été créé avec l'identifiant {{ param }}",
-      "updated": "La Commande Livraison Animal avec l'identifiant {{ param }} a été mise à jour",
-      "deleted": "La Commande Livraison Animal avec l'identifiant {{ param }} a été supprimée",
+      "created": "Une nouvelle commande transport animal a été créé avec l'identifiant {{ param }}",
+      "updated": "La Commande transport animal avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Commande transport Animal avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer la Commande Livraison Animal {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Commande transport animal {{ id }} ?"
       },
       "detail": {
-        "title": "Commande Livraison Animal"
+        "title": "Commande transport Animal"
       },
-      "adresseDepart": "Adresse Depart",
-      "adresseArrivee": "Adresse Arrivee",
-      "dateHeure": "Date Heure",
-      "animal": "Animal",
-      "moyenDeTransport": "Moyen De Transport",
-      "numeroClient": "Numero Client",
-      "prix": "Prix",
-      "validated": "Validated",
+      "adresseDepart": "Lieu de prise en charge ?",
+      "adresseArrivee": "Où allez-vous ?",
+      "animal": "Saisir l'animal",
+      "moyenDeTransport": "Moyen De Transport ?",
+      "numeroClient": "Numero du contact",
+      "prix": "Prix éstimé du transport",
+      "dateheure": "Date et heure de collecte?",
+      "cvalider": "Commande valider ?",
       "client": "Client",
       "livreur": "Livreur"
     }

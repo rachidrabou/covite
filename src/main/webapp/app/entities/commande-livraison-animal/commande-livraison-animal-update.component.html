@@ -4,7 +4,6 @@
             <div class="card-deck">
 
                 <div class="col-12" style="padding:'30px 500px'">
-
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-commande-livraison-animal-heading" jhiTranslate="coviteApp.commandeLivraisonAnimal.home.createOrEditLabel">Create or edit a Commande Livraison Animal</h2>
 
@@ -35,22 +34,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.dateHeure" for="field_dateHeure">Date Heure</label>
-                    <div class="input-group">
-                        <input id="field_dateHeure" type="text" class="form-control" name="dateHeure" ngbDatepicker #dateHeureDp="ngbDatepicker" formControlName="dateHeure"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dateHeureDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
-                    <div *ngIf="editForm.get('dateHeure')!.invalid && (editForm.get('dateHeure')!.dirty || editForm.get('dateHeure')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('dateHeure')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.animal" for="field_animal">Animal</label>
                     <input type="text" class="form-control" name="animal" id="field_animal"
                            formControlName="animal"/>
@@ -74,16 +57,23 @@
                            formControlName="numeroClient"/>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" *jhiHasAnyAuthority="'ROLE_LIVREUR'">
                     <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.prix" for="field_prix">Prix</label>
                     <input type="number" class="form-control" name="prix" id="field_prix"
                            formControlName="prix"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.validated" for="field_validated">Validated</label>
-                    <input type="checkbox" class="form-control" name="validated" id="field_validated"
-                           formControlName="validated"/>
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.dateheure" for="field_dateheure">Dateheure</label>
+                    <div class="d-flex">
+                        <input id="field_dateheure" type="datetime-local" class="form-control" name="dateheure" formControlName="dateheure" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group" *jhiHasAnyAuthority="'ROLE_LIVREUR'">
+                    <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.cvalider" for="field_cvalider">Cvalider</label>
+                    <input type="checkbox" class="form-control" name="cvalider" id="field_cvalider"
+                           formControlName="cvalider"/>
                 </div>
 
                 <div class="form-group">
@@ -94,7 +84,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group"  *jhiHasAnyAuthority="'ROLE_LIVREUR'">
                     <label class="form-control-label" jhiTranslate="coviteApp.commandeLivraisonAnimal.livreur" for="field_livreur">Livreur</label>
                     <select class="form-control" id="field_livreur" name="livreur" formControlName="livreur">
                         <option [ngValue]="null"></option>
@@ -114,21 +104,23 @@
             </div>
         </form>
 
+        <br><br>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
 
-                    <br> <br>
-                    <div class="container">
-                        <div class="row text-center">
-                            <div class="col-md-12">
-
-                                <h1 class="m-b-20" style="color:red"><strong>* NOUS INFORMONS NOTRE CHERE CLIENTEL QUE LE PAIEMENT SE FAIT UNIQUEMENT PAR ESPECE * </strong></h1>
-                            </div>
-                        </div>
-                    </div>
-
-
-    </div>
-</div>
+                    <h1 class="m-b-20" style="color:red"><strong>* NOUS INFORMONS NOTRE CHERE CLIENTEL QUE LE PAIEMENT SE FAIT UNIQUEMENT PAR ESPECE * </strong></h1>
+                    <h5 class="card-title" style="text-align: 'center'">Vous devrez accompagné votre animal!</h5>
+                </div>
+            </div>
         </div>
+
+
     </div>
 </div>
 
+        </div>
+
+
+    </div>
+</div>

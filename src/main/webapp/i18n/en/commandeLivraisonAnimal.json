@@ -18,12 +18,12 @@
       },
       "adresseDepart": "Adresse Depart",
       "adresseArrivee": "Adresse Arrivee",
-      "dateHeure": "Date Heure",
       "animal": "Animal",
       "moyenDeTransport": "Moyen De Transport",
       "numeroClient": "Numero Client",
       "prix": "Prix",
-      "validated": "Validated",
+      "dateheure": "Dateheure",
+      "cvalider": "Cvalider",
       "client": "Client",
       "livreur": "Livreur"
     }

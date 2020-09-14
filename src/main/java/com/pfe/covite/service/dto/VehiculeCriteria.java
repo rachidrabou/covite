@@ -51,6 +51,8 @@ public class VehiculeCriteria implements Serializable, Criteria {
 
     private IntegerFilter capacite;
 
+    private LongFilter livreurId;
+
     public VehiculeCriteria() {
     }
 
@@ -59,6 +61,7 @@ public class VehiculeCriteria implements Serializable, Criteria {
         this.matricule = other.matricule == null ? null : other.matricule.copy();
         this.type = other.type == null ? null : other.type.copy();
         this.capacite = other.capacite == null ? null : other.capacite.copy();
+        this.livreurId = other.livreurId == null ? null : other.livreurId.copy();
     }
 
     @Override
@@ -98,6 +101,14 @@ public class VehiculeCriteria implements Serializable, Criteria {
         this.capacite = capacite;
     }
 
+    public LongFilter getLivreurId() {
+        return livreurId;
+    }
+
+    public void setLivreurId(LongFilter livreurId) {
+        this.livreurId = livreurId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -112,7 +123,8 @@ public class VehiculeCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(matricule, that.matricule) &&
             Objects.equals(type, that.type) &&
-            Objects.equals(capacite, that.capacite);
+            Objects.equals(capacite, that.capacite) &&
+            Objects.equals(livreurId, that.livreurId);
     }
 
     @Override
@@ -121,7 +133,8 @@ public class VehiculeCriteria implements Serializable, Criteria {
         id,
         matricule,
         type,
-        capacite
+        capacite,
+        livreurId
         );
     }
 
@@ -132,6 +145,7 @@ public class VehiculeCriteria implements Serializable, Criteria {
                 (matricule != null ? "matricule=" + matricule + ", " : "") +
                 (type != null ? "type=" + type + ", " : "") +
                 (capacite != null ? "capacite=" + capacite + ", " : "") +
+                (livreurId != null ? "livreurId=" + livreurId + ", " : "") +
             "}";
     }
 

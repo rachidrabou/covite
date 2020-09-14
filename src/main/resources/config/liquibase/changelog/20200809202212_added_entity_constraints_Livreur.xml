@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="vehicule_id"
+                                 baseTableName="livreur"
+                                 constraintName="fk_livreur_vehicule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vehicule"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -1,5 +1,6 @@
 package com.pfe.covite.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,7 +9,7 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 /**
  * A CommandeTransport.
@@ -32,10 +33,6 @@ public class CommandeTransport implements Serializable {
     @Column(name = "adresse_arrivee", nullable = false)
     private String adresseArrivee;
 
-    @NotNull
-    @Column(name = "date_heure", nullable = false)
-    private LocalDate dateHeure;
-
     @Column(name = "moyen_de_transport")
     private String moyenDeTransport;
 
@@ -48,15 +45,15 @@ public class CommandeTransport implements Serializable {
     @Column(name = "numero_client")
     private String numeroClient;
 
-    @Column(name = "validated")
-    private Boolean validated;
+    @Column(name = "dateheure")
+    private ZonedDateTime dateheure;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("commandeTransports")
     private User client;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("commandeTransports")
     private User livreur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -92,19 +89,6 @@ public class CommandeTransport implements Serializable {
 
     public void setAdresseArrivee(String adresseArrivee) {
         this.adresseArrivee = adresseArrivee;
-    }
-
-    public LocalDate getDateHeure() {
-        return dateHeure;
-    }
-
-    public CommandeTransport dateHeure(LocalDate dateHeure) {
-        this.dateHeure = dateHeure;
-        return this;
-    }
-
-    public void setDateHeure(LocalDate dateHeure) {
-        this.dateHeure = dateHeure;
     }
 
     public String getMoyenDeTransport() {
@@ -159,17 +143,17 @@ public class CommandeTransport implements Serializable {
         this.numeroClient = numeroClient;
     }
 
-    public Boolean isValidated() {
-        return validated;
+    public ZonedDateTime getDateheure() {
+        return dateheure;
     }
 
-    public CommandeTransport validated(Boolean validated) {
-        this.validated = validated;
+    public CommandeTransport dateheure(ZonedDateTime dateheure) {
+        this.dateheure = dateheure;
         return this;
     }
 
-    public void setValidated(Boolean validated) {
-        this.validated = validated;
+    public void setDateheure(ZonedDateTime dateheure) {
+        this.dateheure = dateheure;
     }
 
     public User getClient() {
@@ -221,12 +205,11 @@ public class CommandeTransport implements Serializable {
             "id=" + getId() +
             ", adresseDepart='" + getAdresseDepart() + "'" +
             ", adresseArrivee='" + getAdresseArrivee() + "'" +
-            ", dateHeure='" + getDateHeure() + "'" +
             ", moyenDeTransport='" + getMoyenDeTransport() + "'" +
             ", prix=" + getPrix() +
             ", nombreDePersonnes=" + getNombreDePersonnes() +
             ", numeroClient='" + getNumeroClient() + "'" +
-            ", validated='" + isValidated() + "'" +
+            ", dateheure='" + getDateheure() + "'" +
             "}";
     }
 }

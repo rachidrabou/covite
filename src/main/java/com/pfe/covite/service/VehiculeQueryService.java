@@ -94,6 +94,10 @@ public class VehiculeQueryService extends QueryService<Vehicule> {
             if (criteria.getCapacite() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getCapacite(), Vehicule_.capacite));
             }
+            if (criteria.getLivreurId() != null) {
+                specification = specification.and(buildSpecification(criteria.getLivreurId(),
+                    root -> root.join(Vehicule_.livreur, JoinType.LEFT).get(Livreur_.id)));
+            }
         }
         return specification;
     }

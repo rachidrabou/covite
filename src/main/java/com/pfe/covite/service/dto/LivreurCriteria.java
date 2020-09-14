@@ -30,7 +30,11 @@ public class LivreurCriteria implements Serializable, Criteria {
 
     private FloatFilter solde;
 
+    private StringFilter cin;
+
     private LongFilter userId;
+
+    private LongFilter vehiculeId;
 
     public LivreurCriteria() {
     }
@@ -39,7 +43,9 @@ public class LivreurCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.telephone = other.telephone == null ? null : other.telephone.copy();
         this.solde = other.solde == null ? null : other.solde.copy();
+        this.cin = other.cin == null ? null : other.cin.copy();
         this.userId = other.userId == null ? null : other.userId.copy();
+        this.vehiculeId = other.vehiculeId == null ? null : other.vehiculeId.copy();
     }
 
     @Override
@@ -71,12 +77,28 @@ public class LivreurCriteria implements Serializable, Criteria {
         this.solde = solde;
     }
 
+    public StringFilter getCin() {
+        return cin;
+    }
+
+    public void setCin(StringFilter cin) {
+        this.cin = cin;
+    }
+
     public LongFilter getUserId() {
         return userId;
     }
 
     public void setUserId(LongFilter userId) {
         this.userId = userId;
+    }
+
+    public LongFilter getVehiculeId() {
+        return vehiculeId;
+    }
+
+    public void setVehiculeId(LongFilter vehiculeId) {
+        this.vehiculeId = vehiculeId;
     }
 
 
@@ -93,7 +115,9 @@ public class LivreurCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(telephone, that.telephone) &&
             Objects.equals(solde, that.solde) &&
-            Objects.equals(userId, that.userId);
+            Objects.equals(cin, that.cin) &&
+            Objects.equals(userId, that.userId) &&
+            Objects.equals(vehiculeId, that.vehiculeId);
     }
 
     @Override
@@ -102,7 +126,9 @@ public class LivreurCriteria implements Serializable, Criteria {
         id,
         telephone,
         solde,
-        userId
+        cin,
+        userId,
+        vehiculeId
         );
     }
 
@@ -112,7 +138,9 @@ public class LivreurCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (telephone != null ? "telephone=" + telephone + ", " : "") +
                 (solde != null ? "solde=" + solde + ", " : "") +
+                (cin != null ? "cin=" + cin + ", " : "") +
                 (userId != null ? "userId=" + userId + ", " : "") +
+                (vehiculeId != null ? "vehiculeId=" + vehiculeId + ", " : "") +
             "}";
     }
 

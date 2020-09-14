@@ -22,6 +22,8 @@
       "numeroClient": "Numero Client",
       "objet": "Objet",
       "cin": "Cin",
+      "dateheure": "Dateheure",
+      "cvalider": "Cvalider",
       "client": "Client",
       "livreur": "Livreur"
     }

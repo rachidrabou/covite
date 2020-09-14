@@ -1,7 +1,9 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-primary">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
+        <span class="navbar-version"></span>
         <span class="logo-img"></span>
-        <span jhiTranslate="global.title" class="navbar-title">Covite</span> <span class="navbar-version">{{ version }}</span>
+        <span jhiTranslate="global.title" class="navbar-title">Covite</span>
+
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
@@ -33,35 +35,35 @@
 
                     <!-- Button commande transport-->
                     <li >
-                      <a class="dropdown-item" routerLink="commande-transport">
-                        <fa-icon icon="asterisk"></fa-icon>
-                        <span >Commandes transport</span>
+                        <a class="dropdown-item" routerLink="commande-transport">
+                            <fa-icon icon="car"></fa-icon>
+                            <span >Commandes transport</span>
                         </a>
                     </li>
 
                     <!-- Button LIvraison -->
                     <li>
-                         <a class="dropdown-item" routerLink="commande-livraison">
-                        <fa-icon icon="bicycle"></fa-icon>
-                        <span >Commandes livraison</span>
+                        <a class="dropdown-item" routerLink="commande-livraison">
+                            <fa-icon icon="bicycle"></fa-icon>
+                            <span >Commandes livraison</span>
                         </a>
                     </li>
 
                     <!-- Button animal -->
                     <li>
                         <a class="dropdown-item" routerLink="commande-livraison-animal">
-                        <fa-icon icon="home"></fa-icon>
-                        <span >Commandes transport Animal</span>
+                            <fa-icon icon="paw"></fa-icon>
+                            <span >Commandes transport Animal</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
 
-            <li *jhiHasAnyAuthority="['ROLE_USER','ROLE_LIVREUR']" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_LIVREUR']" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="notification" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="home"></fa-icon>
+                        <fa-icon icon="bell"></fa-icon>
                         <span >Notifications</span>
                     </span>
                 </a>
@@ -72,7 +74,7 @@
             <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="mescommandes" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="home"></fa-icon>
+                        <fa-icon icon="check"></fa-icon>
                         <span >Mes commandes</span>
                     </span>
                 </a>
@@ -83,7 +85,7 @@
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="tarifs" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="bicycle"></fa-icon>
+                        <fa-icon icon="coins"></fa-icon>
                         <span >Nos tarifs</span>
                     </span>
                 </a>
@@ -112,14 +114,14 @@
                        </li> -->
                     <li>
                         <a class="dropdown-item" routerLink="livreur" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <fa-icon icon="users" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.livreur">Livreur</span>
                         </a>
                     </li>
 
                     <li>
                         <a class="dropdown-item" routerLink="vehicule" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <fa-icon icon="bus" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.vehicule">Vehicules</span>
                         </a>
                     </li>
@@ -138,7 +140,7 @@
                     <li>
                         <a class="dropdown-item" routerLink="commande-livraison-animal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.commandeLivraisonAnimal">Commande Livraison Animal</span>
+                            <span jhiTranslate="global.menu.entities.commandeLivraisonAnimal">Commande Transport Animal</span>
                         </a>
                     </li>
 
@@ -162,37 +164,37 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu"> -->
-                    <!-- Button tarif transport-->
-                   <!--
-                    <li>
-                        <a class="dropdown-item" routerLink="tarif-transport" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.tarifTransport">Tarif Transport</span>
-                        </a>
-                    </li> -->
-                    <!-- Button tarif livraison -->
-                   <!-- <li>
-                        <a class="dropdown-item" routerLink="tarif-livraison" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.tarifLivraison">Tarif Livraison</span>
-                        </a>
-                    </li> -->
-                    <!-- Button tarif transport animal-->
-                    <!-- <li>
-                        <a class="dropdown-item" routerLink="tarif-transport-animal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.tarifTransportAnimal">Tarif Transport Animal</span>
-                        </a>
-                    </li>
-                </ul>
-            </li> -->
+            <!-- Button tarif transport-->
+            <!--
+             <li>
+                 <a class="dropdown-item" routerLink="tarif-transport" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                     <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                     <span jhiTranslate="global.menu.entities.tarifTransport">Tarif Transport</span>
+                 </a>
+             </li> -->
+            <!-- Button tarif livraison -->
+            <!-- <li>
+                 <a class="dropdown-item" routerLink="tarif-livraison" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                     <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                     <span jhiTranslate="global.menu.entities.tarifLivraison">Tarif Livraison</span>
+                 </a>
+             </li> -->
+            <!-- Button tarif transport animal-->
+            <!-- <li>
+                <a class="dropdown-item" routerLink="tarif-transport-animal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                    <span jhiTranslate="global.menu.entities.tarifTransportAnimal">Tarif Transport Animal</span>
+                </a>
+            </li>
+        </ul>
+    </li> -->
 
 
 
 
 
             <!-- statistiques-->
-            <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_LIVREUR']" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="statistic-menu">
                     <span>
@@ -211,7 +213,7 @@
                         </a>
                     </li>
                     <!-- Button Livreur -->
-                    <li>
+                    <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_LIVREUR']">
                         <a class="dropdown-item" routerLink="/GrapheLivreur">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span>Livreurs</span>
@@ -301,7 +303,7 @@
             <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" *ngIf="languages && languages.length > 1">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
                     <span>
-                        <fa-icon icon="language"></fa-icon>
+                        <fa-icon icon="flag"></fa-icon>
                         <span jhiTranslate="global.menu.language">Language</span>
                     </span>
                 </a>

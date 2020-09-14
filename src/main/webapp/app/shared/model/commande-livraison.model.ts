@@ -1,3 +1,4 @@
+import { Moment } from 'moment';
 import { IUser } from 'app/core/user/user.model';
 
 export interface ICommandeLivraison {
@@ -8,6 +9,8 @@ export interface ICommandeLivraison {
   numeroClient?: string;
   objet?: string;
   cin?: string;
+  dateheure?: Moment;
+  cvalider?: boolean;
   client?: IUser;
   livreur?: IUser;
 }
@@ -21,7 +24,11 @@ export class CommandeLivraison implements ICommandeLivraison {
     public numeroClient?: string,
     public objet?: string,
     public cin?: string,
+    public dateheure?: Moment,
+    public cvalider?: boolean,
     public client?: IUser,
     public livreur?: IUser
-  ) {}
+  ) {
+    this.cvalider = this.cvalider || false;
+  }
 }

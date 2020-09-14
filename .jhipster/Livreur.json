@@ -10,6 +10,15 @@
             "ownerSide": true,
             "useJPADerivedIdentifier": false,
             "otherEntityRelationshipName": "livreur"
+        },
+        {
+            "relationshipName": "vehicule",
+            "otherEntityName": "vehicule",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "livreur"
         }
     ],
     "fields": [
@@ -20,6 +29,10 @@
         {
             "fieldName": "solde",
             "fieldType": "Float"
+        },
+        {
+            "fieldName": "cin",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20200809202212",

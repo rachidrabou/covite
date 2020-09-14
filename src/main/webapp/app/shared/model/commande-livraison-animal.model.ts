@@ -5,12 +5,12 @@ export interface ICommandeLivraisonAnimal {
   id?: number;
   adresseDepart?: string;
   adresseArrivee?: string;
-  dateHeure?: Moment;
   animal?: string;
   moyenDeTransport?: string;
   numeroClient?: string;
   prix?: number;
-  validated?: boolean;
+  dateheure?: Moment;
+  cvalider?: boolean;
   client?: IUser;
   livreur?: IUser;
 }
@@ -20,15 +20,15 @@ export class CommandeLivraisonAnimal implements ICommandeLivraisonAnimal {
     public id?: number,
     public adresseDepart?: string,
     public adresseArrivee?: string,
-    public dateHeure?: Moment,
     public animal?: string,
     public moyenDeTransport?: string,
     public numeroClient?: string,
     public prix?: number,
-    public validated?: boolean,
+    public dateheure?: Moment,
+    public cvalider?: boolean,
     public client?: IUser,
     public livreur?: IUser
   ) {
-    this.validated = this.validated || false;
+    this.cvalider = this.cvalider || false;
   }
 }

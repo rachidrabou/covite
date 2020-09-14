@@ -14,8 +14,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.List;
 
+import static com.pfe.covite.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -48,6 +53,12 @@ public class CommandeLivraisonResourceIT {
     private static final String DEFAULT_CIN = "AAAAAAAAAA";
     private static final String UPDATED_CIN = "BBBBBBBBBB";
 
+    private static final ZonedDateTime DEFAULT_DATEHEURE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATEHEURE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final Boolean DEFAULT_CVALIDER = false;
+    private static final Boolean UPDATED_CVALIDER = true;
+
     @Autowired
     private CommandeLivraisonRepository commandeLivraisonRepository;
 
@@ -72,7 +83,9 @@ public class CommandeLivraisonResourceIT {
             .prix(DEFAULT_PRIX)
             .numeroClient(DEFAULT_NUMERO_CLIENT)
             .objet(DEFAULT_OBJET)
-            .cin(DEFAULT_CIN);
+            .cin(DEFAULT_CIN)
+            .dateheure(DEFAULT_DATEHEURE)
+            .cvalider(DEFAULT_CVALIDER);
         return commandeLivraison;
     }
     /**
@@ -88,7 +101,9 @@ public class CommandeLivraisonResourceIT {
             .prix(UPDATED_PRIX)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .objet(UPDATED_OBJET)
-            .cin(UPDATED_CIN);
+            .cin(UPDATED_CIN)
+            .dateheure(UPDATED_DATEHEURE)
+            .cvalider(UPDATED_CVALIDER);
         return commandeLivraison;
     }
 
@@ -118,6 +133,8 @@ public class CommandeLivraisonResourceIT {
         assertThat(testCommandeLivraison.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
         assertThat(testCommandeLivraison.getObjet()).isEqualTo(DEFAULT_OBJET);
         assertThat(testCommandeLivraison.getCin()).isEqualTo(DEFAULT_CIN);
+        assertThat(testCommandeLivraison.getDateheure()).isEqualTo(DEFAULT_DATEHEURE);
+        assertThat(testCommandeLivraison.isCvalider()).isEqualTo(DEFAULT_CVALIDER);
     }
 
     @Test
@@ -210,7 +227,9 @@ public class CommandeLivraisonResourceIT {
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
             .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
             .andExpect(jsonPath("$.[*].objet").value(hasItem(DEFAULT_OBJET)))
-            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)));
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)))
+            .andExpect(jsonPath("$.[*].dateheure").value(hasItem(sameInstant(DEFAULT_DATEHEURE))))
+            .andExpect(jsonPath("$.[*].cvalider").value(hasItem(DEFAULT_CVALIDER.booleanValue())));
     }
     
     @Test
@@ -229,7 +248,9 @@ public class CommandeLivraisonResourceIT {
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
             .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
             .andExpect(jsonPath("$.objet").value(DEFAULT_OBJET))
-            .andExpect(jsonPath("$.cin").value(DEFAULT_CIN));
+            .andExpect(jsonPath("$.cin").value(DEFAULT_CIN))
+            .andExpect(jsonPath("$.dateheure").value(sameInstant(DEFAULT_DATEHEURE)))
+            .andExpect(jsonPath("$.cvalider").value(DEFAULT_CVALIDER.booleanValue()));
     }
 
     @Test
@@ -258,7 +279,9 @@ public class CommandeLivraisonResourceIT {
             .prix(UPDATED_PRIX)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .objet(UPDATED_OBJET)
-            .cin(UPDATED_CIN);
+            .cin(UPDATED_CIN)
+            .dateheure(UPDATED_DATEHEURE)
+            .cvalider(UPDATED_CVALIDER);
 
         restCommandeLivraisonMockMvc.perform(put("/api/commande-livraisons")
             .contentType(MediaType.APPLICATION_JSON)
@@ -275,6 +298,8 @@ public class CommandeLivraisonResourceIT {
         assertThat(testCommandeLivraison.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
         assertThat(testCommandeLivraison.getObjet()).isEqualTo(UPDATED_OBJET);
         assertThat(testCommandeLivraison.getCin()).isEqualTo(UPDATED_CIN);
+        assertThat(testCommandeLivraison.getDateheure()).isEqualTo(UPDATED_DATEHEURE);
+        assertThat(testCommandeLivraison.isCvalider()).isEqualTo(UPDATED_CVALIDER);
     }
 
     @Test

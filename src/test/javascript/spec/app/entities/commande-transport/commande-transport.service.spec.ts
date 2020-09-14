@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as moment from 'moment';
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { CommandeTransportService } from 'app/entities/commande-transport/commande-transport.service';
 import { ICommandeTransport, CommandeTransport } from 'app/shared/model/commande-transport.model';
 
@@ -24,14 +24,14 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new CommandeTransport(0, 'AAAAAAA', 'AAAAAAA', currentDate, 'AAAAAAA', 0, 0, 'AAAAAAA', false);
+      elemDefault = new CommandeTransport(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, 'AAAAAAA', currentDate);
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            dateHeure: currentDate.format(DATE_FORMAT)
+            dateheure: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
@@ -47,14 +47,14 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            dateHeure: currentDate.format(DATE_FORMAT)
+            dateheure: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            dateHeure: currentDate
+            dateheure: currentDate
           },
           returnedFromService
         );
@@ -71,19 +71,18 @@ describe('Service Tests', () => {
           {
             adresseDepart: 'BBBBBB',
             adresseArrivee: 'BBBBBB',
-            dateHeure: currentDate.format(DATE_FORMAT),
             moyenDeTransport: 'BBBBBB',
             prix: 1,
             nombreDePersonnes: 1,
             numeroClient: 'BBBBBB',
-            validated: true
+            dateheure: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            dateHeure: currentDate
+            dateheure: currentDate
           },
           returnedFromService
         );
@@ -100,19 +99,18 @@ describe('Service Tests', () => {
           {
             adresseDepart: 'BBBBBB',
             adresseArrivee: 'BBBBBB',
-            dateHeure: currentDate.format(DATE_FORMAT),
             moyenDeTransport: 'BBBBBB',
             prix: 1,
             nombreDePersonnes: 1,
             numeroClient: 'BBBBBB',
-            validated: true
+            dateheure: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            dateHeure: currentDate
+            dateheure: currentDate
           },
           returnedFromService
         );

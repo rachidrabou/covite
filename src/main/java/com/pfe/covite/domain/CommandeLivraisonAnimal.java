@@ -1,5 +1,6 @@
 package com.pfe.covite.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,7 +9,7 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 /**
  * A CommandeLivraisonAnimal.
@@ -32,10 +33,6 @@ public class CommandeLivraisonAnimal implements Serializable {
     private String adresseArrivee;
 
     @NotNull
-    @Column(name = "date_heure", nullable = false)
-    private LocalDate dateHeure;
-
-    @NotNull
     @Column(name = "animal", nullable = false)
     private String animal;
 
@@ -48,15 +45,18 @@ public class CommandeLivraisonAnimal implements Serializable {
     @Column(name = "prix")
     private Double prix;
 
-    @Column(name = "validated")
-    private Boolean validated;
+    @Column(name = "dateheure")
+    private ZonedDateTime dateheure;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @Column(name = "cvalider")
+    private Boolean cvalider;
+
+    @ManyToOne
+    @JsonIgnoreProperties("commandeLivraisonAnimals")
     private User client;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("commandeLivraisonAnimals")
     private User livreur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -92,19 +92,6 @@ public class CommandeLivraisonAnimal implements Serializable {
 
     public void setAdresseArrivee(String adresseArrivee) {
         this.adresseArrivee = adresseArrivee;
-    }
-
-    public LocalDate getDateHeure() {
-        return dateHeure;
-    }
-
-    public CommandeLivraisonAnimal dateHeure(LocalDate dateHeure) {
-        this.dateHeure = dateHeure;
-        return this;
-    }
-
-    public void setDateHeure(LocalDate dateHeure) {
-        this.dateHeure = dateHeure;
     }
 
     public String getAnimal() {
@@ -159,17 +146,30 @@ public class CommandeLivraisonAnimal implements Serializable {
         this.prix = prix;
     }
 
-    public Boolean isValidated() {
-        return validated;
+    public ZonedDateTime getDateheure() {
+        return dateheure;
     }
 
-    public CommandeLivraisonAnimal validated(Boolean validated) {
-        this.validated = validated;
+    public CommandeLivraisonAnimal dateheure(ZonedDateTime dateheure) {
+        this.dateheure = dateheure;
         return this;
     }
 
-    public void setValidated(Boolean validated) {
-        this.validated = validated;
+    public void setDateheure(ZonedDateTime dateheure) {
+        this.dateheure = dateheure;
+    }
+
+    public Boolean isCvalider() {
+        return cvalider;
+    }
+
+    public CommandeLivraisonAnimal cvalider(Boolean cvalider) {
+        this.cvalider = cvalider;
+        return this;
+    }
+
+    public void setCvalider(Boolean cvalider) {
+        this.cvalider = cvalider;
     }
 
     public User getClient() {
@@ -221,12 +221,12 @@ public class CommandeLivraisonAnimal implements Serializable {
             "id=" + getId() +
             ", adresseDepart='" + getAdresseDepart() + "'" +
             ", adresseArrivee='" + getAdresseArrivee() + "'" +
-            ", dateHeure='" + getDateHeure() + "'" +
             ", animal='" + getAnimal() + "'" +
             ", moyenDeTransport='" + getMoyenDeTransport() + "'" +
             ", numeroClient='" + getNumeroClient() + "'" +
             ", prix=" + getPrix() +
-            ", validated='" + isValidated() + "'" +
+            ", dateheure='" + getDateheure() + "'" +
+            ", cvalider='" + isCvalider() + "'" +
             "}";
     }
 }

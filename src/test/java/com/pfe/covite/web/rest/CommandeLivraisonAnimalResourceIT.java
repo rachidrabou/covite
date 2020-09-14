@@ -14,10 +14,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
 import java.time.ZoneId;
 import java.util.List;
 
+import static com.pfe.covite.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -38,9 +41,6 @@ public class CommandeLivraisonAnimalResourceIT {
     private static final String DEFAULT_ADRESSE_ARRIVEE = "AAAAAAAAAA";
     private static final String UPDATED_ADRESSE_ARRIVEE = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_DATE_HEURE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_HEURE = LocalDate.now(ZoneId.systemDefault());
-
     private static final String DEFAULT_ANIMAL = "AAAAAAAAAA";
     private static final String UPDATED_ANIMAL = "BBBBBBBBBB";
 
@@ -53,8 +53,11 @@ public class CommandeLivraisonAnimalResourceIT {
     private static final Double DEFAULT_PRIX = 1D;
     private static final Double UPDATED_PRIX = 2D;
 
-    private static final Boolean DEFAULT_VALIDATED = false;
-    private static final Boolean UPDATED_VALIDATED = true;
+    private static final ZonedDateTime DEFAULT_DATEHEURE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATEHEURE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final Boolean DEFAULT_CVALIDER = false;
+    private static final Boolean UPDATED_CVALIDER = true;
 
     @Autowired
     private CommandeLivraisonAnimalRepository commandeLivraisonAnimalRepository;
@@ -77,12 +80,12 @@ public class CommandeLivraisonAnimalResourceIT {
         CommandeLivraisonAnimal commandeLivraisonAnimal = new CommandeLivraisonAnimal()
             .adresseDepart(DEFAULT_ADRESSE_DEPART)
             .adresseArrivee(DEFAULT_ADRESSE_ARRIVEE)
-            .dateHeure(DEFAULT_DATE_HEURE)
             .animal(DEFAULT_ANIMAL)
             .moyenDeTransport(DEFAULT_MOYEN_DE_TRANSPORT)
             .numeroClient(DEFAULT_NUMERO_CLIENT)
             .prix(DEFAULT_PRIX)
-            .validated(DEFAULT_VALIDATED);
+            .dateheure(DEFAULT_DATEHEURE)
+            .cvalider(DEFAULT_CVALIDER);
         return commandeLivraisonAnimal;
     }
     /**
@@ -95,12 +98,12 @@ public class CommandeLivraisonAnimalResourceIT {
         CommandeLivraisonAnimal commandeLivraisonAnimal = new CommandeLivraisonAnimal()
             .adresseDepart(UPDATED_ADRESSE_DEPART)
             .adresseArrivee(UPDATED_ADRESSE_ARRIVEE)
-            .dateHeure(UPDATED_DATE_HEURE)
             .animal(UPDATED_ANIMAL)
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .prix(UPDATED_PRIX)
-            .validated(UPDATED_VALIDATED);
+            .dateheure(UPDATED_DATEHEURE)
+            .cvalider(UPDATED_CVALIDER);
         return commandeLivraisonAnimal;
     }
 
@@ -126,12 +129,12 @@ public class CommandeLivraisonAnimalResourceIT {
         CommandeLivraisonAnimal testCommandeLivraisonAnimal = commandeLivraisonAnimalList.get(commandeLivraisonAnimalList.size() - 1);
         assertThat(testCommandeLivraisonAnimal.getAdresseDepart()).isEqualTo(DEFAULT_ADRESSE_DEPART);
         assertThat(testCommandeLivraisonAnimal.getAdresseArrivee()).isEqualTo(DEFAULT_ADRESSE_ARRIVEE);
-        assertThat(testCommandeLivraisonAnimal.getDateHeure()).isEqualTo(DEFAULT_DATE_HEURE);
         assertThat(testCommandeLivraisonAnimal.getAnimal()).isEqualTo(DEFAULT_ANIMAL);
         assertThat(testCommandeLivraisonAnimal.getMoyenDeTransport()).isEqualTo(DEFAULT_MOYEN_DE_TRANSPORT);
         assertThat(testCommandeLivraisonAnimal.getNumeroClient()).isEqualTo(DEFAULT_NUMERO_CLIENT);
         assertThat(testCommandeLivraisonAnimal.getPrix()).isEqualTo(DEFAULT_PRIX);
-        assertThat(testCommandeLivraisonAnimal.isValidated()).isEqualTo(DEFAULT_VALIDATED);
+        assertThat(testCommandeLivraisonAnimal.getDateheure()).isEqualTo(DEFAULT_DATEHEURE);
+        assertThat(testCommandeLivraisonAnimal.isCvalider()).isEqualTo(DEFAULT_CVALIDER);
     }
 
     @Test
@@ -160,24 +163,6 @@ public class CommandeLivraisonAnimalResourceIT {
         int databaseSizeBeforeTest = commandeLivraisonAnimalRepository.findAll().size();
         // set the field null
         commandeLivraisonAnimal.setAdresseArrivee(null);
-
-        // Create the CommandeLivraisonAnimal, which fails.
-
-        restCommandeLivraisonAnimalMockMvc.perform(post("/api/commande-livraison-animals")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(commandeLivraisonAnimal)))
-            .andExpect(status().isBadRequest());
-
-        List<CommandeLivraisonAnimal> commandeLivraisonAnimalList = commandeLivraisonAnimalRepository.findAll();
-        assertThat(commandeLivraisonAnimalList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkDateHeureIsRequired() throws Exception {
-        int databaseSizeBeforeTest = commandeLivraisonAnimalRepository.findAll().size();
-        // set the field null
-        commandeLivraisonAnimal.setDateHeure(null);
 
         // Create the CommandeLivraisonAnimal, which fails.
 
@@ -221,12 +206,12 @@ public class CommandeLivraisonAnimalResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(commandeLivraisonAnimal.getId().intValue())))
             .andExpect(jsonPath("$.[*].adresseDepart").value(hasItem(DEFAULT_ADRESSE_DEPART)))
             .andExpect(jsonPath("$.[*].adresseArrivee").value(hasItem(DEFAULT_ADRESSE_ARRIVEE)))
-            .andExpect(jsonPath("$.[*].dateHeure").value(hasItem(DEFAULT_DATE_HEURE.toString())))
             .andExpect(jsonPath("$.[*].animal").value(hasItem(DEFAULT_ANIMAL)))
             .andExpect(jsonPath("$.[*].moyenDeTransport").value(hasItem(DEFAULT_MOYEN_DE_TRANSPORT)))
             .andExpect(jsonPath("$.[*].numeroClient").value(hasItem(DEFAULT_NUMERO_CLIENT)))
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.doubleValue())))
-            .andExpect(jsonPath("$.[*].validated").value(hasItem(DEFAULT_VALIDATED.booleanValue())));
+            .andExpect(jsonPath("$.[*].dateheure").value(hasItem(sameInstant(DEFAULT_DATEHEURE))))
+            .andExpect(jsonPath("$.[*].cvalider").value(hasItem(DEFAULT_CVALIDER.booleanValue())));
     }
     
     @Test
@@ -242,12 +227,12 @@ public class CommandeLivraisonAnimalResourceIT {
             .andExpect(jsonPath("$.id").value(commandeLivraisonAnimal.getId().intValue()))
             .andExpect(jsonPath("$.adresseDepart").value(DEFAULT_ADRESSE_DEPART))
             .andExpect(jsonPath("$.adresseArrivee").value(DEFAULT_ADRESSE_ARRIVEE))
-            .andExpect(jsonPath("$.dateHeure").value(DEFAULT_DATE_HEURE.toString()))
             .andExpect(jsonPath("$.animal").value(DEFAULT_ANIMAL))
             .andExpect(jsonPath("$.moyenDeTransport").value(DEFAULT_MOYEN_DE_TRANSPORT))
             .andExpect(jsonPath("$.numeroClient").value(DEFAULT_NUMERO_CLIENT))
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.doubleValue()))
-            .andExpect(jsonPath("$.validated").value(DEFAULT_VALIDATED.booleanValue()));
+            .andExpect(jsonPath("$.dateheure").value(sameInstant(DEFAULT_DATEHEURE)))
+            .andExpect(jsonPath("$.cvalider").value(DEFAULT_CVALIDER.booleanValue()));
     }
 
     @Test
@@ -273,12 +258,12 @@ public class CommandeLivraisonAnimalResourceIT {
         updatedCommandeLivraisonAnimal
             .adresseDepart(UPDATED_ADRESSE_DEPART)
             .adresseArrivee(UPDATED_ADRESSE_ARRIVEE)
-            .dateHeure(UPDATED_DATE_HEURE)
             .animal(UPDATED_ANIMAL)
             .moyenDeTransport(UPDATED_MOYEN_DE_TRANSPORT)
             .numeroClient(UPDATED_NUMERO_CLIENT)
             .prix(UPDATED_PRIX)
-            .validated(UPDATED_VALIDATED);
+            .dateheure(UPDATED_DATEHEURE)
+            .cvalider(UPDATED_CVALIDER);
 
         restCommandeLivraisonAnimalMockMvc.perform(put("/api/commande-livraison-animals")
             .contentType(MediaType.APPLICATION_JSON)
@@ -291,12 +276,12 @@ public class CommandeLivraisonAnimalResourceIT {
         CommandeLivraisonAnimal testCommandeLivraisonAnimal = commandeLivraisonAnimalList.get(commandeLivraisonAnimalList.size() - 1);
         assertThat(testCommandeLivraisonAnimal.getAdresseDepart()).isEqualTo(UPDATED_ADRESSE_DEPART);
         assertThat(testCommandeLivraisonAnimal.getAdresseArrivee()).isEqualTo(UPDATED_ADRESSE_ARRIVEE);
-        assertThat(testCommandeLivraisonAnimal.getDateHeure()).isEqualTo(UPDATED_DATE_HEURE);
         assertThat(testCommandeLivraisonAnimal.getAnimal()).isEqualTo(UPDATED_ANIMAL);
         assertThat(testCommandeLivraisonAnimal.getMoyenDeTransport()).isEqualTo(UPDATED_MOYEN_DE_TRANSPORT);
         assertThat(testCommandeLivraisonAnimal.getNumeroClient()).isEqualTo(UPDATED_NUMERO_CLIENT);
         assertThat(testCommandeLivraisonAnimal.getPrix()).isEqualTo(UPDATED_PRIX);
-        assertThat(testCommandeLivraisonAnimal.isValidated()).isEqualTo(UPDATED_VALIDATED);
+        assertThat(testCommandeLivraisonAnimal.getDateheure()).isEqualTo(UPDATED_DATEHEURE);
+        assertThat(testCommandeLivraisonAnimal.isCvalider()).isEqualTo(UPDATED_CVALIDER);
     }
 
     @Test

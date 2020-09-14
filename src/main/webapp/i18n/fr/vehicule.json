@@ -18,7 +18,8 @@
       },
       "matricule": "Matricule",
       "type": "Type",
-      "capacite": "Capacite"
+      "capacite": "Capacite",
+      "livreur": "Livreur"
     }
   }
 }

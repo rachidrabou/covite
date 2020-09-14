@@ -43,7 +43,7 @@ export const commandeTransportRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER],
       defaultSort: 'id,asc',
       pageTitle: 'coviteApp.commandeTransport.home.title'
     },
@@ -56,7 +56,7 @@ export const commandeTransportRoute: Routes = [
       commandeTransport: CommandeTransportResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER],
       pageTitle: 'coviteApp.commandeTransport.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -80,7 +80,7 @@ export const commandeTransportRoute: Routes = [
       commandeTransport: CommandeTransportResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER],
       pageTitle: 'coviteApp.commandeTransport.home.title'
     },
     canActivate: [UserRouteAccessService]

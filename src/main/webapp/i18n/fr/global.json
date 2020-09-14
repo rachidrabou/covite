@@ -12,7 +12,7 @@
         "vehicule": "Vehicule",
         "commandeTransport": "Commande Transport",
         "commandeLivraison": "Commande Livraison",
-        "commandeLivraisonAnimal": "Commande Livraison Animal",
+        "commandeLivraisonAnimal": "Commande transport Animal",
         "notification": "Notification",
         "tarifTransport": "Tarif Transport",
         "tarifLivraison": "Tarif Livraison",

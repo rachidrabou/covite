@@ -22,8 +22,14 @@
             <column name="solde" type="${floatType}">
                 <constraints nullable="true" />
             </column>
+            <column name="cin" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="user_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_livreur_user_id" />
+            </column>
+            <column name="vehicule_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_livreur_vehicule_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -50,6 +56,7 @@
             <column name="id" type="numeric"/>
             <column name="telephone" type="string"/>
             <column name="solde" type="numeric"/>
+            <column name="cin" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

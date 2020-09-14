@@ -1,5 +1,11 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div   class="col-md-12 " >
+        <div class="card jh-card">
+            <div class="card-deck">
+
+                <div class="col-12" style="padding:'30px 500px'">
+
+
         <div *ngIf="commandeLivraisonAnimal">
             <h2><span jhiTranslate="coviteApp.commandeLivraisonAnimal.detail.title">Commande Livraison Animal</span> {{ commandeLivraisonAnimal.id }}</h2>
 
@@ -15,10 +21,6 @@
                 <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.adresseArrivee">Adresse Arrivee</span></dt>
                 <dd>
                     <span>{{ commandeLivraisonAnimal.adresseArrivee }}</span>
-                </dd>
-                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.dateHeure">Date Heure</span></dt>
-                <dd>
-                    <span>{{ commandeLivraisonAnimal.dateHeure }}</span>
                 </dd>
                 <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.animal">Animal</span></dt>
                 <dd>
@@ -36,9 +38,13 @@
                 <dd>
                     <span>{{ commandeLivraisonAnimal.prix }}</span>
                 </dd>
-                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.validated">Validated</span></dt>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.dateheure">Dateheure</span></dt>
                 <dd>
-                    <span>{{ commandeLivraisonAnimal.validated }}</span>
+                    <span>{{ commandeLivraisonAnimal.dateheure }}</span>
+                </dd>
+                <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.cvalider">Cvalider</span></dt>
+                <dd>
+                    <span>{{ commandeLivraisonAnimal.cvalider }}</span>
                 </dd>
                 <dt><span jhiTranslate="coviteApp.commandeLivraisonAnimal.client">Client</span></dt>
                 <dd>
@@ -61,6 +67,10 @@
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 </div>

@@ -1,4 +1,10 @@
-<div>
+<div class="row justify-content-center">
+    <div   class="col-md-12 " >
+        <div class="card jh-card">
+            <div class="card-deck">
+
+                <div class="col-12" style="padding:'30px 30px'">
+
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.livreur.home.title">Livreurs</span>
 
@@ -23,24 +29,28 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="coviteApp.livreur.user">User</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="user.email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="coviteApp.livreur.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="solde"><span jhiTranslate="coviteApp.livreur.solde">Solde</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cin"><span jhiTranslate="coviteApp.livreur.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="coviteApp.livreur.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="vehicule.id"><span jhiTranslate="coviteApp.livreur.vehicule">Vehicule</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                 <tr *ngFor="let livreur of livreurs ;trackBy: trackId">
                     <td><a [routerLink]="['/livreur', livreur.id, 'view']">{{ livreur.id }}</a></td>
+                    <td>{{ livreur.telephone }}</td>
+                    <td>{{ livreur.solde }}</td>
+                    <td>{{ livreur.cin }}</td>
                     <td>
                         {{ livreur.user?.login }}
                     </td>
                     <td>
-                        {{ livreur.user?.email }}
+                        <div *ngIf="livreur.vehicule">
+                            <a [routerLink]="['/vehicule', livreur.vehicule?.id, 'view']" >{{ livreur.vehicule?.id }}</a>
+                        </div>
                     </td>
-                    <td>{{ livreur.telephone }}</td>
-                    <td>{{ livreur.solde }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -68,4 +78,15 @@
             </tbody>
         </table>
     </div>
+</div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+
 </div>

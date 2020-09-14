@@ -3,6 +3,7 @@ package com.pfe.covite.web.rest;
 import com.pfe.covite.CoviteApp;
 import com.pfe.covite.domain.Livreur;
 import com.pfe.covite.domain.User;
+import com.pfe.covite.domain.Vehicule;
 import com.pfe.covite.repository.LivreurRepository;
 import com.pfe.covite.service.LivreurService;
 import com.pfe.covite.service.dto.LivreurCriteria;
@@ -41,6 +42,9 @@ public class LivreurResourceIT {
     private static final Float UPDATED_SOLDE = 2F;
     private static final Float SMALLER_SOLDE = 1F - 1F;
 
+    private static final String DEFAULT_CIN = "AAAAAAAAAA";
+    private static final String UPDATED_CIN = "BBBBBBBBBB";
+
     @Autowired
     private LivreurRepository livreurRepository;
 
@@ -67,7 +71,8 @@ public class LivreurResourceIT {
     public static Livreur createEntity(EntityManager em) {
         Livreur livreur = new Livreur()
             .telephone(DEFAULT_TELEPHONE)
-            .solde(DEFAULT_SOLDE);
+            .solde(DEFAULT_SOLDE)
+            .cin(DEFAULT_CIN);
         return livreur;
     }
     /**
@@ -79,7 +84,8 @@ public class LivreurResourceIT {
     public static Livreur createUpdatedEntity(EntityManager em) {
         Livreur livreur = new Livreur()
             .telephone(UPDATED_TELEPHONE)
-            .solde(UPDATED_SOLDE);
+            .solde(UPDATED_SOLDE)
+            .cin(UPDATED_CIN);
         return livreur;
     }
 
@@ -105,6 +111,7 @@ public class LivreurResourceIT {
         Livreur testLivreur = livreurList.get(livreurList.size() - 1);
         assertThat(testLivreur.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
         assertThat(testLivreur.getSolde()).isEqualTo(DEFAULT_SOLDE);
+        assertThat(testLivreur.getCin()).isEqualTo(DEFAULT_CIN);
     }
 
     @Test
@@ -139,7 +146,8 @@ public class LivreurResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(livreur.getId().intValue())))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
-            .andExpect(jsonPath("$.[*].solde").value(hasItem(DEFAULT_SOLDE.doubleValue())));
+            .andExpect(jsonPath("$.[*].solde").value(hasItem(DEFAULT_SOLDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)));
     }
     
     @Test
@@ -154,7 +162,8 @@ public class LivreurResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(livreur.getId().intValue()))
             .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE))
-            .andExpect(jsonPath("$.solde").value(DEFAULT_SOLDE.doubleValue()));
+            .andExpect(jsonPath("$.solde").value(DEFAULT_SOLDE.doubleValue()))
+            .andExpect(jsonPath("$.cin").value(DEFAULT_CIN));
     }
 
 
@@ -362,6 +371,84 @@ public class LivreurResourceIT {
 
     @Test
     @Transactional
+    public void getAllLivreursByCinIsEqualToSomething() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+
+        // Get all the livreurList where cin equals to DEFAULT_CIN
+        defaultLivreurShouldBeFound("cin.equals=" + DEFAULT_CIN);
+
+        // Get all the livreurList where cin equals to UPDATED_CIN
+        defaultLivreurShouldNotBeFound("cin.equals=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllLivreursByCinIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+
+        // Get all the livreurList where cin not equals to DEFAULT_CIN
+        defaultLivreurShouldNotBeFound("cin.notEquals=" + DEFAULT_CIN);
+
+        // Get all the livreurList where cin not equals to UPDATED_CIN
+        defaultLivreurShouldBeFound("cin.notEquals=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllLivreursByCinIsInShouldWork() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+
+        // Get all the livreurList where cin in DEFAULT_CIN or UPDATED_CIN
+        defaultLivreurShouldBeFound("cin.in=" + DEFAULT_CIN + "," + UPDATED_CIN);
+
+        // Get all the livreurList where cin equals to UPDATED_CIN
+        defaultLivreurShouldNotBeFound("cin.in=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllLivreursByCinIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+
+        // Get all the livreurList where cin is not null
+        defaultLivreurShouldBeFound("cin.specified=true");
+
+        // Get all the livreurList where cin is null
+        defaultLivreurShouldNotBeFound("cin.specified=false");
+    }
+                @Test
+    @Transactional
+    public void getAllLivreursByCinContainsSomething() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+
+        // Get all the livreurList where cin contains DEFAULT_CIN
+        defaultLivreurShouldBeFound("cin.contains=" + DEFAULT_CIN);
+
+        // Get all the livreurList where cin contains UPDATED_CIN
+        defaultLivreurShouldNotBeFound("cin.contains=" + UPDATED_CIN);
+    }
+
+    @Test
+    @Transactional
+    public void getAllLivreursByCinNotContainsSomething() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+
+        // Get all the livreurList where cin does not contain DEFAULT_CIN
+        defaultLivreurShouldNotBeFound("cin.doesNotContain=" + DEFAULT_CIN);
+
+        // Get all the livreurList where cin does not contain UPDATED_CIN
+        defaultLivreurShouldBeFound("cin.doesNotContain=" + UPDATED_CIN);
+    }
+
+
+    @Test
+    @Transactional
     public void getAllLivreursByUserIsEqualToSomething() throws Exception {
         // Initialize the database
         livreurRepository.saveAndFlush(livreur);
@@ -379,6 +466,26 @@ public class LivreurResourceIT {
         defaultLivreurShouldNotBeFound("userId.equals=" + (userId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllLivreursByVehiculeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        livreurRepository.saveAndFlush(livreur);
+        Vehicule vehicule = VehiculeResourceIT.createEntity(em);
+        em.persist(vehicule);
+        em.flush();
+        livreur.setVehicule(vehicule);
+        livreurRepository.saveAndFlush(livreur);
+        Long vehiculeId = vehicule.getId();
+
+        // Get all the livreurList where vehicule equals to vehiculeId
+        defaultLivreurShouldBeFound("vehiculeId.equals=" + vehiculeId);
+
+        // Get all the livreurList where vehicule equals to vehiculeId + 1
+        defaultLivreurShouldNotBeFound("vehiculeId.equals=" + (vehiculeId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -388,7 +495,8 @@ public class LivreurResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(livreur.getId().intValue())))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
-            .andExpect(jsonPath("$.[*].solde").value(hasItem(DEFAULT_SOLDE.doubleValue())));
+            .andExpect(jsonPath("$.[*].solde").value(hasItem(DEFAULT_SOLDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)));
 
         // Check, that the count call also returns 1
         restLivreurMockMvc.perform(get("/api/livreurs/count?sort=id,desc&" + filter))
@@ -437,7 +545,8 @@ public class LivreurResourceIT {
         em.detach(updatedLivreur);
         updatedLivreur
             .telephone(UPDATED_TELEPHONE)
-            .solde(UPDATED_SOLDE);
+            .solde(UPDATED_SOLDE)
+            .cin(UPDATED_CIN);
 
         restLivreurMockMvc.perform(put("/api/livreurs")
             .contentType(MediaType.APPLICATION_JSON)
@@ -450,6 +559,7 @@ public class LivreurResourceIT {
         Livreur testLivreur = livreurList.get(livreurList.size() - 1);
         assertThat(testLivreur.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testLivreur.getSolde()).isEqualTo(UPDATED_SOLDE);
+        assertThat(testLivreur.getCin()).isEqualTo(UPDATED_CIN);
     }
 
     @Test

@@ -4,7 +4,7 @@
       "home": {
         "title": "Livreurs",
         "createLabel": "Créer un nouveau Livreur",
-        "createOrEditLabel": "Créer ou éditer un Livreur",
+        "createOrEditLabel": "Créer  un Livreur",
         "notFound": "Aucun Livreur trouvé"
       },
       "created": "Un nouveau Livreur a été créé avec l'identifiant {{ param }}",
@@ -18,7 +18,9 @@
       },
       "telephone": "Telephone",
       "solde": "Solde",
-      "user": "User"
+      "cin": "Cin",
+      "user": "User",
+      "vehicule": "Vehicule"
     }
   }
 }

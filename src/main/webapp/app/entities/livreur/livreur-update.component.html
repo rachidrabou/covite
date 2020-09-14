@@ -1,5 +1,9 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div   class="col-md-12 " >
+        <div class="card jh-card">
+            <div class="card-deck">
+
+                <div class="col-12" style="padding:'30px 30px'">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-livreur-heading" jhiTranslate="coviteApp.livreur.home.createOrEditLabel">Create or edit a Livreur</h2>
 
@@ -24,10 +28,24 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.livreur.cin" for="field_cin">Cin</label>
+                    <input type="text" class="form-control" name="cin" id="field_cin"
+                           formControlName="cin"/>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="coviteApp.livreur.user" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" formControlName="user">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="coviteApp.livreur.vehicule" for="field_vehicule">Vehicule</label>
+                    <select class="form-control" id="field_vehicule" name="vehicule" formControlName="vehicule">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vehiculeOption.id === editForm.get('vehicule')!.value?.id ? editForm.get('vehicule')!.value : vehiculeOption" *ngFor="let vehiculeOption of vehicules; trackBy: trackById">{{ vehiculeOption.id }}</option>
                     </select>
                 </div>
             </div>
@@ -43,4 +61,7 @@
             </div>
         </form>
     </div>
+</div>
+</div>
+</div>
 </div>

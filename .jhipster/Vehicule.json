@@ -1,7 +1,15 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "livreur",
+            "otherEntityName": "livreur",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "vehicule"
+        }
+    ],
     "fields": [
         {
             "fieldName": "matricule",

@@ -5,6 +5,7 @@ import com.pfe.covite.domain.Vehicule;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +28,12 @@ public interface VehiculeService {
      * @return the list of entities.
      */
     Page<Vehicule> findAll(Pageable pageable);
+    /**
+     * Get all the VehiculeDTO where Livreur is {@code null}.
+     *
+     * @return the list of entities.
+     */
+    List<Vehicule> findAllWhereLivreurIsNull();
 
     /**
      * Get the "id" vehicule.

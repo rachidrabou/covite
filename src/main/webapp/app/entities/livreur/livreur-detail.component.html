@@ -1,5 +1,9 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div   class="col-md-12 " >
+        <div class="card jh-card">
+            <div class="card-deck">
+
+                <div class="col-12" style="padding:'30px 500px'">
         <div *ngIf="livreur">
             <h2><span jhiTranslate="coviteApp.livreur.detail.title">Livreur</span> {{ livreur.id }}</h2>
 
@@ -16,9 +20,19 @@
                 <dd>
                     <span>{{ livreur.solde }}</span>
                 </dd>
+                <dt><span jhiTranslate="coviteApp.livreur.cin">Cin</span></dt>
+                <dd>
+                    <span>{{ livreur.cin }}</span>
+                </dd>
                 <dt><span jhiTranslate="coviteApp.livreur.user">User</span></dt>
                 <dd>
                     {{ livreur.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="coviteApp.livreur.vehicule">Vehicule</span></dt>
+                <dd>
+                    <div *ngIf="livreur.vehicule">
+                        <a [routerLink]="['/vehicule', livreur.vehicule?.id, 'view']">{{ livreur.vehicule?.id }}</a>
+                    </div>
                 </dd>
             </dl>
 
@@ -33,6 +47,10 @@
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 </div>

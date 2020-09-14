@@ -1,5 +1,6 @@
 package com.pfe.covite.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -33,6 +34,10 @@ public class Vehicule implements Serializable {
 
     @Column(name = "capacite")
     private Integer capacite;
+
+    @OneToOne(mappedBy = "vehicule")
+    @JsonIgnore
+    private Livreur livreur;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -80,6 +85,19 @@ public class Vehicule implements Serializable {
 
     public void setCapacite(Integer capacite) {
         this.capacite = capacite;
+    }
+
+    public Livreur getLivreur() {
+        return livreur;
+    }
+
+    public Vehicule livreur(Livreur livreur) {
+        this.livreur = livreur;
+        return this;
+    }
+
+    public void setLivreur(Livreur livreur) {
+        this.livreur = livreur;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

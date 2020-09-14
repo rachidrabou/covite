@@ -2,6 +2,7 @@ package com.pfe.covite.web.rest;
 
 import com.pfe.covite.CoviteApp;
 import com.pfe.covite.domain.Vehicule;
+import com.pfe.covite.domain.Livreur;
 import com.pfe.covite.repository.VehiculeRepository;
 import com.pfe.covite.service.VehiculeService;
 import com.pfe.covite.service.dto.VehiculeCriteria;
@@ -417,6 +418,27 @@ public class VehiculeResourceIT {
 
         // Get all the vehiculeList where capacite is greater than SMALLER_CAPACITE
         defaultVehiculeShouldBeFound("capacite.greaterThan=" + SMALLER_CAPACITE);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllVehiculesByLivreurIsEqualToSomething() throws Exception {
+        // Initialize the database
+        vehiculeRepository.saveAndFlush(vehicule);
+        Livreur livreur = LivreurResourceIT.createEntity(em);
+        em.persist(livreur);
+        em.flush();
+        vehicule.setLivreur(livreur);
+        livreur.setVehicule(vehicule);
+        vehiculeRepository.saveAndFlush(vehicule);
+        Long livreurId = livreur.getId();
+
+        // Get all the vehiculeList where livreur equals to livreurId
+        defaultVehiculeShouldBeFound("livreurId.equals=" + livreurId);
+
+        // Get all the vehiculeList where livreur equals to livreurId + 1
+        defaultVehiculeShouldNotBeFound("livreurId.equals=" + (livreurId + 1));
     }
 
     /**

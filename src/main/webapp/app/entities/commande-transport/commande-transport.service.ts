@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICommandeTransport } from 'app/shared/model/commande-transport.model';
@@ -51,15 +50,14 @@ export class CommandeTransportService {
 
   protected convertDateFromClient(commandeTransport: ICommandeTransport): ICommandeTransport {
     const copy: ICommandeTransport = Object.assign({}, commandeTransport, {
-      dateHeure:
-        commandeTransport.dateHeure && commandeTransport.dateHeure.isValid() ? commandeTransport.dateHeure.format(DATE_FORMAT) : undefined
+      dateheure: commandeTransport.dateheure && commandeTransport.dateheure.isValid() ? commandeTransport.dateheure.toJSON() : undefined
     });
     return copy;
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
-      res.body.dateHeure = res.body.dateHeure ? moment(res.body.dateHeure) : undefined;
+      res.body.dateheure = res.body.dateheure ? moment(res.body.dateheure) : undefined;
     }
     return res;
   }
@@ -67,7 +65,7 @@ export class CommandeTransportService {
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
       res.body.forEach((commandeTransport: ICommandeTransport) => {
-        commandeTransport.dateHeure = commandeTransport.dateHeure ? moment(commandeTransport.dateHeure) : undefined;
+        commandeTransport.dateheure = commandeTransport.dateheure ? moment(commandeTransport.dateheure) : undefined;
       });
     }
     return res;

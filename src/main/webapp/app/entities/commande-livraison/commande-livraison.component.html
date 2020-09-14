@@ -29,6 +29,8 @@
                     <th scope="col"  jhiSortBy="numeroClient"><span jhiTranslate="coviteApp.commandeLivraison.numeroClient">Numero Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="objet"><span jhiTranslate="coviteApp.commandeLivraison.objet">Objet</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cin"><span jhiTranslate="coviteApp.commandeLivraison.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateheure"><span jhiTranslate="coviteApp.commandeLivraison.dateheure">Dateheure</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cvalider"><span jhiTranslate="coviteApp.commandeLivraison.cvalider">Cvalider</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="client.login"><span jhiTranslate="coviteApp.commandeLivraison.client">Client</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="livreur.login"><span jhiTranslate="coviteApp.commandeLivraison.livreur">Livreur</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -43,6 +45,8 @@
                     <td>{{ commandeLivraison.numeroClient }}</td>
                     <td>{{ commandeLivraison.objet }}</td>
                     <td>{{ commandeLivraison.cin }}</td>
+                    <td>{{ commandeLivraison.dateheure | date:'medium' }}</td>
+                    <td>{{ commandeLivraison.cvalider }}</td>
                     <td>
                         {{ commandeLivraison.client?.login }}
                     </td>
