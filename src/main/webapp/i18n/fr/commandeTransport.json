@@ -3,20 +3,20 @@
     "commandeTransport": {
       "home": {
         "title": "CommandeTransports",
-        "createLabel": "Créer un nouveau Commande Transport",
+        "createLabel": "Créer une nouvelle commande Transport",
         "createOrEditLabel": "Créer une Commande Transport",
         "notFound": "Aucun Commande Transport trouvé"
       },
-      "created": "Un nouveau Commande Transport a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Commande Transport avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Commande Transport avec l'identifiant {{ param }} a été supprimé",
+      "created": "Ue nouvelle Commande Transport a été créé avec l'identifiant {{ param }}",
+      "updated": "La Commande Transport avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Commande Transport avec l'identifiant {{ param }} a été supprimé",
       "delete": {
         "question": "Etes-vous certain de vouloir supprimer le Commande Transport {{ id }} ?"
       },
       "detail": {
         "title": "Commande Transport"
       },
-      "adresseDepart": "Adresse Depart",
+      "adresseDepart": "Lieu de prise en charge ?",
       "adresseArrivee": "Adresse Arrivee",
       "moyenDeTransport": "Moyen De Transport",
       "prix": "Prix",

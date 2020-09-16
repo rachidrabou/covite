@@ -1,7 +1,10 @@
 package com.pfe.covite.web.rest;
 
 import com.pfe.covite.domain.CommandeTransport;
+import com.pfe.covite.domain.Notification;
 import com.pfe.covite.repository.CommandeTransportRepository;
+import com.pfe.covite.repository.LivreurRepository;
+import com.pfe.covite.repository.NotificationRepository;
 import com.pfe.covite.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -9,6 +12,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +44,12 @@ public class CommandeTransportResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    @Autowired
+    NotificationRepository notificationRepository;
+
+    @Autowired
+    LivreurRepository livreurRepository;
+
     private final CommandeTransportRepository commandeTransportRepository;
 
     public CommandeTransportResource(CommandeTransportRepository commandeTransportRepository) {
@@ -55,6 +65,8 @@ public class CommandeTransportResource {
      */
     @PostMapping("/commande-transports")
     public ResponseEntity<CommandeTransport> createCommandeTransport(@Valid @RequestBody CommandeTransport commandeTransport) throws URISyntaxException {
+
+        notificationRepository.save(new Notification("Commande service transport", commandeTransport.getClient(), commandeTransport, commandeTransport.getLivreur()));
         log.debug("REST request to save CommandeTransport : {}", commandeTransport);
         if (commandeTransport.getId() != null) {
             throw new BadRequestAlertException("A new commandeTransport cannot already have an ID", ENTITY_NAME, "idexists");

@@ -1,7 +1,12 @@
 package com.pfe.covite.web.rest;
 
 import com.pfe.covite.domain.CommandeLivraison;
+import com.pfe.covite.domain.Livreur;
+import com.pfe.covite.domain.Notification;
+import com.pfe.covite.domain.User;
 import com.pfe.covite.repository.CommandeLivraisonRepository;
+import com.pfe.covite.repository.LivreurRepository;
+import com.pfe.covite.repository.NotificationRepository;
 import com.pfe.covite.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -9,6 +14,7 @@ import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,6 +48,12 @@ public class CommandeLivraisonResource {
 
     private final CommandeLivraisonRepository commandeLivraisonRepository;
 
+    @Autowired
+    NotificationRepository notificationRepository;
+
+    @Autowired
+    LivreurRepository livreurRepository;
+
     public CommandeLivraisonResource(CommandeLivraisonRepository commandeLivraisonRepository) {
         this.commandeLivraisonRepository = commandeLivraisonRepository;
     }
@@ -55,6 +67,9 @@ public class CommandeLivraisonResource {
      */
     @PostMapping("/commande-livraisons")
     public ResponseEntity<CommandeLivraison> createCommandeLivraison(@Valid @RequestBody CommandeLivraison commandeLivraison) throws URISyntaxException {
+
+        notificationRepository.save(new Notification("Commande service livraison", commandeLivraison.getClient(), commandeLivraison, commandeLivraison.getLivreur()));
+
         log.debug("REST request to save CommandeLivraison : {}", commandeLivraison);
         if (commandeLivraison.getId() != null) {
             throw new BadRequestAlertException("A new commandeLivraison cannot already have an ID", ENTITY_NAME, "idexists");
@@ -76,6 +91,8 @@ public class CommandeLivraisonResource {
      */
     @PutMapping("/commande-livraisons")
     public ResponseEntity<CommandeLivraison> updateCommandeLivraison(@Valid @RequestBody CommandeLivraison commandeLivraison) throws URISyntaxException {
+
+
         log.debug("REST request to update CommandeLivraison : {}", commandeLivraison);
         if (commandeLivraison.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

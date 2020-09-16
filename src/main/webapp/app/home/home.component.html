@@ -26,11 +26,19 @@
                         <h1 style="color: white"> </h1>
                     </div>
                 </ng-template>
+
+                <ng-template ngbSlide>
+                    <img class="d-block w-100" src="../../content/images/map.jpeg" alt="Bangalore Metro" style="width:700 px">
+                    <div class="carousel-caption">
+                        <h1 style="color: white">itineéraire simplifié</h1>
+                    </div>
+                </ng-template>
+                <!--
                 <ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/Jaune.png" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
                         <h1 style="color: white"> </h1>
-                    </div>
+                    </div> -->
                 </ng-template>
                 <ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/h1.png" alt="Delhi Metro" style=" width:700 px">
@@ -38,7 +46,7 @@
                         <h1 style="color: white"> </h1>
                     </div>
                 </ng-template>
-                <ng-template ngbSlide>
+                <!--<ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/h2.jpg" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
                         <h1 style="color: white"> </h1>
@@ -49,50 +57,41 @@
                     <div class="carousel-caption">
                         <h1 style="color: white"> </h1>
                     </div>
-                </ng-template>
-                <ng-template ngbSlide>
+                </ng-template>-->
+                <!--<ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/rire.png" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
                         <h1 style="color: white"> </h1>
                     </div>
-                </ng-template>
+                </ng-template> -->
                 <ng-template ngbSlide>
-                    <img class="d-block w-100" src="../../content/images/soyez.png" alt="Delhi Metro" style=" width:700 px">
+                    <img class="d-block w-100" src="../../content/images/soyez1.png" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
                         <h1 style="color: white"> </h1>
                     </div>
                 </ng-template>
                 <ng-template ngbSlide>
-                    <img class="d-block w-100" src="../../content/images/girlinthecar.jpeg" alt="Delhi Metro" style=" width:700 px">
+                    <img class="d-block w-100" src="../../content/images/girlgirl.png" alt="Delhi Metro" style=" width:700 px">
                     <div class="carousel-caption">
-                        <h1 style="color: white">deplacez vous en toute liberté</h1>
+                        <h1 style="color: white">Déplacez vous en toute liberté</h1>
                     </div>
                 </ng-template>
-                <ng-template ngbSlide>
+                <!--<ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/delivery1.png" alt="Bangalore Metro" style="width:500 px">
                     <div class="carousel-caption">
                         <h1 style="color:white">nos meilleurs maitres sont a votre disposition</h1>
                     </div>
-                </ng-template>
+                </ng-template> -->
 
-                <ng-template ngbSlide>
-                    <img class="d-block w-100" src="../../content/images/delivery-guy.jpeg" alt="Bangalore Metro" style=" width:700 px">
-                    <div class="carousel-caption">
-                        <h1 style="color: white">nos livreurs sont la pour vous</h1>
-                    </div>
-                </ng-template>
+
                 <ng-template ngbSlide>
                     <img class="d-block w-100" src="../../content/images/test1.png" alt="Channai Metro" style=" width:700 px">
                     <div class="carousel-caption">
                         <h1 style="color: orange">mais aussi vos animaux</h1>
                     </div>
                 </ng-template>
-                <ng-template ngbSlide>
-                    <img class="d-block w-100" src="../../content/images/map.jpeg" alt="Bangalore Metro" style="width:700 px">
-                    <div class="carousel-caption">
-                        <h1 style="color: white">itineéraire simplifié</h1>
-                    </div>
-                </ng-template>
+
+
 
             </ngb-carousel>
 
@@ -118,12 +117,12 @@
         <br> <br>
         <div _ngcontent-c5 class="container-fluid mt--7">
 
-        <div class="row text-center" >
+        <div class="row text-center"  *jhiHasAnyAuthority="'ROLE_USER'">
             <div class="couverture" >
                 <div   class="col-md-12" >
-                    <img class="img-responsive" src="../../content/images/gris3.png">
+                    <img class="img-responsive"  src="../../content/images/gris3.png">
                 </div>
-            </div>
+          </div>
         </div>
        </div>
 

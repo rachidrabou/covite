@@ -63,7 +63,7 @@ export const notificationRoute: Routes = [
       notification: NotificationResolve
     },
     data: {
-      authorities: [Authority.ADMIN],
+      authorities: [Authority.ADMIN, Authority.LIVREUR],
       pageTitle: 'coviteApp.notification.home.title'
     },
     canActivate: [UserRouteAccessService]
