@@ -11,7 +11,7 @@
     <h2 id="page-heading">
         <span jhiTranslate="coviteApp.commandeTransport.home.title">Commande Transports</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-transport" [routerLink]="['/commande-transport/new']">
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'"  id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commande-transport" [routerLink]="['/commande-transport/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="coviteApp.commandeTransport.home.createLabel">
             Create a new Commande Transport
