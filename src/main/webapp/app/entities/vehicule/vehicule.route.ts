@@ -43,7 +43,7 @@ export const vehiculeRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       defaultSort: 'id,asc',
       pageTitle: 'coviteApp.vehicule.home.title'
     },
@@ -56,7 +56,7 @@ export const vehiculeRoute: Routes = [
       vehicule: VehiculeResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.vehicule.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -68,7 +68,7 @@ export const vehiculeRoute: Routes = [
       vehicule: VehiculeResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.vehicule.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -80,7 +80,7 @@ export const vehiculeRoute: Routes = [
       vehicule: VehiculeResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.vehicule.home.title'
     },
     canActivate: [UserRouteAccessService]

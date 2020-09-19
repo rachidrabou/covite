@@ -68,7 +68,7 @@ export const commandeLivraisonRoute: Routes = [
       commandeLivraison: CommandeLivraisonResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'coviteApp.commandeLivraison.home.title'
     },
     canActivate: [UserRouteAccessService]

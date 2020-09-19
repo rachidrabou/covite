@@ -66,7 +66,8 @@ public class CommandeTransportResource {
     @PostMapping("/commande-transports")
     public ResponseEntity<CommandeTransport> createCommandeTransport(@Valid @RequestBody CommandeTransport commandeTransport) throws URISyntaxException {
 
-        notificationRepository.save(new Notification("Commande service transport", commandeTransport.getClient(), commandeTransport, commandeTransport.getLivreur()));
+        //notificationRepository.save(new Notification("Commande service transport", commandeTransport.getClient(), commandeTransport, commandeTransport.getLivreur()));
+
         log.debug("REST request to save CommandeTransport : {}", commandeTransport);
         if (commandeTransport.getId() != null) {
             throw new BadRequestAlertException("A new commandeTransport cannot already have an ID", ENTITY_NAME, "idexists");

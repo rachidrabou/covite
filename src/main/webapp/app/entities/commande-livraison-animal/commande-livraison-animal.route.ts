@@ -68,7 +68,7 @@ export const commandeLivraisonAnimalRoute: Routes = [
       commandeLivraisonAnimal: CommandeLivraisonAnimalResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'coviteApp.commandeLivraisonAnimal.home.title'
     },
     canActivate: [UserRouteAccessService]

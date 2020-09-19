@@ -39,7 +39,7 @@ export const tarifTransportAnimalRoute: Routes = [
     path: '',
     component: TarifTransportAnimalComponent,
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER, Authority.LIVREUR, Authority.ADMIN],
       pageTitle: 'coviteApp.tarifTransportAnimal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const tarifTransportAnimalRoute: Routes = [
       tarifTransportAnimal: TarifTransportAnimalResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER, Authority.LIVREUR, Authority.ADMIN],
       pageTitle: 'coviteApp.tarifTransportAnimal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +75,7 @@ export const tarifTransportAnimalRoute: Routes = [
       tarifTransportAnimal: TarifTransportAnimalResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.tarifTransportAnimal.home.title'
     },
     canActivate: [UserRouteAccessService]

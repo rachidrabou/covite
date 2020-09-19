@@ -79,7 +79,7 @@
                             </button>
 
                             <button type="submit" (click)="delete(commandeLivraison)"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                             </button>

@@ -39,7 +39,7 @@ export const livreurRoute: Routes = [
     path: '',
     component: LivreurComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.livreur.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const livreurRoute: Routes = [
       livreur: LivreurResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.livreur.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -63,7 +63,7 @@ export const livreurRoute: Routes = [
       livreur: LivreurResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.livreur.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +75,7 @@ export const livreurRoute: Routes = [
       livreur: LivreurResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.livreur.home.title'
     },
     canActivate: [UserRouteAccessService]

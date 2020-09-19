@@ -39,7 +39,7 @@ export const tarifTransportRoute: Routes = [
     path: '',
     component: TarifTransportComponent,
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER, Authority.LIVREUR, Authority.ADMIN],
       pageTitle: 'coviteApp.tarifTransport.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -51,7 +51,7 @@ export const tarifTransportRoute: Routes = [
       tarifTransport: TarifTransportResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.USER, Authority.LIVREUR, Authority.ADMIN],
       pageTitle: 'coviteApp.tarifTransport.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -75,7 +75,7 @@ export const tarifTransportRoute: Routes = [
       tarifTransport: TarifTransportResolve
     },
     data: {
-      authorities: [Authority.USER, Authority.LIVREUR],
+      authorities: [Authority.ADMIN],
       pageTitle: 'coviteApp.tarifTransport.home.title'
     },
     canActivate: [UserRouteAccessService]

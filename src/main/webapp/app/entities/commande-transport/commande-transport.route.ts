@@ -68,7 +68,7 @@ export const commandeTransportRoute: Routes = [
       commandeTransport: CommandeTransportResolve
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.USER, Authority.ADMIN],
       pageTitle: 'coviteApp.commandeTransport.home.title'
     },
     canActivate: [UserRouteAccessService]
